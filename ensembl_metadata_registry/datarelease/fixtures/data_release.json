@@ -1,0 +1,52 @@
+[
+{
+    "model": "datarelease.datarelease",
+    "pk": 5,
+    "fields": {
+        "ensembl_version": 83,
+        "ensembl_genomes_version": 27,
+        "release_date": "2015-06-15",
+        "is_current": 1
+    }
+},
+{
+    "model": "datarelease.datarelease",
+    "pk": 4,
+    "fields": {
+        "ensembl_version": 83,
+        "ensembl_genomes_version": null,
+        "release_date": "2015-12-08",
+        "is_current": 1
+    }
+},
+{
+    "model": "datarelease.datarelease",
+    "pk": 3,
+    "fields": {
+        "ensembl_version": 82,
+        "ensembl_genomes_version": null,
+        "release_date": "2015-09-30",
+        "is_current": null
+    }
+},
+{
+    "model": "datarelease.datarelease",
+    "pk": 2,
+    "fields": {
+        "ensembl_version": 81,
+        "ensembl_genomes_version": null,
+        "release_date": "2015-07-16",
+        "is_current": null
+    }
+},
+{
+    "model": "datarelease.datarelease",
+    "pk": 1,
+    "fields": {
+        "ensembl_version": 80,
+        "ensembl_genomes_version": null,
+        "release_date": "2015-05-20",
+        "is_current": null
+    }
+}
+]

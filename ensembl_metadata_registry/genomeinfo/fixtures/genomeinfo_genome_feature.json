@@ -1,0 +1,104 @@
+[
+{
+    "model": "organism.organism",
+    "pk": 4,
+    "fields": {
+        "taxonomy_id": 30538,
+        "is_reference": 0,
+        "species_taxonomy_id": 30538,
+        "name": "vicugna_pacos",
+        "display_name": "Alpaca",
+        "strain": null,
+        "serotype": null,
+        "description": null,
+        "image": null
+    }
+},
+{
+    "model": "assembly.assembly",
+    "pk": 4,
+    "fields": {
+        "assembly_accession": null,
+        "assembly_name": "vicPac1",
+        "assembly_level": "genescaffold",
+        "base_count": 2967746133
+    }
+},
+{
+    "model": "datarelease.datarelease",
+    "pk": 1,
+    "fields": {
+        "ensembl_version": 80,
+        "ensembl_genomes_version": null,
+        "release_date": "2015-05-20",
+        "is_current": null
+    }
+},
+{
+    "model": "genomeinfo.genome",
+    "pk": 6,
+    "fields": {
+        "data_release": 1,
+        "assembly": 4,
+        "organism": 4,
+        "genebuild": "2008-11-Ensembl",
+        "has_pan_compara": 0,
+        "has_variations": 0,
+        "has_peptide_compara": 0,
+        "has_genome_alignments": 0,
+        "has_synteny": 0,
+        "has_other_alignments": 1,
+        "division_id": 1
+    }
+},
+{
+    "model": "genomeinfo.genomefeature",
+    "pk": 5,
+    "fields": {
+        "genome": 6,
+        "type": "simpleFeatures",
+        "analysis": "cpg",
+        "count": 9846
+    }
+},
+{
+    "model": "genomeinfo.genomefeature",
+    "pk": 4,
+    "fields": {
+        "genome": 6,
+        "type": "simpleFeatures",
+        "analysis": "eponine",
+        "count": 15629
+    }
+},
+{
+    "model": "genomeinfo.genomefeature",
+    "pk": 3,
+    "fields": {
+        "genome": 6,
+        "type": "repeatFeatures",
+        "analysis": "trf",
+        "count": 495238
+    }
+},
+{
+    "model": "genomeinfo.genomefeature",
+    "pk": 2,
+    "fields": {
+        "genome": 6,
+        "type": "repeatFeatures",
+        "analysis": "dust",
+        "count": 1676705
+    }
+},
+{
+    "model": "genomeinfo.genomefeature",
+    "pk": 1,
+    "fields": {
+        "genome": 6,
+        "type": "repeatFeatures",
+        "analysis": "repeatmask",
+        "count": 2151009
+    }
+}
+]

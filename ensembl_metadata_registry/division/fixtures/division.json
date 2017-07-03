@@ -1,0 +1,18 @@
+[
+{
+    "model": "division.division",
+    "pk": 1,
+    "fields": {
+        "name": "Ensembl",
+        "short_name": "E"
+    }
+},
+{
+    "model": "division.division",
+    "pk": 2,
+    "fields": {
+        "name": "EnsemblMetazoa",
+        "short_name": "EM"
+    }
+}
+]

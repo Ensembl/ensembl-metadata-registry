@@ -1,0 +1,73 @@
+[
+{
+    "model": "organism.organism",
+    "pk": 1,
+    "fields": {
+        "taxonomy_id": 51511,
+        "is_reference": 0,
+        "species_taxonomy_id": 51511,
+        "name": "ciona_savignyi",
+        "display_name": "C.savignyi",
+        "strain": null,
+        "serotype": null,
+        "description": null,
+        "image": null
+    }
+},
+{
+    "model": "assembly.assembly",
+    "pk": 1,
+    "fields": {
+        "organism": 1,
+        "assembly_accession": null,
+        "assembly_name": "CSAV 2.0",
+        "assembly_level": "reftig",
+        "base_count": 177003750
+    }
+},
+{
+    "model": "assembly.assemblysequence",
+    "pk": 168871557,
+    "fields": {
+        "assembly": 1,
+        "name": "reftig_0_1",
+        "acc": null
+    }
+},
+{
+    "model": "assembly.assemblysequence",
+    "pk": 168866367,
+    "fields": {
+        "assembly": 1,
+        "name": "NC_004570",
+        "acc": null
+    }
+},
+{
+    "model": "assembly.assemblysequence",
+    "pk": 168856238,
+    "fields": {
+        "assembly": 1,
+        "name": "reftig_0",
+        "acc": null
+    }
+},
+{
+    "model": "assembly.assemblysequence",
+    "pk": 168855091,
+    "fields": {
+        "assembly": 1,
+        "name": "reftig_0_10",
+        "acc": null
+    }
+},
+{
+    "model": "assembly.assemblysequence",
+    "pk": 168849571,
+    "fields": {
+        "assembly": 1,
+        "name": "AB079784.114737",
+        "acc": null
+    }
+}
+]

@@ -1,0 +1,125 @@
+
+{% extends "rest_framework_swagger/base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% load staticfiles %}
+
+{% block extra_styles %}
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+{% endblock %}
+
+{% block extra_scripts %}
+<script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      var pathname = window.location.pathname; // Returns path only
+      var division = pathname.split("/")[3];
+      
+      console.log('Pathname ' + pathname);
+      console.log('division ' + division);
+      
+      function drawChart() {
+      var colr = {};
+      colr['ensembl'] = '#336';
+      colr['ensemblbacteria'] = '#b30000';
+      colr['ensemblmetazoa'] = '#017a95';
+      colr['ensemblfungi'] = '#a68460';
+      colr['ensemblprotists'] = '#712786';
+      colr['ensemblplants'] = '#7eb693';
+
+      var jsonData = $.ajax({
+          url: "/meta_stats/" + division + "/",
+          dataType:"json",
+          async: false
+          }).responseText;
+       var jsonObject = jQuery.parseJSON( jsonData );
+            
+      var result_array = [];
+      var data_label = [];
+      var ehash = {};
+      if(division == 'ensemblgenomes'){
+        data_label =  ['eRelease', 'ensemblmetazoa', 'ensemblfungi','ensemblbacteria','ensemblprotists','ensemblplants', { role: 'style' }];
+        $.each(jsonObject, function (index, item) {
+         if(item.data_release__ensembl_genomes_version == null) 
+            {
+             return;
+            }
+        //console.log(item.data_release__ensembl_genomes_version + '  ' + item.division__name  + '  ' + item.genome_id__count);
+        if(ehash[item.data_release__ensembl_genomes_version] == undefined){
+        ehash[item.data_release__ensembl_genomes_version] = {};
+        }
+        ehash[item.data_release__ensembl_genomes_version][item.division__name] = item.genome_id__count;
+        });
+      
+      }else{
+        data_label =  ['eRelease', 'genomeCount', { role: 'style' }, { role: 'annotation' } ];
+      }
+      result_array.push(data_label);
+      var eRelease_seen = [];
+	      $.each(jsonObject, function (index, item) {
+		      if (division == 'ensembl'){
+		        result_array.push(['e'+item.data_release__ensembl_version, item.genome_id__count, 'color:' + colr[division]+ '; opacity:0.8', item.genome_id__count]);
+		      }else{
+		       if(item.data_release__ensembl_genomes_version == null) 
+		        {
+		         return;
+		        }
+		        if(division == 'ensemblgenomes'){
+		           var cur_obj = ehash[item.data_release__ensembl_genomes_version];
+		           if(eRelease_seen.indexOf(item.data_release__ensembl_genomes_version) < 0){
+		              result_array.push(['e'+item.data_release__ensembl_genomes_version, cur_obj['EnsemblMetazoa'], cur_obj['EnsemblFungi'], cur_obj['EnsemblBacteria'], cur_obj['EnsemblProtists'], cur_obj['EnsemblPlants'], '']);
+                     eRelease_seen.push(item.data_release__ensembl_genomes_version);
+                   }
+		        }else{
+		           result_array.push(['e'+item.data_release__ensembl_genomes_version, item.genome_id__count, 'color: ' + colr[division] + '; opacity:0.8', item.genome_id__count]);
+		          }
+		      }
+	      });
+      
+      var data = google.visualization.arrayToDataTable( result_array, false); // 'false' means that the first row contains labels, not data.
+      
+      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+      
+      var height_ = 400;
+      if(division == 'ensemblgenomes'){ height_ = 800;}
+      var options = {  'title':'Genomes count for each ' + division +' release',
+                       'subtitle': 'Division: ' + division,
+                       'width':1400,
+                       'height':height_,
+                       'bar': {groupWidth: "80%"},
+                        hAxis: {
+                        title :'Genomes',
+                        showRowNumber: true,
+                        format: '#',
+                        },
+                        vAxis:{title: division +' Release', logScale:true},
+                        colors: [colr[division]],
+                       
+      };
+      if(division == 'ensemblgenomes') {options['bars'] = 'horizontal'; options['colors'] = ['#017a95', '#a68460', '#b30000', '#712786', '#7eb693']; options['bar'] = {groupWidth: "70%"}; options['hAxis']['scaleType'] = 'log'; options['hAxis']['logScale'] = true;};
+      
+      chart.draw(data, options);
+    }
+
+    </script>
+
+{% endblock %}
+
+{% block dashboard %}
+    <div id="chart_div"></div>
+{% endblock %}
+
+
+<body></body>
+
+

@@ -1,0 +1,99 @@
+[
+{
+    "model": "organism.organism",
+    "pk": 1,
+    "fields": {
+        "taxonomy_id": 51511,
+        "is_reference": 0,
+        "species_taxonomy_id": 51511,
+        "name": "ciona_savignyi",
+        "display_name": "C.savignyi",
+        "strain": null,
+        "serotype": null,
+        "description": null,
+        "image": null
+    }
+},
+{
+    "model": "assembly.assembly",
+    "pk": 1,
+    "fields": {
+        "assembly_accession": null,
+        "assembly_name": "CSAV 2.0",
+        "assembly_level": "reftig",
+        "base_count": 177003750
+    }
+},
+{
+    "model": "datarelease.datarelease",
+    "pk": 1,
+    "fields": {
+        "ensembl_version": 80,
+        "ensembl_genomes_version": null,
+        "release_date": "2015-05-20",
+        "is_current": null
+    }
+},
+{
+    "model": "genomeinfo.genome",
+    "pk": 1,
+    "fields": {
+        "data_release": 1,
+        "assembly": 1,
+        "organism": 1,
+        "genebuild": "2006-04-Ensembl",
+        "has_pan_compara": 0,
+        "has_variations": 0,
+        "has_peptide_compara": 0,
+        "has_genome_alignments": 0,
+        "has_synteny": 0,
+        "has_other_alignments": 1,
+        "division_id": 1
+    }
+},
+{
+    "model": "genomeinfo.genomeannotation",
+    "pk": 5,
+    "fields": {
+        "genome": 1,
+        "type": "nProteinCodingInterPro",
+        "value": 3797
+    }
+},
+{
+    "model": "genomeinfo.genomeannotation",
+    "pk": 4,
+    "fields": {
+        "genome": 1,
+        "type": "nProteinCoding",
+        "value": 11616
+    }
+},
+{
+    "model": "genomeinfo.genomeannotation",
+    "pk": 3,
+    "fields": {
+        "genome": 1,
+        "type": "nProteinCodingUniProtKB",
+        "value": 11616
+    }
+},
+{
+    "model": "genomeinfo.genomeannotation",
+    "pk": 2,
+    "fields": {
+        "genome": 1,
+        "type": "nGO",
+        "value": 6902
+    }
+},
+{
+    "model": "genomeinfo.genomeannotation",
+    "pk": 1,
+    "fields": {
+        "genome": 1,
+        "type": "nInterProDomains",
+        "value": 155663
+    }
+}
+]

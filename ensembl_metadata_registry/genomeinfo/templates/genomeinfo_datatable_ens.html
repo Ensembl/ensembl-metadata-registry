@@ -1,0 +1,132 @@
+
+{% extends "rest_framework_swagger/base.html" %}
+
+{% block title %}GenomeInfo{% endblock %}
+
+{% load staticfiles %}
+
+{% block extra_styles %}
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+{% endblock %}
+
+{% block extra_scripts %}
+<script type="text/javascript">
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      var pathname = window.location.pathname; // Returns path only
+      var division = pathname.split("/")[4];
+      var release = pathname.split("/")[6];
+      
+      console.log('Pathname ' + pathname);
+      console.log('division ' + division);
+      console.log('release ' + release);
+      
+      fetchGenomeInfo();
+      
+      function fetchGenomeInfo() {
+      var colr = {};
+      colr['ensembl'] = '#336';
+      colr['ensemblbacteria'] = '#b30000';
+      colr['ensemblmetazoa'] = '#017a95';
+      colr['ensemblfungi'] = '#a68460';
+      colr['ensemblprotists'] = '#712786';
+      colr['ensemblplants'] = '#7eb693';
+      
+      var url_ = "/genomeinfo/nopagination?expand=organism,assembly,division,data_release&ensembl_genomes_version=" + release + "&division_name=" + division;
+      
+      if(division == 'ensembl'){
+        url_ = "/genomeinfo/nopagination?expand=organism,assembly,division,data_release&ensembl_version=" + release + "&division_name=" + division;
+      }
+      
+      var jsonData = $.ajax({
+          url: url_,
+          dataType:"json",
+          async: false
+          }).responseText;
+      var jsonObject = jQuery.parseJSON( jsonData );
+      console.log(jsonObject);
+      
+      var dataset = [];
+      //var count = jsonObject['count'];
+      //var next = jsonObject['next'];
+      //var previous = jsonObject['previous'];
+      
+      //console.log('Count ==== ' + count);
+      //console.log('Next ==== ' + next);
+      //console.log('Previous ==== ' + previous);
+      
+      
+      //$.each(jsonObject['results'], function (index, item) {
+      $.each(jsonObject, function (index, item) {
+         //console.log(item.organism.display_name);
+         var row = [];
+         row.push(item.organism.display_name);
+         row.push(item.division.name);
+         row.push(item.organism.taxonomy_id);
+         row.push(item.assembly.assembly_name);
+         row.push(item.genebuild);
+         
+         var has_variations = item.has_variations ? '<span class="glyphicon glyphicon-ok" style="color:green"></span>' : '<span class="glyphicon glyphicon-remove" style="color:red"></span>';
+         row.push(has_variations);
+         
+         var has_pan_compara =  item.has_pan_compara ? '<span class="glyphicon glyphicon-ok" style="color:green"></span>' : '<span class="glyphicon glyphicon-remove" style="color:red"></span>';
+         row.push(has_pan_compara);
+         
+         var has_genome_alignments = item.has_genome_alignments ? '<span class="glyphicon glyphicon-ok" style="color:green"></span>' : '<span class="glyphicon glyphicon-remove" style="color:red"></span>';
+         row.push(has_genome_alignments);
+         
+         var has_peptide_compara = item.has_peptide_compara ? '<span class="glyphicon glyphicon-ok" style="color:green"></span>' : '<span class="glyphicon glyphicon-remove" style="color:red"></span>';
+         row.push(has_peptide_compara);
+         
+         var has_other_alignments = item.has_other_alignments ? '<span class="glyphicon glyphicon-ok" style="color:green"></span>' : '<span class="glyphicon glyphicon-remove" style="color:red"></span>';
+         row.push(has_other_alignments);
+         dataset.push(row);
+       });
+
+    $(document).ready(function() {
+    $('#genomeinfo_table').DataTable(
+    {
+        data: dataset
+    } 
+    );
+
+});
+     
+     
+     
+    }
+
+    </script>
+
+{% endblock %}
+
+{% block dashboard %}
+   <div class="container">
+   <div class="row">
+    <table id="genomeinfo_table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Species</th>
+                <th>Division</th>
+                <th>Taxonomy ID</th>
+                <th>Assembly</th>
+                <th>Genebuild</th>
+                <th>Variation</th>
+                <th>Pan Compara</th>
+                <th>Genome Alignments</th>
+                <th>Peptide Alignments</th>
+                <th>Other Alignments</th>
+            </tr>
+        </thead>
+    </table>
+    </div>
+  </div>
+{% endblock %}
+
+
+<body></body>
+
+
