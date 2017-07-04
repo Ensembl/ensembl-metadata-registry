@@ -9,6 +9,7 @@ __pycache__/
 .coverage
 coverage.xml
 *.swp
+.DS_Store
 settings_secret.py
 *_initial.py
 log
