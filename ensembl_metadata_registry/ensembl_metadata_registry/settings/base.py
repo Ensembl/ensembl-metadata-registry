@@ -25,7 +25,7 @@ SECRET_KEY = '$@_oa*gtx=_xx$g+$u__^5@-#ig33rt$pcs%=zaiuq1*k4y&mn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['prem-ml.local', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 DATABASE_ROUTERS = ['ensembl_metadata_registry.routers.EnsemblMetaDataRegistryRouter']
 
@@ -90,25 +90,25 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ensembl_metadata_registry',
-        'USER': 'xxxx',
-        'PASSWORD': 'xxxx',
-        'HOST': 'xxxx',   # Or an IP Address that your DB is hosted on
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     },
     'meta': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ensembl_metadata',
-        'USER': 'xxxx',
-        'PASSWORD': 'xxxx',
-        'HOST': 'xxxx',   # Or an IP Address that your DB is hosted on
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     },
     'ncbi_taxonomy': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ncbi_taxonomy',
-        'USER': 'xxxx',
-        'PASSWORD': 'xxxx',
-        'HOST': 'xxxx',   # Or an IP Address that your DB is hosted on
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
 }

@@ -36,25 +36,25 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ensembl_metadata_registry',
-        'USER': 'xxxx',
-        'PASSWORD': 'xxxx',
-        'HOST': 'xxxx',   # Or an IP Address that your DB is hosted on
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     },
     'meta': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ensembl_metadata',
-        'USER': 'xxxx',
-        'PASSWORD': 'xxxx',
-        'HOST': 'xxxx',   # Or an IP Address that your DB is hosted on
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     },
     'ncbi_taxonomy': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ncbi_taxonomy',
-        'USER': 'xxxx',
-        'PASSWORD': 'xxxx',
-        'HOST': 'xxxx',   # Or an IP Address that your DB is hosted on
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
 }
