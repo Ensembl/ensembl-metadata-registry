@@ -1,0 +1,21 @@
+language: python
+
+python: 
+   - "3.5"
+
+services: 
+  - mysql
+
+env: 
+  - DJANGO=1.11 DB=mysql
+
+install: 
+  - pip install -r requirements.txt
+
+before_script: 
+  - mysql -e 'create database ensembl_metadata_registry;' -u root
+  - mysql -e 'create database ensembl_metadata;' -u root
+
+script: 
+  - python3 manage.py test assembly.tests --settings=ensembl_metadata_registry.settings.test
+
