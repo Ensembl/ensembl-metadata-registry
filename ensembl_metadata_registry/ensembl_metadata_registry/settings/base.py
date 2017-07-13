@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from ensembl_metadata_registry.settings import secrets
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -86,32 +87,61 @@ WSGI_APPLICATION = 'ensembl_metadata_registry.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ensembl_metadata_registry',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
-    },
-    'meta': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ensembl_metadata',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
-    },
-    'ncbi_taxonomy': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ncbi_taxonomy',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
+if 'TRAVIS' in os.environ:
+    SECRET_KEY = "SecretKeyForUseOnTravis"
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'ensembl_metadata_registry',
+            'USER': 'root',
+            'PASSWORD': '',
+            'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+            'PORT': '3306',
+        },
+        'meta': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'ensembl_metadata',
+            'USER': 'root',
+            'PASSWORD': '',
+            'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+            'PORT': '3306',
+        },
+        'ncbi_taxonomy': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'ncbi_taxonomy',
+            'USER': 'root',
+            'PASSWORD': '',
+            'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+            'PORT': '3306',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'ensembl_metadata_registry',
+            'USER': secrets.DATABASE_USER,
+            'PASSWORD': secrets.DATABASE_PASSWORD,
+            'HOST': secrets.DATABASE_HOST,
+            'PORT': secrets.DATABASE_PORT,
+        },
+        'meta': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'ensembl_metadata',
+            'USER': secrets.DATABASE_USER,
+            'PASSWORD': secrets.DATABASE_PASSWORD,
+            'HOST': secrets.DATABASE_HOST,
+            'PORT': secrets.DATABASE_PORT,
+        },
+        'ncbi_taxonomy': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'ncbi_taxonomy',
+            'USER': secrets.DATABASE_USER,
+            'PASSWORD': secrets.DATABASE_PASSWORD,
+            'HOST': secrets.DATABASE_HOST,
+            'PORT': secrets.DATABASE_PORT,
+        }
+    }
 
 
 # Password validation
