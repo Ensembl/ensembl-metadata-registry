@@ -21,8 +21,9 @@ from ncbi_taxonomy import views
 
 urlpatterns = [
     url(r'^taxonomy_node/$', views.NcbiTaxaNodeList.as_view(), name='ncbi_taxonomy_node_list'),
-    url(r'^taxonomy_node/(?P<pk>[0-9]+)/$', views.NcbiTaxaNodeDetail.as_view(), name='ncbi_taxonomy_node_detail'),
+#    url(r'^taxonomy_node/(?P<pk>[0-9]+)/$', views.NcbiTaxaNodeDetail.as_view(), name='ncbi_taxonomy_node_detail'),
 
     url(r'^taxonomy_name/$', views.NcbiTaxaNameList.as_view(), name='ncbi_taxonomy_name_detail'),
-    url(r'^taxonomy_name/(?P<pk>[0-9]+)/$', views.NcbiTaxaNameDetail.as_view(), name='ncbi_taxonomy_name_detail'),
+#   taxon_id not unique
+#    url(r'^taxonomy_name/(?P<pk>[0-9]+)/$', views.NcbiTaxaNameDetail.as_view(), name='ncbi_taxonomy_name_detail'),
 ]

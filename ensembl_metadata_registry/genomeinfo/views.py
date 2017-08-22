@@ -121,8 +121,8 @@ class GenomeVariationDetail(generics.RetrieveAPIView):
     serializer_class = GenomeVariationSerializer
 
 
-class NoPaginatedSetPagination(PageNumberPagination):
-    page_size = None
+# class NoPaginatedSetPagination(PageNumberPagination):
+#     page_size = None
 
 
 class NotPaginatedSetPagination(PageNumberPagination):
