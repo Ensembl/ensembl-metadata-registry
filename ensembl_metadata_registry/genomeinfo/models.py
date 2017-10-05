@@ -69,7 +69,7 @@ class GenomeAnnotation(models.Model):
     genome_annotation_id = models.AutoField(primary_key=True)
     genome = models.ForeignKey(Genome, models.DO_NOTHING, related_name=Genome.ONE2MANY_RELATED['GENOME_ANNOTATION'])
     type = models.CharField(max_length=32)
-    value = models.IntegerField()
+    value = models.CharField(max_length=128)
 
     class Meta:
         managed = False

@@ -20,10 +20,11 @@ from rest_framework.filters import BaseFilterBackend
 from rest_framework.compat import coreapi
 from datarelease.drf.filters import ensembl_genomes_version_field,\
     ensembl_version_field
-from assembly.drf.filters import assembly_level_field, assembly_name_field
 from ensembl_metadata_registry.utils.drf_filters import DrfFilters
 from genomeinfo.models import Genome
 from division.drf.filters import division_name_field, division_short_name_field
+from django.db.models import Q
+from assembly.drf.filters import assembly_level_field, assembly_name_field
 
 
 # Fields
@@ -184,7 +185,14 @@ class GenomeDivisionFilterBackend(BaseFilterBackend):
     def filter_queryset(self, request, queryset, view):
         division_name = request.query_params.get('division_name', None)
         if division_name is not None:
-            queryset = queryset.filter(division__name=division_name)
+            if division_name.lower() == 'ensemblgenomes':
+                queryset = queryset.filter(Q(division__name__iexact="EnsemblMetazoa") |
+                                           Q(division__name__iexact="EnsemblFungi") |
+                                           Q(division__name__iexact="EnsemblBacteria") |
+                                           Q(division__name__iexact="EnsemblProtists") |
+                                           Q(division__name__iexact="EnsemblPlants"))
+            else:
+                queryset = queryset.filter(division__name__iexact=division_name)
 
         short_name = request.query_params.get('short_name', None)
         if short_name is not None:
