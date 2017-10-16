@@ -21,13 +21,12 @@ from django.apps import apps
 class SchemaUtils(object):
 
     @classmethod
-    def get_field_names(cls, app_name=None, model_name=None, exclude_pk=True):
+    def get_field_names(cls, app_name=None, model_name=None, exclude_pk=False):
 
         model = apps.get_model(app_name, model_name)
         field_names = []
 
         if exclude_pk is True:
-            print('==========================exclude_pk is True')
             field_names = [field.name for field in model._meta.get_fields(include_parents=False, include_hidden=False)
                            if (field.related_model is None and field.primary_key is False)]
         else:

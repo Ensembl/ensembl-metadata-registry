@@ -37,8 +37,8 @@ class GenomeinfoTest(APITestCase):
     def test_api_request(self):
         # Using the standard APIClient to create a GET request
         client = APIClient()
-        response = client.get('/genomeinfo/')
+        response = client.get('/genome/')
         self.assertEqual(response.status_code, 200)
 
-        response = client.get('/genomeinfo/1/')
+        response = client.get('/genome/1/')
         self.assertEqual(response.status_code, 200)
