@@ -19,6 +19,8 @@ from rest_framework import generics
 from division.models import Division
 from division.drf.serializers import DivisionSerializer
 from division.drf.filters import DivisionFilterBackend
+from rest_framework.pagination import PageNumberPagination
+from ensembl_metadata_registry.utils.decorators import setup_eager_loading
 
 
 class DivisionList(generics.ListAPIView):
@@ -30,3 +32,18 @@ class DivisionList(generics.ListAPIView):
 class DivisionDetail(generics.RetrieveAPIView):
     queryset = Division.objects.all()
     serializer_class = DivisionSerializer
+
+
+# ============For Datatables========
+class NotPaginatedSetPagination(PageNumberPagination):
+    page_size = None
+
+
+class DivisionInfoView(generics.ListAPIView):
+    serializer_class = DivisionSerializer
+    pagination_class = NotPaginatedSetPagination
+
+    @setup_eager_loading(DivisionSerializer)
+    def get_queryset(self):
+        queryset = Division.objects.order_by('pk')
+        return queryset

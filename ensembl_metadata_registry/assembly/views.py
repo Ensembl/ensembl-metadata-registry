@@ -22,6 +22,8 @@ from rest_framework import generics
 from assembly.drf.filters import AssemblyFilterBackend, AssemblySequenceFilterBackend,\
     AssemblyExpandFilterBackend
 from ensembl_metadata_registry.utils.decorators import setup_eager_loading
+from ensembl_metadata_registry.views import DataTableListApi
+from ensembl_metadata_registry.utils.schema_utils import SchemaUtils
 
 
 class AssemblyList(generics.ListAPIView):
@@ -33,6 +35,13 @@ class AssemblyList(generics.ListAPIView):
     def get_queryset(self):
         queryset = Assembly.objects.order_by('pk')
         return queryset
+
+
+class AssemblyDatatableView(DataTableListApi):
+    serializer_class = AssemblySerializer
+    search_parameters = SchemaUtils.get_field_names(app_name='assembly', model_name='assembly', exclude_pk=False)
+    default_order_by = 3
+    queryset = Assembly.objects.all()
 
 
 class AssemblyDetail(generics.RetrieveAPIView):

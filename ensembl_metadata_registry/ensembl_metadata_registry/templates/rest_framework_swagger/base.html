@@ -97,24 +97,35 @@
           <li><a href="/meta_stats/dashboard/ensemblplants">EnsemblPlants</a></li>
         </ul>
       </li>
-      <!--
+      
        <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">GenomeInfo
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href={% url 'genomeinfo_ens_table' "ensembl" %}>Ensembl</a></li>
-          <li class = "divider"></li>
-          <li><a href="{% url 'genomeinfo_eg_table' "ensemblgenomes" %}">EnsemblGenomes</a></li>
-          <li class = "divider"></li>
+          <!--li class = "divider"></li-->
+          <!--li><a href="{% url 'genomeinfo_eg_table' "ensemblgenomes" %}">EnsemblGenomes</a></li-->
+          <!--li class = "divider"></li-->
           <li><a href="{% url 'genomeinfo_eg_table' "ensemblmetazoa" %}">EnsemblMetazoa</a></li>
           <li><a href="{% url 'genomeinfo_eg_table' "ensemblfungi" %}">EnsemblFungi</a></li>
-          <li><a href="{% url 'genomeinfo_eg_table' "ensemblbacteria"  %}">EnsemblBacteria</a></li>
+          <!--li><a href="{% url 'genomeinfo_eg_table' "ensemblbacteria"  %}">EnsemblBacteria</a></li-->
           <li><a href="{% url 'genomeinfo_eg_table' "ensemblprotists"  %}">EnsemblProtists</a></li>
           <li><a href="{% url 'genomeinfo_eg_table' "ensemblplants"  %}">EnsemblPlants</a></li>
         </ul>
       </li>
-      -->
-      <li><a href="http://www.ensembl.org/info/about/index.html">About the Ensembl Project</a></li>
+       <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">DataTables
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href={% url 'datatable_view' "assembly" %}>Assembly</a></li>
+          <li><a href={% url 'datatable_view' "organism" %}>Organism</a></li>
+          <li><a href={% url 'datatable_view' "division" %}>Division</a></li>
+          <li><a href={% url 'datatable_view' "datarelease" %}>DataRelease</a></li>
+        
+         </ul>
+      </li>
+      
+      <!--li><a href="http://www.ensembl.org/info/about/index.html">About the Ensembl Project</a></li-->
       <li><a href="http://www.ensembl.org/info/about/contact/">Contact Ensembl</a></li>
        <li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
     </ul>

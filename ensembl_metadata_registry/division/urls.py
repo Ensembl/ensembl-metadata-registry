@@ -21,5 +21,6 @@ from division import views
 urlpatterns = [
     url(r'^$', views.DivisionList.as_view(), name='division_list'),
     url(r'^(?P<pk>[0-9]+)/$', views.DivisionDetail.as_view(), name='division_detail'),
+    url(r'^nopagination', views.DivisionInfoView.as_view(), name="datarelease_info_nopagination_table"),
 
 ]

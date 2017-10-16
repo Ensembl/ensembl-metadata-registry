@@ -26,6 +26,9 @@ from organism.drf.filters import OrganismFilterBackend, \
     OrganismPublicationOrganismFilterBackend, OrganismExpandFilterBackend,\
     OganismTaxonomyFilterBackend, OrganismOrganismAliasFilterBackend
 from ensembl_metadata_registry.utils.decorators import setup_eager_loading
+from rest_framework.pagination import PageNumberPagination
+from ensembl_metadata_registry.views import DataTableListApi
+from ensembl_metadata_registry.utils.schema_utils import SchemaUtils
 
 
 class OrganismList(generics.ListAPIView):
@@ -39,6 +42,13 @@ class OrganismList(generics.ListAPIView):
     def get_queryset(self):
         queryset = Organism.objects.order_by('pk')
         return queryset
+
+
+class OrganismDatatableView(DataTableListApi):
+    serializer_class = OrganismSerializer
+    search_parameters = SchemaUtils.get_field_names(app_name='organism', model_name='organism', exclude_pk=False)
+    default_order_by = 5
+    queryset = Organism.objects.all()
 
 
 class OrganismDetail(generics.RetrieveAPIView):
@@ -66,3 +76,18 @@ class OrganismPublicationList(generics.ListAPIView):
 class OrganismPublicationDetail(generics.RetrieveAPIView):
     queryset = OrganismPublication.objects.all()
     serializer_class = OrganismPublicationSerializer
+
+
+# ============For Datatables========
+class NotPaginatedSetPagination(PageNumberPagination):
+    page_size = None
+
+
+class OrganismInfoView(generics.ListAPIView):
+    serializer_class = OrganismSerializer
+    pagination_class = NotPaginatedSetPagination
+
+    @setup_eager_loading(OrganismSerializer)
+    def get_queryset(self):
+        queryset = Organism.objects.order_by('pk')
+        return queryset

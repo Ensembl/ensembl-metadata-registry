@@ -20,6 +20,7 @@ from django.conf.urls import url
 from genomeinfo import views
 from django.views.generic.base import TemplateView
 from datarelease.utils import DataReleaseUtils
+from genomeinfo.views import GenomeDatatableView
 
 
 urlpatterns = [
@@ -54,6 +55,8 @@ urlpatterns = [
     url(r'^info/division/(?P<division>[\w]+)/release/' + str(DataReleaseUtils.get_latest_ensemblgenomes_version()),
         TemplateView.as_view(template_name="genomeinfo_datatable_ens.html"), name="genomeinfo_eg_table"),
     url(r'^nopagination', views.GenomeInfoView.as_view(), name="genomeinfo_nopagination_ens_table"),
+    url(r'^datatablefetch_serverside', GenomeDatatableView.as_view(),
+        name="datatablefetch_serverside_genome"),
 
 
 ]

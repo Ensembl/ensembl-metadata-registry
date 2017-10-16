@@ -31,6 +31,8 @@ from genomeinfo.drf.filters import GenomeFilterBackend, GenomeComparaFilterBacke
 from organism.drf.filters import OrganismAliasOrganismFilterBackend
 from ensembl_metadata_registry.utils.decorators import setup_eager_loading
 from rest_framework.pagination import PageNumberPagination
+from ensembl_metadata_registry.views import DataTableListApi
+from ensembl_metadata_registry.utils.schema_utils import SchemaUtils
 
 
 class GenomeList(generics.ListAPIView):
@@ -44,6 +46,15 @@ class GenomeList(generics.ListAPIView):
     def get_queryset(self):
         queryset = Genome.objects.order_by('pk')
         return queryset
+
+
+class GenomeDatatableView(DataTableListApi):
+    serializer_class = GenomeSerializer
+    search_parameters = SchemaUtils.get_field_names(app_name='genomeinfo', model_name='genome', exclude_pk=False)
+    filter_backends = (GenomeExpandFilterBackend, GenomeFilterBackend, GenomeDatabasereleaseFilterBackend,
+                       GenomeComparaFilterBackend, GenomeVariationFilterBackend, GenomeDatareleaseFilterBackend,
+                       GenomeAssemblyFilterBackend, OrganismAliasOrganismFilterBackend, GenomeDivisionFilterBackend)
+    queryset = Genome.objects.all()
 
 
 class GenomeDetail(generics.RetrieveAPIView):
@@ -121,10 +132,7 @@ class GenomeVariationDetail(generics.RetrieveAPIView):
     serializer_class = GenomeVariationSerializer
 
 
-# class NoPaginatedSetPagination(PageNumberPagination):
-#     page_size = None
-
-
+# ============For Datatables========
 class NotPaginatedSetPagination(PageNumberPagination):
     page_size = None
 

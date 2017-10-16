@@ -28,5 +28,6 @@ urlpatterns = [
     url(r'^event/$', views.DataReleaseDatabaseEventList.as_view(), name='datarelease_database_event_list'),
     url(r'^event/(?P<pk>[0-9]+)/$', views.DataReleaseDatabaseEventDetail.as_view(),
         name='datarelease_database_event_detail'),
+    url(r'^nopagination', views.DatareleaseInfoView.as_view(), name="datarelease_info_nopagination_table"),
 
 ]

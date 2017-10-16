@@ -22,6 +22,8 @@ from datarelease.models import DataRelease, DataReleaseDatabase, DataReleaseData
 from datarelease.drf.serializers import DataReleaseSerializer, \
     DataReleaseDatabaseSerializer, DataReleaseDatabaseEventSerializer
 from datarelease.drf.filters import DatareleaseFilterBackend
+from rest_framework.pagination import PageNumberPagination
+from ensembl_metadata_registry.utils.decorators import setup_eager_loading
 
 
 class DataReleaseList(generics.ListAPIView):
@@ -53,3 +55,18 @@ class DataReleaseDatabaseEventList(generics.ListAPIView):
 class DataReleaseDatabaseEventDetail(generics.RetrieveAPIView):
     queryset = DataReleaseDatabaseEvent.objects.all()
     serializer_class = DataReleaseDatabaseEventSerializer
+
+
+# ============For Datatables========
+class NotPaginatedSetPagination(PageNumberPagination):
+    page_size = None
+
+
+class DatareleaseInfoView(generics.ListAPIView):
+    serializer_class = DataReleaseSerializer
+    pagination_class = NotPaginatedSetPagination
+
+    @setup_eager_loading(DataReleaseSerializer)
+    def get_queryset(self):
+        queryset = DataRelease.objects.order_by('pk')
+        return queryset

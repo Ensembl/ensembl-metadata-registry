@@ -19,6 +19,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework_swagger.views import get_swagger_view
 from ensembl_metadata_registry import routers
+from ensembl_metadata_registry.views import datatable_view, datatable_fetch
 from django.conf import settings
 
 
@@ -52,12 +53,21 @@ urlpatterns = [
 
     url(r'^assembly/', include('assembly.urls')),
     url(r'^compara_analysis/', include('compara.urls')),
-    url(r'^data_release/', include('datarelease.urls')),
+    url(r'^datarelease/', include('datarelease.urls')),
     url(r'^division/', include('division.urls')),
-    url(r'^genomeinfo/', include('genomeinfo.urls')),
+    url(r'^genome/', include('genomeinfo.urls')),
     url(r'^ncbi_taxonomy/', include('ncbi_taxonomy.urls')),
     url(r'^organism/', include('organism.urls')),
     url(r'^meta_stats/', include('meta_stats.urls')),
+    # for datatables
+    url(r'^datatable/(?P<table_name>[\w]+)/', datatable_view, name="datatable_view"),
+    url(r'^datatablefetch_clientside/(?P<table_name>[\w]+)/', datatable_fetch, name="datatablefetch_clientside"),
+    # url(r'^datatablefetch_serverside/organism', OrganismDatatableView.as_view(),
+    #    name="datatablefetch_serverside_organism"),
+
+
+
+
 ]
 
 if settings.DEBUG:
