@@ -22,9 +22,9 @@
     
         "serverSide": {{server_side_processing}},
         {% if server_side_processing == 'true' %}
-        "ajax": "/{{table_name}}/datatablefetch_serverside",
+        "ajax": "/datatable_serverside/{{table_name}}/",
         {% else %}
-         "ajax": "/datatablefetch_clientside/{{table_name}}/",
+         "ajax": "/datatable_clientside/{{table_name}}/",
         {% endif %}
         
        "data":{'serverSide':{{ server_side_processing }} },

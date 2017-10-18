@@ -17,13 +17,11 @@ limitations under the License.
 
 from django.conf.urls import url
 from assembly import views
-from assembly.views import AssemblyDatatableView
+
 
 urlpatterns = [
     url(r'^$', views.AssemblyList.as_view(), name='assembly_list'),
     url(r'^(?P<pk>[0-9]+)/$', views.AssemblyDetail.as_view(), name='assembly_detail'),
-    url(r'^datatablefetch_serverside', AssemblyDatatableView.as_view(),
-        name="datatablefetch_serverside_assembly"),
 
     #     url(r'^sequence/$', views.AssemblySequenceList.as_view(), name='assembly_sequence_list'),
     #     url(r'^sequence/(?P<pk>[0-9]+)/$', views.AssemblySequenceDetail.as_view(), name='assembly_sequence_detail'),

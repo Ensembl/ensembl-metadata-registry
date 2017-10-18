@@ -21,6 +21,9 @@ from rest_framework_swagger.views import get_swagger_view
 from ensembl_metadata_registry import routers
 from ensembl_metadata_registry.views import datatable_view, datatable_fetch
 from django.conf import settings
+from assembly.views import AssemblyDatatableView
+from organism.views import OrganismDatatableView
+from genomeinfo.views import GenomeDatatableView
 
 
 """
@@ -61,12 +64,17 @@ urlpatterns = [
     url(r'^meta_stats/', include('meta_stats.urls')),
     # for datatables
     url(r'^datatable/(?P<table_name>[\w]+)/', datatable_view, name="datatable_view"),
-    url(r'^datatablefetch_clientside/(?P<table_name>[\w]+)/', datatable_fetch, name="datatablefetch_clientside"),
-    # url(r'^datatablefetch_serverside/organism', OrganismDatatableView.as_view(),
-    #    name="datatablefetch_serverside_organism"),
 
+    url(r'^datatable_clientside/(?P<table_name>[\w]+)/', datatable_fetch, name="datatablefetch_clientside"),
 
+    url(r'^datatable_serverside/assembly', AssemblyDatatableView.as_view(),
+        name="datatablefetch_serverside_assembly"),
 
+    url(r'^datatable_serverside/organism', OrganismDatatableView.as_view(),
+        name="datatablefetch_serverside_organism"),
+
+    url(r'^datatable_serverside/genome', GenomeDatatableView.as_view(),
+        name="datatablefetch_serverside_genome"),
 
 ]
 
