@@ -50,9 +50,9 @@
 
 {% block extra_scripts %}
 <script type="text/javascript">
-  window.onload=function(){
+ $(window).on("load", function() {
      $("li#resource_datatable_serverside").remove();
-   }
+  });
 </script>
 {% endblock %}
 
