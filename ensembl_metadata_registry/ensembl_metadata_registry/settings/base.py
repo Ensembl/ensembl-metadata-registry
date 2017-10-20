@@ -196,7 +196,7 @@ REST_FRAMEWORK = {
 }
 
 SWAGGER_SETTINGS = {
-    "exclude_namespaces": [],  # List URL namespaces to ignore
+    "exclude_namespaces": ["internal_apis"],  # List URL namespaces to ignore
     "api_version": '0.1',  # Specify your API's version
     "api_path": "/",  # Specify the path to your API not a root level
     "api_key": '',  # An API key
