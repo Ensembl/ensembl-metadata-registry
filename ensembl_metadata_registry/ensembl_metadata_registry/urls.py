@@ -43,7 +43,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 
-schema_view = get_swagger_view(title='Ensembl Metadata Registry REST API Endpoints')
+emr_apis = [
+    url(r'^assembly/', include('assembly.urls')),
+    url(r'^compara_analysis/', include('compara.urls')),
+    url(r'^datarelease/', include('datarelease.urls')),
+    url(r'^division/', include('division.urls')),
+    url(r'^genome/', include('genomeinfo.urls')),
+    url(r'^ncbi_taxonomy/', include('ncbi_taxonomy.urls')),
+    url(r'^organism/', include('organism.urls')),
+    url(r'^meta_stats/', include('meta_stats.urls')),
+    ]
+
+
+schema_view = get_swagger_view(title='Ensembl Metadata Registry REST API Endpoints', patterns=emr_apis)
 
 router = routers.EnsemblMetaDataRegistryRouter()
 
@@ -54,14 +66,10 @@ urlpatterns = [
     url(r'^docs/', schema_view),
     url(r'^$', schema_view),
 
-    url(r'^assembly/', include('assembly.urls')),
-    url(r'^compara_analysis/', include('compara.urls')),
-    url(r'^datarelease/', include('datarelease.urls')),
-    url(r'^division/', include('division.urls')),
-    url(r'^genome/', include('genomeinfo.urls')),
-    url(r'^ncbi_taxonomy/', include('ncbi_taxonomy.urls')),
-    url(r'^organism/', include('organism.urls')),
-    url(r'^meta_stats/', include('meta_stats.urls')),
+]
+
+
+internal_apis = [
     # for datatables
     url(r'^datatable/(?P<table_name>[\w]+)/', datatable_view, name="datatable_view"),
 
@@ -75,8 +83,10 @@ urlpatterns = [
 
     url(r'^datatable_serverside/genome', GenomeDatatableView.as_view(),
         name="datatablefetch_serverside_genome"),
-
 ]
+
+
+urlpatterns = urlpatterns + emr_apis + internal_apis
 
 if settings.DEBUG:
     import debug_toolbar
