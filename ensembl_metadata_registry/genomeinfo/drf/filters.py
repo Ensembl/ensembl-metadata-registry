@@ -24,7 +24,8 @@ from ensembl_metadata_registry.utils.drf_filters import DrfFilters
 from genomeinfo.models import Genome
 from division.drf.filters import division_name_field, division_short_name_field
 from django.db.models import Q
-from assembly.drf.filters import assembly_level_field, assembly_name_field
+from assembly.drf.filters import assembly_level_field, assembly_name_field,\
+    assembly_ucsc_field
 
 
 # Fields
@@ -206,7 +207,7 @@ class GenomeDivisionFilterBackend(BaseFilterBackend):
 
 class GenomeAssemblyFilterBackend(BaseFilterBackend):
     """
-    Filter to filter by assembly_name, assembly_level.
+    Filter to filter by assembly_name, assembly_level, assembly_ucsc.
     """
     def filter_queryset(self, request, queryset, view):
         assembly_name = request.query_params.get('assembly_name', None)
@@ -217,10 +218,14 @@ class GenomeAssemblyFilterBackend(BaseFilterBackend):
         if assembly_level is not None:
             queryset = queryset.filter(assembly__assembly_level__icontains=assembly_level)
 
+        assembly_ucsc = request.query_params.get('assembly_ucsc', None)
+        if assembly_ucsc is not None:
+            queryset = queryset.filter(assembly__assembly_ucsc__icontains=assembly_ucsc)
+
         return queryset
 
     def get_schema_fields(self, view):
-        return [assembly_name_field, assembly_level_field]
+        return [assembly_name_field, assembly_level_field, assembly_ucsc_field]
 
 
 class GenomeComparaFilterBackend(BaseFilterBackend):
