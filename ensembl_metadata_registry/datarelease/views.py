@@ -24,12 +24,21 @@ from datarelease.drf.serializers import DataReleaseSerializer, \
 from datarelease.drf.filters import DatareleaseFilterBackend
 from rest_framework.pagination import PageNumberPagination
 from ensembl_metadata_registry.utils.decorators import setup_eager_loading
+from ensembl_metadata_registry.views import DataTableListApi
+from ensembl_metadata_registry.utils.schema_utils import SchemaUtils
 
 
 class DataReleaseList(generics.ListAPIView):
     queryset = DataRelease.objects.all()
     serializer_class = DataReleaseSerializer
     filter_backends = (DatareleaseFilterBackend,)
+
+
+class DataReleaseDatatableView(DataTableListApi):
+    serializer_class = DataReleaseSerializer
+    search_parameters = SchemaUtils.get_field_names(app_name='datarelease', model_name='datarelease', exclude_pk=False)
+    default_order_by = 2
+    queryset = DataRelease.objects.all()
 
 
 class DataReleaseDetail(generics.RetrieveAPIView):

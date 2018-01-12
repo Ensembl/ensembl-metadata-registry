@@ -21,6 +21,8 @@ from division.drf.serializers import DivisionSerializer
 from division.drf.filters import DivisionFilterBackend
 from rest_framework.pagination import PageNumberPagination
 from ensembl_metadata_registry.utils.decorators import setup_eager_loading
+from ensembl_metadata_registry.views import DataTableListApi
+from ensembl_metadata_registry.utils.schema_utils import SchemaUtils
 
 
 class DivisionList(generics.ListAPIView):
@@ -32,6 +34,13 @@ class DivisionList(generics.ListAPIView):
 class DivisionDetail(generics.RetrieveAPIView):
     queryset = Division.objects.all()
     serializer_class = DivisionSerializer
+
+
+class DivisionDatatableView(DataTableListApi):
+    serializer_class = DivisionSerializer
+    search_parameters = SchemaUtils.get_field_names(app_name='division', model_name='division', exclude_pk=False)
+    default_order_by = 2
+    queryset = Division.objects.all()
 
 
 # ============For Datatables========

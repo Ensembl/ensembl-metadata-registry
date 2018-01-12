@@ -63,7 +63,7 @@ class DataTableListApi(generics.ListAPIView):
 
                 for query in search_queries:
                     temp = {
-                        '{}__contains'.format(params): query,
+                        '{}__icontains'.format(params): query,
                     }
                     q |= Q(**temp)
 
@@ -90,7 +90,7 @@ class DataTableListApi(generics.ListAPIView):
 def datatable_view(request, table_name):
     print("DataTable view called " + table_name)
     server_side_processing = "false"
-    if table_name in ['genome', 'organism', 'assembly']:
+    if table_name in ['genome', 'organism', 'assembly', 'division', 'datarelease']:
         server_side_processing = "true"
 
     data_fields = []

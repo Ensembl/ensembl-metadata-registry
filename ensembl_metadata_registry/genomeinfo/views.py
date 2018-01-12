@@ -51,6 +51,7 @@ class GenomeList(generics.ListAPIView):
 class GenomeDatatableView(DataTableListApi):
     serializer_class = GenomeSerializer
     search_parameters = SchemaUtils.get_field_names(app_name='genomeinfo', model_name='genome', exclude_pk=False)
+    default_order_by = 1
     filter_backends = (GenomeExpandFilterBackend, GenomeFilterBackend, GenomeDatabasereleaseFilterBackend,
                        GenomeComparaFilterBackend, GenomeVariationFilterBackend, GenomeDatareleaseFilterBackend,
                        GenomeAssemblyFilterBackend, OrganismAliasOrganismFilterBackend, GenomeDivisionFilterBackend)

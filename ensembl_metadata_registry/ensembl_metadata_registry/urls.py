@@ -24,6 +24,8 @@ from django.conf import settings
 from assembly.views import AssemblyDatatableView
 from organism.views import OrganismDatatableView
 from genomeinfo.views import GenomeDatatableView
+from division.views import DivisionDatatableView
+from datarelease.views import DataReleaseDatatableView
 
 
 """
@@ -83,6 +85,12 @@ internal_apis = [
 
     url(r'^datatable_serverside/genome', GenomeDatatableView.as_view(),
         name="datatablefetch_serverside_genome"),
+
+    url(r'^datatable_serverside/division', DivisionDatatableView.as_view(),
+        name="datatablefetch_serverside_division"),
+
+    url(r'^datatable_serverside/datarelease', DataReleaseDatatableView.as_view(),
+        name="datatablefetch_serverside_datarelease"),
 ]
 
 
