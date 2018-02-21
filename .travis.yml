@@ -7,7 +7,7 @@ services:
   - mysql
 
 env: 
-  - DJANGO=1.11 DB=mysql DJANGO_ENVIRONMENT=staging
+  - DJANGO=1.11 DB=mysql DJANGO_ENVIRONMENT=travis
 
 install: 
   - pip install -r requirements.txt
