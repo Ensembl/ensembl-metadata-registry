@@ -58,7 +58,8 @@
         "genome": 6,
         "type": "simpleFeatures",
         "analysis": "cpg",
-        "count": 9846
+        "count": 9846, 
+        "genome_database_id":5
     }
 },
 {
@@ -68,7 +69,8 @@
         "genome": 6,
         "type": "simpleFeatures",
         "analysis": "eponine",
-        "count": 15629
+        "count": 15629, 
+        "genome_database_id":5
     }
 },
 {
@@ -78,7 +80,8 @@
         "genome": 6,
         "type": "repeatFeatures",
         "analysis": "trf",
-        "count": 495238
+        "count": 495238, 
+        "genome_database_id":5
     }
 },
 {
@@ -88,7 +91,8 @@
         "genome": 6,
         "type": "repeatFeatures",
         "analysis": "dust",
-        "count": 1676705
+        "count": 1676705, 
+        "genome_database_id":5
     }
 },
 {
@@ -98,7 +102,8 @@
         "genome": 6,
         "type": "repeatFeatures",
         "analysis": "repeatmask",
-        "count": 2151009
+        "count": 2151009, 
+        "genome_database_id":5
     }
 }
 ]

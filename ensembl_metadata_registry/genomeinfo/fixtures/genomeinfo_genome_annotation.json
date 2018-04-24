@@ -57,7 +57,8 @@
     "fields": {
         "genome": 1,
         "type": "nProteinCodingInterPro",
-        "value": 3797
+        "value": 3797, 
+        "genome_database_id":5
     }
 },
 {
@@ -66,7 +67,8 @@
     "fields": {
         "genome": 1,
         "type": "nProteinCoding",
-        "value": 11616
+        "value": 11616, 
+        "genome_database_id":5
     }
 },
 {
@@ -75,7 +77,8 @@
     "fields": {
         "genome": 1,
         "type": "nProteinCodingUniProtKB",
-        "value": 11616
+        "value": 11616, 
+        "genome_database_id":5
     }
 },
 {
@@ -84,7 +87,8 @@
     "fields": {
         "genome": 1,
         "type": "nGO",
-        "value": 6902
+        "value": 6902, 
+        "genome_database_id":5
     }
 },
 {
@@ -93,7 +97,8 @@
     "fields": {
         "genome": 1,
         "type": "nInterProDomains",
-        "value": 155663
+        "value": 155663, 
+        "genome_database_id":5
     }
 }
 ]
