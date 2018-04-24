@@ -52,12 +52,30 @@ class Genome(models.Model):
         unique_together = (('data_release', 'genome_id'),)
 
 
+class GenomeDatabase(models.Model):
+
+    ONE2MANY_RELATED = {'GENOME_ALIGNMENT': 'genome_alignment', 'GENOME_ANNOTATION': 'genome_annotation',
+                        'GENOME_FEATURE': 'genome_feature'}
+    genome_database_id = models.AutoField(primary_key=True)
+    genome = models.ForeignKey(Genome, models.DO_NOTHING, related_name=Genome.ONE2MANY_RELATED['GENOME_DATABASE'])
+    dbname = models.CharField(max_length=64)
+    species_id = models.IntegerField()
+    type = models.CharField(max_length=13, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'genome_database'
+        unique_together = (('dbname', 'species_id'), ('genome', 'dbname'),)
+
+
 class GenomeAlignment(models.Model):
     genome_alignment_id = models.AutoField(primary_key=True)
     genome = models.ForeignKey(Genome, models.DO_NOTHING, related_name=Genome.ONE2MANY_RELATED['GENOME_ALIGNMENT'])
     type = models.CharField(max_length=32)
     name = models.CharField(max_length=128)
     count = models.IntegerField()
+    genome_database = models.ForeignKey(GenomeDatabase, models.DO_NOTHING,
+                                        related_name=GenomeDatabase.ONE2MANY_RELATED['GENOME_ALIGNMENT'])
 
     class Meta:
         managed = False
@@ -70,6 +88,8 @@ class GenomeAnnotation(models.Model):
     genome = models.ForeignKey(Genome, models.DO_NOTHING, related_name=Genome.ONE2MANY_RELATED['GENOME_ANNOTATION'])
     type = models.CharField(max_length=32)
     value = models.CharField(max_length=128)
+    genome_database = models.ForeignKey(GenomeDatabase, models.DO_NOTHING,
+                                        related_name=GenomeDatabase.ONE2MANY_RELATED['GENOME_ANNOTATION'])
 
     class Meta:
         managed = False
@@ -86,19 +106,6 @@ class GenomeComparaAnalysis(models.Model):
         managed = False
         db_table = 'genome_compara_analysis'
         unique_together = (('genome', 'compara_analysis'),)
-
-
-class GenomeDatabase(models.Model):
-    genome_database_id = models.AutoField(primary_key=True)
-    genome = models.ForeignKey(Genome, models.DO_NOTHING, related_name=Genome.ONE2MANY_RELATED['GENOME_DATABASE'])
-    dbname = models.CharField(max_length=64)
-    species_id = models.IntegerField()
-    type = models.CharField(max_length=13, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'genome_database'
-        unique_together = (('dbname', 'species_id'), ('genome', 'dbname'),)
 
 
 class GenomeEvent(models.Model):
@@ -120,6 +127,8 @@ class GenomeFeature(models.Model):
     type = models.CharField(max_length=32)
     analysis = models.CharField(max_length=128)
     count = models.IntegerField()
+    genome_database = models.ForeignKey(GenomeDatabase, models.DO_NOTHING,
+                                        related_name=GenomeDatabase.ONE2MANY_RELATED['GENOME_FEATURE'])
 
     class Meta:
         managed = False
