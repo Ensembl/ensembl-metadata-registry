@@ -39,6 +39,11 @@
    <script src='{% static "js/navbar.js" %}' type='text/javascript'></script>
    <link rel="stylesheet" href="{% static "css/navbar.css" %}">
    
+   <!-- GDPR JavaScript/CSS -->
+   <script src='{% static "js/gdpr_ensembl.js" %}' type='text/javascript'></script>
+   <link rel="stylesheet" href="{% static "css/gdpr_ensembl.css" %}">
+   <!--link rel="stylesheet" href="https://dev.ebi.emblstatic.net/web_guidelines/EBI-Framework/v1.3/css/ebi-lite.css" type="text/css" media="all" /-->
+     
    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
   
@@ -47,6 +52,15 @@
   <!-- <script src='lang/ru.js' type='text/javascript'></script> -->
   <!-- <script src='lang/en.js' type='text/javascript'></script> -->
   
+<script>
+ 
+$(document).ready(function(){
+  console.log("reached here");
+  runDataProtectionBanner();
+});
+ 
+</script>
+
 
 {% block extra_scripts %}
 {% endblock %}
@@ -126,7 +140,8 @@
       
       <!--li><a href="http://www.ensembl.org/info/about/index.html">About the Ensembl Project</a></li-->
       <li><a href="http://www.ensembl.org/info/about/contact/">Contact Ensembl</a></li>
-       <li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+      <li><a href="/privacy_notice_emr">Privacy Notice</a></li>
+      <li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
     </ul>
   </div>
 </nav>
@@ -135,6 +150,9 @@
 {% endblock %}
 
 {% block dashboard %}
+{% endblock %}
+
+{% block data_protection %}
 {% endblock %}
 
 </body>

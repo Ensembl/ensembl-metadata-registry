@@ -26,6 +26,7 @@ from organism.views import OrganismDatatableView
 from genomeinfo.views import GenomeDatatableView
 from division.views import DivisionDatatableView
 from datarelease.views import DataReleaseDatatableView
+from django.views.generic.base import TemplateView
 
 
 """
@@ -91,6 +92,7 @@ internal_apis = [
 
     url(r'^datatable_serverside/datarelease', DataReleaseDatatableView.as_view(),
         name="datatablefetch_serverside_datarelease"),
+    url(r'^privacy_notice_emr', TemplateView.as_view(template_name='privacy_notice_emr.html'), name="privacy_note_emr"),
 ]
 
 
