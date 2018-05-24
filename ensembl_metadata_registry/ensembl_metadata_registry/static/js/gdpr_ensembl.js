@@ -38,8 +38,8 @@ function createDataProtectionBanner() {
   wrapper.innerHTML = "" + 
     "<div class='swagger-ui-wrap'>" +
     dataProtectionSettings.message +
-    " <a target='_blank' href='" + dataProtectionSettings.link + "' class='white-color'>Privacy Notice</a>&nbsp;and&nbsp;<a target='_blank' href='"+ dataProtectionSettings.termsofuse_link + "' class='white-color'>Terms of Use</a>&nbsp;" +
-     "<a id='data-protection-agree' class='btn agree-button'>I agree, dismiss this banner</a></div>" +
+    " <a target='_blank' href='" + dataProtectionSettings.link + "' class='white-color'>Privacy Notice</a>&nbsp;and&nbsp;<a target='_blank' href='"+ dataProtectionSettings.termsofuse_link + "' class='white-color'>Terms of Use</a>&nbsp;&nbsp;" +
+     "<a id='data-protection-agree' class='btn agree-button'>OK</a></div>" +
     "";
 
   document.body.appendChild(banner);
