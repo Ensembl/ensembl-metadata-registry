@@ -26,9 +26,10 @@ class Assembly(models.Model):
     assembly_id = models.AutoField(primary_key=True)
     assembly_accession = models.CharField(unique=True, max_length=16, blank=True, null=True)
     assembly_name = models.CharField(max_length=200)
+    assembly_default = models.CharField(max_length=200)
+    assembly_ucsc = models.CharField(max_length=16, blank=True, null=True)
     assembly_level = models.CharField(max_length=50)
     base_count = models.BigIntegerField()
-    assembly_ucsc = models.CharField(max_length=16, blank=True, null=True)
 
     class Meta:
         managed = False

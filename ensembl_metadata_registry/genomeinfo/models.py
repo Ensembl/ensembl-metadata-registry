@@ -55,7 +55,7 @@ class Genome(models.Model):
 class GenomeDatabase(models.Model):
 
     ONE2MANY_RELATED = {'GENOME_ALIGNMENT': 'genome_alignment', 'GENOME_ANNOTATION': 'genome_annotation',
-                        'GENOME_FEATURE': 'genome_feature'}
+                        'GENOME_FEATURE': 'genome_feature', 'GENOME_VARIATION': 'genome_variation'}
     genome_database_id = models.AutoField(primary_key=True)
     genome = models.ForeignKey(Genome, models.DO_NOTHING, related_name=Genome.ONE2MANY_RELATED['GENOME_DATABASE'])
     dbname = models.CharField(max_length=64)
@@ -80,7 +80,7 @@ class GenomeAlignment(models.Model):
     class Meta:
         managed = False
         db_table = 'genome_alignment'
-        unique_together = (('genome', 'type', 'name'),)
+        unique_together = (('genome', 'type', 'name', 'genome_database'),)
 
 
 class GenomeAnnotation(models.Model):
@@ -94,7 +94,7 @@ class GenomeAnnotation(models.Model):
     class Meta:
         managed = False
         db_table = 'genome_annotation'
-        unique_together = (('genome', 'type'),)
+        unique_together = (('genome', 'type', 'genome_database'),)
 
 
 class GenomeComparaAnalysis(models.Model):
@@ -133,7 +133,7 @@ class GenomeFeature(models.Model):
     class Meta:
         managed = False
         db_table = 'genome_feature'
-        unique_together = (('genome', 'type', 'analysis'),)
+        unique_together = (('genome', 'type', 'analysis', 'genome_database'),)
 
 
 class GenomeVariation(models.Model):
@@ -142,8 +142,10 @@ class GenomeVariation(models.Model):
     type = models.CharField(max_length=32)
     name = models.CharField(max_length=128)
     count = models.IntegerField()
+    genome_database = models.ForeignKey(GenomeDatabase, models.DO_NOTHING,
+                                        related_name=GenomeDatabase.ONE2MANY_RELATED['GENOME_VARIATION'])
 
     class Meta:
         managed = False
         db_table = 'genome_variation'
-        unique_together = (('genome', 'type', 'name'),)
+        unique_together = (('genome', 'type', 'name', 'genome_database'),)

@@ -162,7 +162,6 @@ class GenomeDatareleaseFilterBackend(BaseFilterBackend):
         # ensembl_version = request.query_params.get('ensembl_version', DataReleaseUtils.get_latest_ensembl_version())
         ensembl_version = request.query_params.get('ensembl_version', None)
         if ensembl_version is not None:
-            print('Ensembl version ' + str(ensembl_version))
             queryset = queryset.filter(data_release__ensembl_version=ensembl_version)
 
         # ensembl_genomes_version = request.query_params.get('ensembl_genomes_version',
@@ -170,7 +169,6 @@ class GenomeDatareleaseFilterBackend(BaseFilterBackend):
         ensembl_genomes_version = request.query_params.get('ensembl_genomes_version',
                                                            None)
         if ensembl_genomes_version is not None:
-            print('Ensembl genomes version ' + str(ensembl_genomes_version))
             queryset = queryset.filter(data_release__ensembl_genomes_version=ensembl_genomes_version)
 
         return queryset

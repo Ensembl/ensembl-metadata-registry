@@ -26,7 +26,7 @@ SECRET_KEY = '$@_oa*gtx=_xx$g+$u__^5@-#ig33rt$pcs%=zaiuq1*k4y&mn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'prem-ml']
 
 DATABASE_ROUTERS = ['ensembl_metadata_registry.routers.EnsemblMetaDataRegistryRouter']
 
@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'ncbi_taxonomy.apps.NcbiTaxonomyConfig',
     'variation.apps.VariationConfig',
     'meta_stats.apps.MetaStatsConfig',
-    'fixture_magic',
     'future',
 ]
 
@@ -100,7 +99,7 @@ if 'TRAVIS' in os.environ:
         },
         'meta': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'ensembl_metadata',
+            'NAME': 'ensembl_metadata_e96',
             'USER': 'root',
             'PASSWORD': '',
             'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
@@ -127,7 +126,7 @@ else:
         },
         'meta': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'ensembl_metadata',
+            'NAME': 'ensembl_metadata_e96',
             'USER': secrets.DATABASE_USER,
             'PASSWORD': secrets.DATABASE_PASSWORD,
             'HOST': secrets.DATABASE_HOST,

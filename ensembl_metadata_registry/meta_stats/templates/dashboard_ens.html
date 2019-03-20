@@ -30,7 +30,7 @@
       
       function drawChart() {
       var colr = {};
-      colr['ensembl'] = '#336';
+      colr['ensemblvertebrates'] = '#336';
       colr['ensemblbacteria'] = '#b30000';
       colr['ensemblmetazoa'] = '#017a95';
       colr['ensemblfungi'] = '#a68460';
@@ -43,6 +43,8 @@
           async: false
           }).responseText;
        var jsonObject = jQuery.parseJSON( jsonData );
+       
+       console.log(jsonData);
             
       var result_array = [];
       var data_label = [];
@@ -67,7 +69,7 @@
       result_array.push(data_label);
       var eRelease_seen = [];
 	      $.each(jsonObject, function (index, item) {
-		      if (division == 'ensembl'){
+		      if (division == 'ensemblvertebrates'){
 		        result_array.push(['e'+item.data_release__ensembl_version, item.genome_id__count, 'color:' + colr[division]+ '; opacity:0.8', item.genome_id__count]);
 		      }else{
 		       if(item.data_release__ensembl_genomes_version == null) 
@@ -90,11 +92,11 @@
       
       var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
       
-      var height_ = 400;
-      if(division == 'ensemblgenomes'){ height_ = 800;}
+      var height_ = 600;
+      if(division == 'ensemblgenomes'){ height_ = 1200;}
       var options = {  'title':'Genomes count for each ' + division +' release',
                        'subtitle': 'Division: ' + division,
-                       'width':1400,
+                       'width':1200,
                        'height':height_,
                        'bar': {groupWidth: "80%"},
                         hAxis: {
@@ -106,7 +108,7 @@
                         colors: [colr[division]],
                        
       };
-      if(division == 'ensemblgenomes') {options['bars'] = 'horizontal'; options['colors'] = ['#017a95', '#a68460', '#b30000', '#712786', '#7eb693']; options['bar'] = {groupWidth: "70%"}; options['hAxis']['scaleType'] = 'log'; options['hAxis']['logScale'] = true;};
+      if(division == 'ensemblgenomes') {options['bars'] = 'horizontal'; options['colors'] = ['#017a95', '#a68460', '#b30000', '#712786', '#7eb693']; options['bar'] = {groupWidth: "80%"}; options['hAxis']['scaleType'] = 'log'; options['hAxis']['logScale'] = true;};
       
       chart.draw(data, options);
     }

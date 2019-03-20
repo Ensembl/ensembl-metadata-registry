@@ -25,14 +25,14 @@ from division.utils import DivisionUtils
 class AggregatorUtils(object):
 
     @classmethod
-    def get_db_count(self, division='ensembl'):
+    def get_db_count(self, division='ensemblvertebrates'):
 
         queryset = None
         division = division.lower()
-        if division == 'ensembl':
+        if division == 'ensemblvertebrates':
             queryset = Genome.objects.filter(
-                 division__name='Ensembl').values('division__name',
-                                                  'data_release__' + division + '_version').order_by().annotate(
+                 division__name='EnsemblVertebrates').values('division__name',
+                                                             'data_release__ensembl_version').order_by().annotate(  # @IgnorePep8
                                              Count("genome_id"))
         elif 'genomes' in division:
             queryset = Genome.objects.filter(
@@ -45,4 +45,6 @@ class AggregatorUtils(object):
                                                  'data_release__ensembl_genomes_version').order_by().annotate(
                                              Count("genome_id"))
 
-        return queryset
+
+        return queryset.order_by('data_release__ensembl_version')
+

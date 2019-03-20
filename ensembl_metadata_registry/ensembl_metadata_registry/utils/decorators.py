@@ -42,10 +42,8 @@ class setup_eager_loading(object):
             for entry in entries:
                 entry = entry.strip()
                 if many2one is not None and entry in many2one.keys():
-                    print('many2one entry from eager loading:' + str(entry))
                     queryset = queryset.select_related(entry)
                 if one2many is not None and entry in one2many.keys():
-                    print('one2many entry from eager loading: ' + str(entry))
                     queryset = queryset.prefetch_related(entry)
 
             return queryset

@@ -55,7 +55,6 @@ class DataTableListApi(generics.ListAPIView):
 
         search_queries = self.request.query_params.get('search[value]', '').strip().split(' ')
 
-        print('search parameters ' + str(self.search_parameters))
         q = Q()
 
         if len(search_queries) > 0 and search_queries[0] != u'':
@@ -88,7 +87,6 @@ class DataTableListApi(generics.ListAPIView):
 
 
 def datatable_view(request, table_name):
-    print("DataTable view called " + table_name)
     server_side_processing = "false"
     if table_name in ['genome', 'organism', 'assembly', 'division', 'datarelease']:
         server_side_processing = "true"
@@ -99,15 +97,12 @@ def datatable_view(request, table_name):
     if table_name in mappings:
         data_fields = SchemaUtils.get_field_names(mappings[table_name], table_name, False)
 
-    print("server_side_processing " + str(server_side_processing))
-
     return render(request, 'datatable_view.html', {'table_name': table_name,
                                                    'server_side_processing': server_side_processing,
                                                    'data_fields': data_fields})
 
 
 def datatable_fetch(request, table_name):
-    print("DataTable fetch called " + table_name)
 
     draw = request.GET.get('draw', None)
     server_side = request.GET.get('serverSide', False)
@@ -115,8 +110,6 @@ def datatable_fetch(request, table_name):
     hostname = request.get_host()
     http_protocal = 'https' if request.is_secure() else 'http'
 
-    print('hostname ' + hostname)
-    print('http_protocal ' + http_protocal)
     host_url = http_protocal + '://' + hostname + '/'
     if draw is None and server_side is False:
         url = host_url + table_name + "/nopagination"

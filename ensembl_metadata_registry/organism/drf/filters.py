@@ -150,11 +150,8 @@ class OrganismAliasOrganismFilterBackend(BaseFilterBackend):
             queryset = queryset.filter(organism__taxonomy_id__in=taxonomy_ids_list)
 
         taxonomy_branch = request.query_params.get('taxonomy_branch', None)
-        print("Quering for taxonomy branch " + str(taxonomy_branch))
         if taxonomy_branch is not None:
             taxonomy_ids_list = NcbiTaxonomyUtils.fetch_descendant_ids(taxonomy_branch)
-            print('Number of taxonomy ids ' + str(len(taxonomy_ids_list)))
-            print(taxonomy_ids_list)
             queryset = queryset.filter(organism__taxonomy_id__in=taxonomy_ids_list)
 
         organism_alias = request.query_params.get('organism_alias', None)
@@ -211,7 +208,6 @@ class OganismTaxonomyFilterBackend(BaseFilterBackend):
         taxonomy_branch = request.query_params.get('taxonomy_branch', None)
         if taxonomy_branch is not None:
             descendant_tax_ids = NcbiTaxonomyUtils.fetch_descendant_ids(taxonomy_branch)
-            print(descendant_tax_ids)
             queryset = queryset.filter(taxonomy_id__in=descendant_tax_ids)
 
         return queryset

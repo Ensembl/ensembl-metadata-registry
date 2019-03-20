@@ -57,7 +57,7 @@ class OrganismDetail(generics.RetrieveAPIView):
 
 
 class OrganismAliasList(generics.ListAPIView):
-    queryset = OrganismAlias.objects.all()
+    queryset = OrganismAlias.objects.order_by('pk')
     serializer_class = OrganismAliasSerializer
     filter_backends = (OrganismAliasOrganismFilterBackend,)
 

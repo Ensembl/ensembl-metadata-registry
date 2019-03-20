@@ -37,10 +37,7 @@ class SerializerMixin(object):
 
             for entry in entries:
                     entry = entry.strip()
-                    print('==Entry======' + entry)
                     if many2one is not None and entry in many2one.keys():
-                        print('many2one entry from set_related_fields:' + str(entry))
                         self.fields[entry] = many2one[entry](read_only=True)
                     if one2many is not None and entry in one2many.keys():
-                        print('one2many entry from set_related_fields: ' + str(entry))
                         self.fields[entry] = one2many[entry](many=True, read_only=True)

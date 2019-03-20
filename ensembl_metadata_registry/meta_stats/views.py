@@ -24,7 +24,7 @@ from meta_stats.utils.aggregator_utils import AggregatorUtils
 
 class AggregatorView(APIView):
 
-    def get(self, request, division='ensembl'):
+    def get(self, request, division='ensemblvertebrates'):
         """
         parameters:
             - name: division

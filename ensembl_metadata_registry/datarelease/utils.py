@@ -23,7 +23,7 @@ class DataReleaseUtils(object):
     def get_latest_ensembl_version(cls):
         datarelease = None
         try:
-            datarelease = DataRelease.objects.filter(is_current=1).filter(ensembl_genomes_version__isnull=True)[0]
+            datarelease = DataRelease.objects.filter(is_current=1)[0]
         except:
             return None
 
@@ -35,7 +35,7 @@ class DataReleaseUtils(object):
     def get_latest_ensemblgenomes_version(cls):
         datarelease = None
         try:
-            datarelease = DataRelease.objects.filter(is_current=1).filter(ensembl_genomes_version__isnull=False)[0]
+            datarelease = DataRelease.objects.filter(is_current=1)[0]
         except:
             return None
 
