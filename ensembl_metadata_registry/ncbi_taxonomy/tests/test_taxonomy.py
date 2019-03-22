@@ -26,7 +26,6 @@ class NcbiTaxonomyTest(APITestCase):
     multi_db = True
 
     def test_loaddata(self):
-        print('test load data called')
         self.assertEquals(NcbiTaxaNode.objects.all().count(), 20,
                           "There are 20 ncbi_taxa_nodes posts")
         node = NcbiTaxonomyUtils.fetch_node('33208')
@@ -35,7 +34,6 @@ class NcbiTaxonomyTest(APITestCase):
         self.assertEquals(node.right_index, 2978372, 'got the correct right index')
 
     def test_fetch_descendant_ids(self):
-        print('test fetch descendants..')
         results = NcbiTaxonomyUtils.fetch_descendant_ids('10090')
         self.assertEqual(len(results), 17, "Got back 17 descendant ids")
         expected_list = [10090, 10091, 10092, 35531, 39442, 46456, 57486, 80274, 116058, 179238,

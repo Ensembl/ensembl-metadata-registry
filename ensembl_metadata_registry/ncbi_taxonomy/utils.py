@@ -25,7 +25,6 @@ class NcbiTaxonomyUtils(object):
 
     @classmethod
     def fetch_node(cls, taxon_id):
-        print('Id from fetch node ' + str(taxon_id))
         node = NcbiTaxaNode.objects.get(pk=taxon_id)
         return node
 

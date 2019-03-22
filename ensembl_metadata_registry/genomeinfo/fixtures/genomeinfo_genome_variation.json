@@ -226,7 +226,8 @@
         "genome": 21,
         "type": "variations",
         "name": "dbSNP",
-        "count": 4974054
+        "count": 4974054,
+        "genome_database_id": 1
     }
 },
 {
@@ -236,7 +237,8 @@
         "genome": 20,
         "type": "variations",
         "name": "dbSNP",
-        "count": 9275
+        "count": 9275,
+        "genome_database_id": 1
     }
 },
 {
@@ -246,7 +248,8 @@
         "genome": 16,
         "type": "variations",
         "name": "SGRP",
-        "count": 263537
+        "count": 263537,
+        "genome_database_id": 1
     }
 },
 {
@@ -256,7 +259,8 @@
         "genome": 14,
         "type": "variations",
         "name": "dbSNP",
-        "count": 9526068
+        "count": 9526068,
+        "genome_database_id": 1
     }
 },
 {
@@ -266,7 +270,8 @@
         "genome": 5,
         "type": "variations",
         "name": "DPGP",
-        "count": 6794559
+        "count": 6794559,
+        "genome_database_id": 1
     }
 }
 ]

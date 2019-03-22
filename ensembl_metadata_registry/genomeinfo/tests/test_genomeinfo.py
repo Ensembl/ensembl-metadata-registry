@@ -30,7 +30,6 @@ class GenomeinfoTest(APITestCase):
 
     def test_loaddata(self):
         genome = Genome.objects.get(pk=1)
-        print(genome)
         self.assertEqual(1, genome.assembly_id)
         self.assertEqual(1, genome.division_id)
 

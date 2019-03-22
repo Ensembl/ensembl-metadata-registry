@@ -34,8 +34,8 @@ class DataReleaseUtilsTest(APITestCase):
 
     def test_get_latest_ensembl_version(self):
         ensembl_version = DataReleaseUtils.get_latest_ensembl_version()
-        self.assertEqual(83, ensembl_version, 'Got the right ensembl version')
+        self.assertEqual(96, ensembl_version, "Got the right ensemblverteberates version version")
 
     def test_get_latest_ensemblgenomes_version(self):
         ensemblgenomes_version = DataReleaseUtils.get_latest_ensemblgenomes_version()
-        self.assertEqual(27, ensemblgenomes_version, 'Got the right ensemblgenomes_version version')
+        self.assertEqual(43, ensemblgenomes_version, 'Got the right ensemblgenomes_version version')

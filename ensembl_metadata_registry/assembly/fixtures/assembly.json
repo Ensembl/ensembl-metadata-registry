@@ -5,6 +5,7 @@
     "fields": {
         "assembly_accession": null,
         "assembly_name": "choHof1",
+        "assembly_default": "choHof1",
         "assembly_level": "genescaffold",
         "base_count": 2467493193
     }
@@ -15,6 +16,7 @@
     "fields": {
         "assembly_accession": null,
         "assembly_name": "vicPac1",
+        "assembly_default": "vicPac1",
         "assembly_level": "genescaffold",
         "base_count": 2967746133
     }
@@ -25,6 +27,7 @@
     "fields": {
         "assembly_accession": null,
         "assembly_name": "Pmarinus_7.0",
+        "assembly_default": "Pmarinus_7.0",
         "assembly_level": "scaffold",
         "base_count": 885550958
     }
@@ -35,6 +38,7 @@
     "fields": {
         "assembly_accession": null,
         "assembly_name": "KH",
+        "assembly_default": "KH",
         "assembly_level": "chromosome",
         "base_count": 115227500
     }
@@ -45,6 +49,7 @@
     "fields": {
         "assembly_accession": null,
         "assembly_name": "CSAV 2.0",
+        "assembly_default": "CSAV 2.0",
         "assembly_level": "reftig",
         "base_count": 177003750
     }
