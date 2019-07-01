@@ -25,7 +25,7 @@ from genomeinfo.models import Genome
 from division.drf.filters import division_name_field, division_short_name_field
 from django.db.models import Q
 from assembly.drf.filters import assembly_level_field, assembly_name_field,\
-    assembly_ucsc_field
+    assembly_ucsc_field, assembly_accession_field
 
 
 # Fields
@@ -100,13 +100,23 @@ has_other_alignments_field = coreapi.Field(
             description='filter genomes which has_other_alignments  (eg. true, false)')
 
 
+class GenomeExactMatchFilterBackend(BaseFilterBackend):
+    def filter_queryset(self, request, queryset, view):
+        return queryset
+
+    def get_schema_fields(self, view):
+        return [DrfFilters.get_exact_match_field(Genome)]
+
+
 class GenomeExpandFilterBackend(BaseFilterBackend):
 
     def filter_queryset(self, request, queryset, view):
         return queryset
 
     def get_schema_fields(self, view):
-        return [DrfFilters.get_expand_field(Genome), DrfFilters.get_expand_all_field(Genome)]
+        return [DrfFilters.get_expand_field(Genome),
+                DrfFilters.get_expand_all_field(Genome)
+                ]
 
 
 class GenomeFilterBackend(BaseFilterBackend):
@@ -205,7 +215,7 @@ class GenomeDivisionFilterBackend(BaseFilterBackend):
 
 class GenomeAssemblyFilterBackend(BaseFilterBackend):
     """
-    Filter to filter by assembly_name, assembly_level, assembly_ucsc.
+    Filter to filter by assembly_name, assembly_level, assembly_ucsc, assembly_accession
     """
     def filter_queryset(self, request, queryset, view):
         assembly_name = request.query_params.get('assembly_name', None)
@@ -220,10 +230,14 @@ class GenomeAssemblyFilterBackend(BaseFilterBackend):
         if assembly_ucsc is not None:
             queryset = queryset.filter(assembly__assembly_ucsc__icontains=assembly_ucsc)
 
+        assembly_accession = request.query_params.get('assembly_accession', None)
+        if assembly_accession is not None:
+            queryset = queryset.filter(assembly__assembly_accession__iexact=assembly_accession)
+
         return queryset
 
     def get_schema_fields(self, view):
-        return [assembly_name_field, assembly_level_field, assembly_ucsc_field]
+        return [assembly_name_field, assembly_level_field, assembly_ucsc_field, assembly_accession_field]
 
 
 class GenomeComparaFilterBackend(BaseFilterBackend):

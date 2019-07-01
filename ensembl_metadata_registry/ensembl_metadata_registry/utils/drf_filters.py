@@ -53,3 +53,13 @@ class DrfFilters(object):
             type='boolean',
             description='selecting true will expand all the related fields, to selectively expand, use expand above')
         return expand_all_field
+
+    @classmethod
+    def get_exact_match_field(cls, model):
+        expand_all_field = coreapi.Field(
+            name='exact_match',
+            location='query',
+            required=False,
+            type='boolean',
+            description='selecting true will attempt to match the exact search query')
+        return expand_all_field

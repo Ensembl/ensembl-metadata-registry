@@ -34,7 +34,7 @@ display_name_field = coreapi.Field(name='display_name',
                                    location='query',
                                    required=False,
                                    type='string',
-                                   description='display_name to filter(eg: homo)')
+                                   description='display_name to filter(eg: human)')
 
 any_name_field = coreapi.Field(name='any_name',
                                location='query',
@@ -122,20 +122,33 @@ class OrganismOrganismAliasFilterBackend(BaseFilterBackend):
 class OrganismAliasOrganismFilterBackend(BaseFilterBackend):
 
     def filter_queryset(self, request, queryset, view):
+
+        # Exact or fuzzy
+        exact_match = request.query_params.get('exact_match', None)
+
         # Filter to filter by organism_name.
         organism_name = request.query_params.get('organism_name', None)
         if organism_name is not None:
-            queryset = queryset.filter(organism__name__icontains=organism_name)
+            if exact_match is not None and exact_match == "true":
+                queryset = queryset.filter(organism__name__iexact=organism_name)
+            else:
+                queryset = queryset.filter(organism__name__icontains=organism_name)
 
         # Filter to filter by display_name.
         display_name = request.query_params.get('display_name', None)
         if display_name is not None:
-            queryset = queryset.filter(organism__display_name__icontains=display_name)
+            if exact_match is not None and exact_match == "true":
+                queryset = queryset.filter(organism__display_name__iexact=display_name)
+            else:
+                queryset = queryset.filter(organism__display_name__icontains=display_name)
 
         # Filter to filter by any name
         any_name = request.query_params.get('any_name', None)
         if any_name is not None:
-            queryset = queryset.filter(Q(organism__name__icontains=any_name) | Q(organism__display_name__icontains=any_name))  # @IgnorePep8
+            if exact_match is not None and exact_match == "true":
+                queryset = queryset.filter(Q(organism__name__iexact=any_name) | Q(organism__display_name__iexact=any_name))  # @IgnorePep8
+            else:
+                queryset = queryset.filter(Q(organism__name__icontains=any_name) | Q(organism__display_name__icontains=any_name))  # @IgnorePep8
 
         # Filter to filter by organism_id
         organism_id = request.query_params.get('organism_id', None)

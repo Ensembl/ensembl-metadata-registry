@@ -27,7 +27,7 @@ from genomeinfo.drf.serializers import GenomeSerializer, GenomeAlignmentSerializ
 from genomeinfo.drf.filters import GenomeFilterBackend, GenomeComparaFilterBackend, GenomeVariationFilterBackend,\
     GenomeDatareleaseFilterBackend, GenomeAssemblyFilterBackend,\
     GenomeDatabasereleaseFilterBackend, GenomeExpandFilterBackend,\
-    GenomeDivisionFilterBackend
+    GenomeDivisionFilterBackend, GenomeExactMatchFilterBackend
 from organism.drf.filters import OrganismAliasOrganismFilterBackend
 from ensembl_metadata_registry.utils.decorators import setup_eager_loading
 from rest_framework.pagination import PageNumberPagination
@@ -38,7 +38,8 @@ from ensembl_metadata_registry.utils.schema_utils import SchemaUtils
 class GenomeList(generics.ListAPIView):
 
     serializer_class = GenomeSerializer
-    filter_backends = (GenomeExpandFilterBackend, GenomeFilterBackend, GenomeDatabasereleaseFilterBackend,
+    filter_backends = (GenomeExpandFilterBackend, GenomeExactMatchFilterBackend, GenomeFilterBackend,
+                       GenomeDatabasereleaseFilterBackend,
                        GenomeComparaFilterBackend, GenomeVariationFilterBackend, GenomeDatareleaseFilterBackend,
                        GenomeAssemblyFilterBackend, OrganismAliasOrganismFilterBackend, GenomeDivisionFilterBackend)
 
