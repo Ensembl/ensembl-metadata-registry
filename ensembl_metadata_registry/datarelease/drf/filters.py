@@ -35,6 +35,13 @@ ensembl_genomes_version_field = coreapi.Field(
             description='ensembl_genomes_version to filter(eg: ' +
             str(DataReleaseUtils.get_latest_ensemblgenomes_version()) + ' )')
 
+is_current_field = coreapi.Field(
+            name='is_current',
+            location='query',
+            required=False,
+            type='integer',
+            description='filter releases on is_current flag (eg: 0 or 1  )')
+
 
 class DatareleaseFilterBackend(BaseFilterBackend):
     """
@@ -49,7 +56,11 @@ class DatareleaseFilterBackend(BaseFilterBackend):
         if ensembl_genomes_version is not None:
             queryset = queryset.filter(ensembl_genomes_version=ensembl_genomes_version)
 
+        is_current = request.query_params.get('is_current', None)
+        if is_current is not None:
+            queryset = queryset.filter(is_current=is_current)
+
         return queryset
 
     def get_schema_fields(self, view):
-        return [ensembl_version_field, ensembl_genomes_version_field]
+        return [ensembl_version_field, ensembl_genomes_version_field, is_current_field]
