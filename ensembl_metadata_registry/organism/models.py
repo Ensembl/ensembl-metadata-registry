@@ -25,7 +25,7 @@ class Organism(models.Model):
 
     organism_id = models.AutoField(primary_key=True)
     taxonomy_id = models.IntegerField()
-    is_reference = models.IntegerField()
+    reference = models.CharField(max_length=128)
     species_taxonomy_id = models.IntegerField()
     name = models.CharField(max_length=128)
     display_name = models.CharField(max_length=128)

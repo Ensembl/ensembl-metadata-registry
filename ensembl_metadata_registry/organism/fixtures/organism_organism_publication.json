@@ -4,7 +4,7 @@
     "pk": 175,
     "fields": {
         "taxonomy_id": 634454,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 438,
         "name": "acetobacter_pasteurianus_ifo_3283_07",
         "display_name": "Acetobacter pasteurianus IFO 3283-07",
@@ -19,7 +19,7 @@
     "pk": 126,
     "fields": {
         "taxonomy_id": 634456,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 438,
         "name": "acetobacter_pasteurianus_ifo_3283_26",
         "display_name": "Acetobacter pasteurianus IFO 3283-26",
@@ -34,7 +34,7 @@
     "pk": 107,
     "fields": {
         "taxonomy_id": 634452,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 438,
         "name": "acetobacter_pasteurianus_ifo_3283_01",
         "display_name": "Acetobacter pasteurianus IFO 3283-01",
@@ -49,7 +49,7 @@
     "pk": 100,
     "fields": {
         "taxonomy_id": 634453,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 438,
         "name": "acetobacter_pasteurianus_ifo_3283_03",
         "display_name": "Acetobacter pasteurianus IFO 3283-03",
@@ -64,7 +64,7 @@
     "pk": 99,
     "fields": {
         "taxonomy_id": 634459,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 438,
         "name": "acetobacter_pasteurianus_ifo_3283_12",
         "display_name": "Acetobacter pasteurianus IFO 3283-12",
@@ -79,7 +79,7 @@
     "pk": 95,
     "fields": {
         "taxonomy_id": 634458,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 438,
         "name": "acetobacter_pasteurianus_ifo_3283_01_42c",
         "display_name": "Acetobacter pasteurianus IFO 3283-01-42C",
@@ -94,7 +94,7 @@
     "pk": 90,
     "fields": {
         "taxonomy_id": 634455,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 438,
         "name": "acetobacter_pasteurianus_ifo_3283_22",
         "display_name": "Acetobacter pasteurianus IFO 3283-22",
@@ -109,7 +109,7 @@
     "pk": 87,
     "fields": {
         "taxonomy_id": 749388,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 104102,
         "name": "acetobacter_tropicalis_nbrc_101654",
         "display_name": "Acetobacter tropicalis NBRC 101654",
@@ -124,7 +124,7 @@
     "pk": 84,
     "fields": {
         "taxonomy_id": 61635,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 61635,
         "name": "acholeplasma_brassicae",
         "display_name": "Acholeplasma brassicae",
@@ -139,7 +139,7 @@
     "pk": 81,
     "fields": {
         "taxonomy_id": 1318466,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 38986,
         "name": "acholeplasma_palmae_j233",
         "display_name": "Acholeplasma palmae J233",
@@ -154,7 +154,7 @@
     "pk": 79,
     "fields": {
         "taxonomy_id": 441768,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 2148,
         "name": "acholeplasma_laidlawii_pg_8a",
         "display_name": "Acholeplasma laidlawii PG-8A",
@@ -169,7 +169,7 @@
     "pk": 73,
     "fields": {
         "taxonomy_id": 634457,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 438,
         "name": "acetobacter_pasteurianus_ifo_3283_32",
         "display_name": "Acetobacter pasteurianus IFO 3283-32",

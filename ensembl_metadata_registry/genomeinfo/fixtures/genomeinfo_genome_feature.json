@@ -4,7 +4,7 @@
     "pk": 4,
     "fields": {
         "taxonomy_id": 30538,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 30538,
         "name": "vicugna_pacos",
         "display_name": "Alpaca",

@@ -4,7 +4,7 @@
     "pk": 44,
     "fields": {
         "taxonomy_id": 8128,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 8128,
         "name": "oreochromis_niloticus",
         "display_name": "Tilapia",
@@ -29,7 +29,7 @@
     "pk": 40,
     "fields": {
         "taxonomy_id": 99883,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 99883,
         "name": "tetraodon_nigroviridis",
         "display_name": "Tetraodon",
@@ -54,7 +54,7 @@
     "pk": 14,
     "fields": {
         "taxonomy_id": 9031,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 9031,
         "name": "gallus_gallus",
         "display_name": "Chicken",
@@ -79,7 +79,7 @@
     "pk": 13,
     "fields": {
         "taxonomy_id": 59894,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 59894,
         "name": "ficedula_albicollis",
         "display_name": "Flycatcher",
@@ -104,7 +104,7 @@
     "pk": 60,
     "fields": {
         "taxonomy_id": 37347,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 37347,
         "name": "tupaia_belangeri",
         "display_name": "Tree Shrew",
