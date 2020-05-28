@@ -4,7 +4,7 @@
     "pk": 7,
     "fields": {
         "taxonomy_id": 7227,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 7227,
         "name": "drosophila_melanogaster",
         "display_name": "Drosophila melanogaster",
@@ -29,7 +29,7 @@
     "pk": 6,
     "fields": {
         "taxonomy_id": 8090,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 8090,
         "name": "oryzias_latipes",
         "display_name": "Medaka",
@@ -54,7 +54,7 @@
     "pk": 3,
     "fields": {
         "taxonomy_id": 7757,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 7757,
         "name": "petromyzon_marinus",
         "display_name": "Lamprey",
@@ -79,7 +79,7 @@
     "pk": 2,
     "fields": {
         "taxonomy_id": 7719,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 7719,
         "name": "ciona_intestinalis",
         "display_name": "C.intestinalis",
@@ -104,7 +104,7 @@
     "pk": 1,
     "fields": {
         "taxonomy_id": 51511,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 51511,
         "name": "ciona_savignyi",
         "display_name": "C.savignyi",

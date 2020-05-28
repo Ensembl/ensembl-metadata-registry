@@ -4,7 +4,7 @@
     "pk": 21,
     "fields": {
         "taxonomy_id": 9796,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 9796,
         "name": "equus_caballus",
         "display_name": "Horse",
@@ -29,7 +29,7 @@
     "pk": 20,
     "fields": {
         "taxonomy_id": 9103,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 9103,
         "name": "meleagris_gallopavo",
         "display_name": "Turkey",
@@ -54,7 +54,7 @@
     "pk": 16,
     "fields": {
         "taxonomy_id": 559292,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 4932,
         "name": "saccharomyces_cerevisiae",
         "display_name": "Saccharomyces cerevisiae",
@@ -79,7 +79,7 @@
     "pk": 14,
     "fields": {
         "taxonomy_id": 9031,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 9031,
         "name": "gallus_gallus",
         "display_name": "Chicken",
@@ -104,7 +104,7 @@
     "pk": 7,
     "fields": {
         "taxonomy_id": 7227,
-        "is_reference": 0,
+        "reference":null,
         "species_taxonomy_id": 7227,
         "name": "drosophila_melanogaster",
         "display_name": "Drosophila melanogaster",
