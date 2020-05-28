@@ -99,7 +99,7 @@ if 'TRAVIS' in os.environ:
         },
         'meta': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'ensembl_metadata_e96',
+            'NAME': 'ensembl_metadata',
             'USER': 'root',
             'PASSWORD': '',
             'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
@@ -126,7 +126,7 @@ else:
         },
         'meta': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'ensembl_metadata_e96',
+            'NAME': 'ensembl_metadata',
             'USER': secrets.DATABASE_USER,
             'PASSWORD': secrets.DATABASE_PASSWORD,
             'HOST': secrets.DATABASE_HOST,
