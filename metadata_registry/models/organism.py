@@ -37,7 +37,7 @@ class Organism(models.Model):
     url_name = models.CharField(max_length=128)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'organism'
 
 
@@ -47,7 +47,7 @@ class OrganismAlias(models.Model):
     alias = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'organism_alias'
         unique_together = (('organism', 'alias'),)
 
@@ -59,6 +59,6 @@ class OrganismPublication(models.Model):
     publication = models.CharField(max_length=64, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'organism_publication'
         unique_together = (('organism', 'publication'),)

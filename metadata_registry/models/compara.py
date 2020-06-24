@@ -26,7 +26,7 @@ class ComparaAnalysis(models.Model):
     ONE2MANY_RELATED = {'GENOME_COMPARA_ANALYSIS': 'genome_compara_analysis'}
 
     compara_analysis_id = models.AutoField(primary_key=True)
-    genome_compara_analysis = models.ManyToManyField('genomeinfo.Genome', through='genomeinfo.GenomeComparaAnalysis',
+    genome_compara_analysis = models.ManyToManyField('Genome', through='GenomeComparaAnalysis',
                                                      related_name='genome_compara_analysis')
     method = models.CharField(max_length=50)
     set_name = models.CharField(max_length=128, blank=True, null=True)
@@ -35,7 +35,7 @@ class ComparaAnalysis(models.Model):
     division = models.ForeignKey(Division, models.DO_NOTHING, related_name=MANY2ONE_RELATED['DIVISION'])
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'compara_analysis'
         unique_together = (('method', 'set_name', 'dbname'),)
 
@@ -49,5 +49,5 @@ class ComparaAnalysisEvent(models.Model):
     details = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'compara_analysis_event'

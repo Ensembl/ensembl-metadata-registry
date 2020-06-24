@@ -27,7 +27,7 @@ class DataRelease(models.Model):
     is_current = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'data_release'
         unique_together = (('ensembl_version', 'ensembl_genomes_version'),)
 
@@ -37,10 +37,10 @@ class DataReleaseDatabase(models.Model):
     data_release = models.ForeignKey(DataRelease, models.DO_NOTHING)
     dbname = models.CharField(max_length=64)
     type = models.CharField(max_length=5, blank=True, null=True)
-    division = models.ForeignKey('division.Division', models.DO_NOTHING)
+    division = models.ForeignKey('Division', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'data_release_database'
         unique_together = (('data_release', 'dbname'),)
 
@@ -54,5 +54,5 @@ class DataReleaseDatabaseEvent(models.Model):
     details = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'data_release_database_event'

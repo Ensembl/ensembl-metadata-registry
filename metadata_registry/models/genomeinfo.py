@@ -47,7 +47,7 @@ class Genome(models.Model):
     has_other_alignments = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'genome'
         unique_together = (('data_release', 'genome_id'),)
 
@@ -63,7 +63,7 @@ class GenomeDatabase(models.Model):
     type = models.CharField(max_length=13, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'genome_database'
         unique_together = (('dbname', 'species_id'), ('genome', 'dbname'),)
 
@@ -78,7 +78,7 @@ class GenomeAlignment(models.Model):
                                         related_name=GenomeDatabase.ONE2MANY_RELATED['GENOME_ALIGNMENT'])
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'genome_alignment'
         unique_together = (('genome', 'type', 'name', 'genome_database'),)
 
@@ -92,7 +92,7 @@ class GenomeAnnotation(models.Model):
                                         related_name=GenomeDatabase.ONE2MANY_RELATED['GENOME_ANNOTATION'])
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'genome_annotation'
         unique_together = (('genome', 'type', 'genome_database'),)
 
@@ -103,7 +103,7 @@ class GenomeComparaAnalysis(models.Model):
     compara_analysis = models.ForeignKey(ComparaAnalysis, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'genome_compara_analysis'
         unique_together = (('genome', 'compara_analysis'),)
 
@@ -117,7 +117,7 @@ class GenomeEvent(models.Model):
     details = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'genome_event'
 
 
@@ -131,7 +131,7 @@ class GenomeFeature(models.Model):
                                         related_name=GenomeDatabase.ONE2MANY_RELATED['GENOME_FEATURE'])
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'genome_feature'
         unique_together = (('genome', 'type', 'analysis', 'genome_database'),)
 
@@ -146,6 +146,6 @@ class GenomeVariation(models.Model):
                                         related_name=GenomeDatabase.ONE2MANY_RELATED['GENOME_VARIATION'])
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'genome_variation'
         unique_together = (('genome', 'type', 'name', 'genome_database'),)

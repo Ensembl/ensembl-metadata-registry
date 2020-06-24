@@ -1,6 +1,6 @@
 [
 {
-    "model": "datarelease.datarelease",
+    "model": "metadata_registry.datarelease",
     "pk": 5,
     "fields": {
         "ensembl_version": 96,
@@ -10,7 +10,7 @@
     }
 },
 {
-    "model": "datarelease.datarelease",
+    "model": "metadata_registry.datarelease",
     "pk": 4,
     "fields": {
         "ensembl_version": 83,
@@ -20,7 +20,7 @@
     }
 },
 {
-    "model": "datarelease.datarelease",
+    "model": "metadata_registry.datarelease",
     "pk": 3,
     "fields": {
         "ensembl_version": 82,
@@ -30,7 +30,7 @@
     }
 },
 {
-    "model": "datarelease.datarelease",
+    "model": "metadata_registry.datarelease",
     "pk": 2,
     "fields": {
         "ensembl_version": 81,
@@ -40,7 +40,7 @@
     }
 },
 {
-    "model": "datarelease.datarelease",
+    "model": "metadata_registry.datarelease",
     "pk": 1,
     "fields": {
         "ensembl_version": 80,

@@ -67,13 +67,13 @@ class UtilsTestCase(TestCase):
         pass
 
     def test_get_field_names(self):
-        field_names_datarelease = SchemaUtils.get_field_names("datarelease", "datarelease")
+        field_names_datarelease = SchemaUtils.get_field_names("metadata_registry", "datarelease")
         expected_fields_datarelease = ['data_release_id', 'ensembl_version', 'ensembl_genomes_version',
                                        'release_date', 'is_current']
         self.assertListEqual(expected_fields_datarelease, field_names_datarelease,
                              "Got the right fields names for datarelease")
 
-        field_names_genomeinfo = SchemaUtils.get_field_names("genomeinfo", "genome")
+        field_names_genomeinfo = SchemaUtils.get_field_names("metadata_registry", "genome")
         expected_fields_genomeinfo = ['genome_id', 'genebuild', 'has_pan_compara', 'has_variations',
                                       'has_peptide_compara', 'has_genome_alignments', 'has_synteny',
                                       'has_other_alignments']
@@ -82,5 +82,5 @@ class UtilsTestCase(TestCase):
 
     def test_get_app_model_mappings(self):
         mappings = SchemaUtils.get_app_model_mappings()
-        self.assertIn('genomeinfo', mappings['genome'], "Found model genome in genomeinfo app")
-        self.assertIn('datarelease', mappings['datarelease'], "Found model datarelease in datarelease app")
+        self.assertIn('metadata_registry', mappings['genome'], "Found model genome in metadata_registry app")
+        self.assertIn('metadata_registry', mappings['datarelease'], "Found model datarelease in metadata_registry app")

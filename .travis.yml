@@ -16,4 +16,4 @@ before_script:
   - mysql -e 'create database ensembl_metadata_registry;' -u root
 
 script:
-  - python3 manage.py test
+  - python manage.py test  --settings=ensembl_metadata_registry.settings.test

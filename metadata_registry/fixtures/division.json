@@ -1,6 +1,6 @@
 [
 {
-    "model": "division.division",
+    "model": "metadata_registry.division",
     "pk": 1,
     "fields": {
         "name": "Ensembl",
@@ -8,7 +8,7 @@
     }
 },
 {
-    "model": "division.division",
+    "model": "metadata_registry.division",
     "pk": 2,
     "fields": {
         "name": "EnsemblMetazoa",

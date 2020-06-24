@@ -24,7 +24,7 @@ from metadata_registry.models.genomeinfo import Genome
 class GenomeinfoTest(APITestCase):
     fixtures = ['genomeinfo_division', 'genomeinfo_genome', 'genomeinfo_genome_alignment',
                 'genomeinfo_genome_annotation',
-                'genomeinfo_genome_compara_analysis', 'genomeinfo_genome_databases', 'genomeinfo_genome_event',
+                'genomeinfo_genome_compara_analysis', 'genomeinfo_genome_databases', # 'genomeinfo_genome_event',
                 'genomeinfo_genome_feature', 'genomeinfo_genome_variation']
     multi_db = True
 

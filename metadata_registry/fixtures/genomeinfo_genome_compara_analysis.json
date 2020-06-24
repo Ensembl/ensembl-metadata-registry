@@ -1,6 +1,6 @@
 [
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 44,
     "fields": {
         "taxonomy_id": 8128,
@@ -15,7 +15,7 @@
     }
 },
 {
-    "model": "assembly.assembly",
+    "model": "metadata_registry.assembly",
     "pk": 44,
     "fields": {
         "assembly_accession": null,
@@ -25,7 +25,7 @@
     }
 },
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 40,
     "fields": {
         "taxonomy_id": 99883,
@@ -40,7 +40,7 @@
     }
 },
 {
-    "model": "assembly.assembly",
+    "model": "metadata_registry.assembly",
     "pk": 40,
     "fields": {
         "assembly_accession": null,
@@ -50,7 +50,7 @@
     }
 },
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 14,
     "fields": {
         "taxonomy_id": 9031,
@@ -65,7 +65,7 @@
     }
 },
 {
-    "model": "assembly.assembly",
+    "model": "metadata_registry.assembly",
     "pk": 14,
     "fields": {
         "assembly_accession": null,
@@ -75,7 +75,7 @@
     }
 },
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 13,
     "fields": {
         "taxonomy_id": 59894,
@@ -90,7 +90,7 @@
     }
 },
 {
-    "model": "assembly.assembly",
+    "model": "metadata_registry.assembly",
     "pk": 13,
     "fields": {
         "assembly_accession": null,
@@ -100,7 +100,7 @@
     }
 },
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 60,
     "fields": {
         "taxonomy_id": 37347,
@@ -115,7 +115,7 @@
     }
 },
 {
-    "model": "assembly.assembly",
+    "model": "metadata_registry.assembly",
     "pk": 60,
     "fields": {
         "assembly_accession": null,
@@ -125,7 +125,7 @@
     }
 },
 {
-    "model": "datarelease.datarelease",
+    "model": "metadata_registry.datarelease",
     "pk": 2,
     "fields": {
         "ensembl_version": 81,
@@ -135,7 +135,7 @@
     }
 },
 {
-    "model": "genomeinfo.genome",
+    "model": "metadata_registry.genome",
     "pk": 111,
     "fields": {
         "data_release": 2,
@@ -152,7 +152,7 @@
     }
 },
 {
-    "model": "genomeinfo.genome",
+    "model": "metadata_registry.genome",
     "pk": 74,
     "fields": {
         "data_release": 2,
@@ -169,7 +169,7 @@
     }
 },
 {
-    "model": "genomeinfo.genome",
+    "model": "metadata_registry.genome",
     "pk": 81,
     "fields": {
         "data_release": 2,
@@ -186,7 +186,7 @@
     }
 },
 {
-    "model": "genomeinfo.genome",
+    "model": "metadata_registry.genome",
     "pk": 82,
     "fields": {
         "data_release": 2,
@@ -203,7 +203,7 @@
     }
 },
 {
-    "model": "compara.comparaanalysis",
+    "model": "metadata_registry.comparaanalysis",
     "pk": 1,
     "fields": {
         "method": "PROTEIN_TREES",
@@ -214,7 +214,7 @@
     }
 },
 {
-    "model": "genomeinfo.genome",
+    "model": "metadata_registry.genome",
     "pk": 131,
     "fields": {
         "data_release": 2,
@@ -231,7 +231,7 @@
     }
 },
 {
-    "model": "genomeinfo.genomecomparaanalysis",
+    "model": "metadata_registry.genomecomparaanalysis",
     "pk": 5,
     "fields": {
         "genome": 111,
@@ -239,7 +239,7 @@
     }
 },
 {
-    "model": "genomeinfo.genomecomparaanalysis",
+    "model": "metadata_registry.genomecomparaanalysis",
     "pk": 4,
     "fields": {
         "genome": 74,
@@ -247,7 +247,7 @@
     }
 },
 {
-    "model": "genomeinfo.genomecomparaanalysis",
+    "model": "metadata_registry.genomecomparaanalysis",
     "pk": 3,
     "fields": {
         "genome": 81,
@@ -255,7 +255,7 @@
     }
 },
 {
-    "model": "genomeinfo.genomecomparaanalysis",
+    "model": "metadata_registry.genomecomparaanalysis",
     "pk": 2,
     "fields": {
         "genome": 82,
@@ -263,7 +263,7 @@
     }
 },
 {
-    "model": "genomeinfo.genomecomparaanalysis",
+    "model": "metadata_registry.genomecomparaanalysis",
     "pk": 1,
     "fields": {
         "genome": 131,

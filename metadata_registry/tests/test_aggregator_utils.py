@@ -46,8 +46,8 @@ class AggregatorUtilsTest(APITestCase):
         queryset_eg = AggregatorUtils.get_db_count(division="ensembl_genomes")
         expected_queryset_eg = [{'data_release__ensembl_genomes_version': None, 'genome_id__count': 9,
                                  'division__name': 'EnsemblVertebrates'},
-                                {'data_release__ensembl_genomes_version': 27, 'genome_id__count': 1,
-                                 'division__name': 'EnsemblProtists'},
                                 {'data_release__ensembl_genomes_version': 27,
-                                 'genome_id__count': 5, 'division__name': 'EnsemblVertebrates'}]
+                                 'genome_id__count': 5, 'division__name': 'EnsemblVertebrates'},
+                                {'data_release__ensembl_genomes_version': 27, 'genome_id__count': 1,
+                                 'division__name': 'EnsemblProtists'}]
         self.assertListEqual(expected_queryset_eg, list(queryset_eg), "Results are equal for eg")

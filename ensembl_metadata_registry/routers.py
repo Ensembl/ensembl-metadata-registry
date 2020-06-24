@@ -21,7 +21,7 @@ class EnsemblMetaDataRegistryRouter(object):
     A router to control all database operations on models in the
     ensembl metadata registry.
     """
-    META_DBS = ('metadata_registry', 'assembly', 'compara', 'division', 'datarelease', 'genomeinfo', 'organism')
+    META_DBS = ('metadata_registry')
 
     def db_for_read(self, model, **hints):
         """
@@ -37,10 +37,10 @@ class EnsemblMetaDataRegistryRouter(object):
         """
         Attempts to write to dbs go to default.
         """
-#         if model._meta.app_label == 'ncbi_taxonomy':
-#             return 'ncbi_taxonomy'
-#         if model._meta.app_label in EnsemblMetaDataRegistryRouter.META_DBS:
-#             return 'meta'
+        if model._meta.app_label == 'ncbi_taxonomy':
+            return 'ncbi_taxonomy'
+        if model._meta.app_label in EnsemblMetaDataRegistryRouter.META_DBS:
+            return 'meta'
         return 'default'
 
     def allow_relation(self, obj1, obj2, **hints):

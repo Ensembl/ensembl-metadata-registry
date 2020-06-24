@@ -25,5 +25,5 @@ class Division(models.Model):
     short_name = models.CharField(unique=True, max_length=8)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'division'

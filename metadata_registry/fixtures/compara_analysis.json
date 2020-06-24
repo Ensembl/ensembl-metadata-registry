@@ -1,6 +1,6 @@
 [
 {
-    "model": "compara.comparaanalysis",
+    "model": "metadata_registry.comparaanalysis",
     "pk": 5,
     "fields": {
         "division": "ensembl_compara_81",
@@ -12,7 +12,7 @@
     }
 },
 {
-    "model": "compara.comparaanalysis",
+    "model": "metadata_registry.comparaanalysis",
     "pk": 4,
     "fields": {
         "division": "ensembl_compara_81",
@@ -24,7 +24,7 @@
     }
 },
 {
-    "model": "compara.comparaanalysis",
+    "model": "metadata_registry.comparaanalysis",
     "pk": 3,
     "fields": {
         "division": "ensembl_compara_81",
@@ -36,7 +36,7 @@
     }
 },
 {
-    "model": "compara.comparaanalysis",
+    "model": "metadata_registry.comparaanalysis",
     "pk": 2,
     "fields": {
         "division": "ensembl_compara_81",
@@ -48,7 +48,7 @@
     }
 },
 {
-    "model": "compara.comparaanalysis",
+    "model": "metadata_registry.comparaanalysis",
     "pk": 1,
     "fields": {
         "division": "ensembl_compara_81",

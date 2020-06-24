@@ -39,9 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'metadata_registry',
+    'ncbi_taxonomy',
     'rest_framework',
     'rest_framework_swagger',
-    'ncbi_taxonomy.apps.NcbiTaxonomyConfig'
 ]
 
 MIDDLEWARE = [

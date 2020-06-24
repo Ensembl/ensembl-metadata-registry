@@ -1,6 +1,6 @@
 [
 {
-    "model": "division.division",
+    "model": "metadata_registry.division",
     "pk": 5,
     "fields": {
         "name": "EnsemblProtists",
@@ -8,7 +8,7 @@
     }
 },
 {
-    "model": "division.division",
+    "model": "metadata_registry.division",
     "pk": 4,
     "fields": {
         "name": "EnsemblBacteria",
@@ -16,7 +16,7 @@
     }
 },
 {
-    "model": "division.division",
+    "model": "metadata_registry.division",
     "pk": 3,
     "fields": {
         "name": "EnsemblFungi",
@@ -24,7 +24,7 @@
     }
 },
 {
-    "model": "division.division",
+    "model": "metadata_registry.division",
     "pk": 2,
     "fields": {
         "name": "EnsemblMetazoa",
@@ -32,7 +32,7 @@
     }
 },
 {
-    "model": "division.division",
+    "model": "metadata_registry.division",
     "pk": 1,
     "fields": {
         "name": "EnsemblVertebrates",

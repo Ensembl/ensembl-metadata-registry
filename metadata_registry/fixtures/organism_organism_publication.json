@@ -1,6 +1,6 @@
 [
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 175,
     "fields": {
         "taxonomy_id": 634454,
@@ -15,7 +15,7 @@
     }
 },
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 126,
     "fields": {
         "taxonomy_id": 634456,
@@ -30,7 +30,7 @@
     }
 },
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 107,
     "fields": {
         "taxonomy_id": 634452,
@@ -45,7 +45,7 @@
     }
 },
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 100,
     "fields": {
         "taxonomy_id": 634453,
@@ -60,7 +60,7 @@
     }
 },
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 99,
     "fields": {
         "taxonomy_id": 634459,
@@ -75,7 +75,7 @@
     }
 },
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 95,
     "fields": {
         "taxonomy_id": 634458,
@@ -90,7 +90,7 @@
     }
 },
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 90,
     "fields": {
         "taxonomy_id": 634455,
@@ -105,7 +105,7 @@
     }
 },
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 87,
     "fields": {
         "taxonomy_id": 749388,
@@ -120,7 +120,7 @@
     }
 },
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 84,
     "fields": {
         "taxonomy_id": 61635,
@@ -135,7 +135,7 @@
     }
 },
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 81,
     "fields": {
         "taxonomy_id": 1318466,
@@ -150,7 +150,7 @@
     }
 },
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 79,
     "fields": {
         "taxonomy_id": 441768,
@@ -165,7 +165,7 @@
     }
 },
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 73,
     "fields": {
         "taxonomy_id": 634457,
@@ -180,7 +180,7 @@
     }
 },
 {
-    "model": "organism.organismpublication",
+    "model": "metadata_registry.organismpublication",
     "pk": 24109,
     "fields": {
         "organism": 175,
@@ -188,7 +188,7 @@
     }
 },
 {
-    "model": "organism.organismpublication",
+    "model": "metadata_registry.organismpublication",
     "pk": 24111,
     "fields": {
         "organism": 126,
@@ -196,7 +196,7 @@
     }
 },
 {
-    "model": "organism.organismpublication",
+    "model": "metadata_registry.organismpublication",
     "pk": 24120,
     "fields": {
         "organism": 107,
@@ -204,7 +204,7 @@
     }
 },
 {
-    "model": "organism.organismpublication",
+    "model": "metadata_registry.organismpublication",
     "pk": 24110,
     "fields": {
         "organism": 100,
@@ -212,7 +212,7 @@
     }
 },
 {
-    "model": "organism.organismpublication",
+    "model": "metadata_registry.organismpublication",
     "pk": 24118,
     "fields": {
         "organism": 99,
@@ -220,7 +220,7 @@
     }
 },
 {
-    "model": "organism.organismpublication",
+    "model": "metadata_registry.organismpublication",
     "pk": 24112,
     "fields": {
         "organism": 95,
@@ -228,7 +228,7 @@
     }
 },
 {
-    "model": "organism.organismpublication",
+    "model": "metadata_registry.organismpublication",
     "pk": 24115,
     "fields": {
         "organism": 90,
@@ -236,7 +236,7 @@
     }
 },
 {
-    "model": "organism.organismpublication",
+    "model": "metadata_registry.organismpublication",
     "pk": 24121,
     "fields": {
         "organism": 87,
@@ -244,7 +244,7 @@
     }
 },
 {
-    "model": "organism.organismpublication",
+    "model": "metadata_registry.organismpublication",
     "pk": 24114,
     "fields": {
         "organism": 84,
@@ -252,7 +252,7 @@
     }
 },
 {
-    "model": "organism.organismpublication",
+    "model": "metadata_registry.organismpublication",
     "pk": 24113,
     "fields": {
         "organism": 81,
@@ -260,7 +260,7 @@
     }
 },
 {
-    "model": "organism.organismpublication",
+    "model": "metadata_registry.organismpublication",
     "pk": 24127,
     "fields": {
         "organism": 79,
@@ -268,7 +268,7 @@
     }
 },
 {
-    "model": "organism.organismpublication",
+    "model": "metadata_registry.organismpublication",
     "pk": 24132,
     "fields": {
         "organism": 73,

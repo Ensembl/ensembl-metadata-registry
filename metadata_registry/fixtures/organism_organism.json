@@ -1,6 +1,6 @@
 [
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 5,
     "fields": {
         "taxonomy_id": 9358,
@@ -15,7 +15,7 @@
     }
 },
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 4,
     "fields": {
         "taxonomy_id": 30538,
@@ -30,7 +30,7 @@
     }
 },
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 3,
     "fields": {
         "taxonomy_id": 7757,
@@ -45,7 +45,7 @@
     }
 },
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 2,
     "fields": {
         "taxonomy_id": 7719,
@@ -60,7 +60,7 @@
     }
 },
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 1,
     "fields": {
         "taxonomy_id": 51511,

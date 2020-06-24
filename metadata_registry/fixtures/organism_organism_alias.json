@@ -1,6 +1,6 @@
 [
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 1,
     "fields": {
         "taxonomy_id": 51511,
@@ -15,7 +15,7 @@
     }
 },
 {
-    "model": "organism.organismalias",
+    "model": "metadata_registry.organismalias",
     "pk": 329942,
     "fields": {
         "organism": 1,
@@ -23,7 +23,7 @@
     }
 },
 {
-    "model": "organism.organismalias",
+    "model": "metadata_registry.organismalias",
     "pk": 329941,
     "fields": {
         "organism": 1,
@@ -31,7 +31,7 @@
     }
 },
 {
-    "model": "organism.organismalias",
+    "model": "metadata_registry.organismalias",
     "pk": 329940,
     "fields": {
         "organism": 1,
@@ -39,7 +39,7 @@
     }
 },
 {
-    "model": "organism.organismalias",
+    "model": "metadata_registry.organismalias",
     "pk": 329939,
     "fields": {
         "organism": 1,
@@ -47,7 +47,7 @@
     }
 },
 {
-    "model": "organism.organismalias",
+    "model": "metadata_registry.organismalias",
     "pk": 329938,
     "fields": {
         "organism": 1,
@@ -55,7 +55,7 @@
     }
 },
 {
-    "model": "organism.organismalias",
+    "model": "metadata_registry.organismalias",
     "pk": 329937,
     "fields": {
         "organism": 1,
@@ -63,7 +63,7 @@
     }
 },
 {
-    "model": "organism.organismalias",
+    "model": "metadata_registry.organismalias",
     "pk": 329936,
     "fields": {
         "organism": 1,
@@ -71,7 +71,7 @@
     }
 },
 {
-    "model": "organism.organismalias",
+    "model": "metadata_registry.organismalias",
     "pk": 329935,
     "fields": {
         "organism": 1,

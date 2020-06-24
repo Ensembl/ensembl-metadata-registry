@@ -1,6 +1,6 @@
 [
 {
-    "model": "organism.organism",
+    "model": "metadata_registry.organism",
     "pk": 1,
     "fields": {
         "taxonomy_id": 51511,
@@ -15,7 +15,7 @@
     }
 },
 {
-    "model": "assembly.assembly",
+    "model": "metadata_registry.assembly",
     "pk": 1,
     "fields": {
         "organism": 1,
@@ -26,7 +26,7 @@
     }
 },
 {
-    "model": "assembly.assemblysequence",
+    "model": "metadata_registry.assemblysequence",
     "pk": 168871557,
     "fields": {
         "assembly": 1,
@@ -35,7 +35,7 @@
     }
 },
 {
-    "model": "assembly.assemblysequence",
+    "model": "metadata_registry.assemblysequence",
     "pk": 168866367,
     "fields": {
         "assembly": 1,
@@ -44,7 +44,7 @@
     }
 },
 {
-    "model": "assembly.assemblysequence",
+    "model": "metadata_registry.assemblysequence",
     "pk": 168856238,
     "fields": {
         "assembly": 1,
@@ -53,7 +53,7 @@
     }
 },
 {
-    "model": "assembly.assemblysequence",
+    "model": "metadata_registry.assemblysequence",
     "pk": 168855091,
     "fields": {
         "assembly": 1,
@@ -62,7 +62,7 @@
     }
 },
 {
-    "model": "assembly.assemblysequence",
+    "model": "metadata_registry.assemblysequence",
     "pk": 168849571,
     "fields": {
         "assembly": 1,
