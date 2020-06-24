@@ -30,7 +30,7 @@ class NcbiTaxaNode(models.Model):
     root_id = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ncbi_taxa_node'
 
 
@@ -42,6 +42,6 @@ class NcbiTaxaName(models.Model):
     name_class = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ncbi_taxa_name'
         unique_together = (('taxon_id', 'name', 'name_class'),)
