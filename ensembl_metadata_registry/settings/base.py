@@ -84,7 +84,7 @@ if 'TRAVIS' in os.environ:
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'ensembl_metadata_registry',
-            'USER': 'ensembl',
+            'USER': 'root',
             'PASSWORD': '',
             'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
             'PORT': '3306',
@@ -92,7 +92,7 @@ if 'TRAVIS' in os.environ:
         'meta': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'ensembl_metadata',
-            'USER': 'ensembl',
+            'USER': 'root',
             'PASSWORD': '',
             'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
             'PORT': '3306',
@@ -100,7 +100,7 @@ if 'TRAVIS' in os.environ:
         'ncbi_taxonomy': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'ncbi_taxonomy',
-            'USER': 'ensembl',
+            'USER': 'root',
             'PASSWORD': '',
             'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
             'PORT': '3306',
