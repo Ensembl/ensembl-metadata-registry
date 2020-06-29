@@ -1,0 +1,42 @@
+[
+{
+    "model": "metadata_registry.division",
+    "pk": 5,
+    "fields": {
+        "name": "EnsemblProtists",
+        "short_name": "EPr"
+    }
+},
+{
+    "model": "metadata_registry.division",
+    "pk": 4,
+    "fields": {
+        "name": "EnsemblBacteria",
+        "short_name": "EB"
+    }
+},
+{
+    "model": "metadata_registry.division",
+    "pk": 3,
+    "fields": {
+        "name": "EnsemblFungi",
+        "short_name": "EF"
+    }
+},
+{
+    "model": "metadata_registry.division",
+    "pk": 2,
+    "fields": {
+        "name": "EnsemblMetazoa",
+        "short_name": "EM"
+    }
+},
+{
+    "model": "metadata_registry.division",
+    "pk": 1,
+    "fields": {
+        "name": "EnsemblVertebrates",
+        "short_name": "EV"
+    }
+}
+]

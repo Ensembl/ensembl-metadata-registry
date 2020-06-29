@@ -1,0 +1,232 @@
+[
+{
+    "model": "metadata_registry.organism",
+    "pk": 7,
+    "fields": {
+        "taxonomy_id": 7227,
+        "reference":null,
+        "species_taxonomy_id": 7227,
+        "name": "drosophila_melanogaster",
+        "display_name": "Drosophila melanogaster",
+        "strain": null,
+        "serotype": null,
+        "description": null,
+        "image": null
+    }
+},
+{
+    "model": "metadata_registry.assembly",
+    "pk": 7,
+    "fields": {
+        "assembly_accession": null,
+        "assembly_name": "BDGP6",
+        "assembly_level": "chromosome",
+        "base_count": 143725995
+    }
+},
+{
+    "model": "metadata_registry.organism",
+    "pk": 6,
+    "fields": {
+        "taxonomy_id": 8090,
+        "reference":null,
+        "species_taxonomy_id": 8090,
+        "name": "oryzias_latipes",
+        "display_name": "Medaka",
+        "strain": null,
+        "serotype": null,
+        "description": null,
+        "image": null
+    }
+},
+{
+    "model": "metadata_registry.assembly",
+    "pk": 6,
+    "fields": {
+        "assembly_accession": null,
+        "assembly_name": "HdrR",
+        "assembly_level": "chromosome",
+        "base_count": 869000216
+    }
+},
+{
+    "model": "metadata_registry.organism",
+    "pk": 3,
+    "fields": {
+        "taxonomy_id": 7757,
+        "reference":null,
+        "species_taxonomy_id": 7757,
+        "name": "petromyzon_marinus",
+        "display_name": "Lamprey",
+        "strain": null,
+        "serotype": null,
+        "description": null,
+        "image": null
+    }
+},
+{
+    "model": "metadata_registry.assembly",
+    "pk": 3,
+    "fields": {
+        "assembly_accession": null,
+        "assembly_name": "Pmarinus_7.0",
+        "assembly_level": "scaffold",
+        "base_count": 885550958
+    }
+},
+{
+    "model": "metadata_registry.organism",
+    "pk": 2,
+    "fields": {
+        "taxonomy_id": 7719,
+        "reference":null,
+        "species_taxonomy_id": 7719,
+        "name": "ciona_intestinalis",
+        "display_name": "C.intestinalis",
+        "strain": null,
+        "serotype": null,
+        "description": null,
+        "image": null
+    }
+},
+{
+    "model": "metadata_registry.assembly",
+    "pk": 2,
+    "fields": {
+        "assembly_accession": null,
+        "assembly_name": "KH",
+        "assembly_level": "chromosome",
+        "base_count": 115227500
+    }
+},
+{
+    "model": "metadata_registry.organism",
+    "pk": 1,
+    "fields": {
+        "taxonomy_id": 51511,
+        "reference":null,
+        "species_taxonomy_id": 51511,
+        "name": "ciona_savignyi",
+        "display_name": "C.savignyi",
+        "strain": null,
+        "serotype": null,
+        "description": null,
+        "image": null
+    }
+},
+{
+    "model": "metadata_registry.assembly",
+    "pk": 1,
+    "fields": {
+        "assembly_accession": null,
+        "assembly_name": "CSAV 2.0",
+        "assembly_level": "reftig",
+        "base_count": 177003750
+    }
+},
+{
+    "model": "metadata_registry.datarelease",
+    "pk": 1,
+    "fields": {
+        "ensembl_version": 80,
+        "ensembl_genomes_version": null,
+        "release_date": "2015-05-20",
+        "is_current": null
+    }
+},
+{
+    "model": "metadata_registry.datarelease",
+    "pk": 2,
+    "fields": {
+        "ensembl_version": 80,
+        "ensembl_genomes_version": 27,
+        "release_date": "2015-05-21",
+        "is_current": null
+    }
+},
+{
+    "model": "metadata_registry.genome",
+    "pk": 5,
+    "fields": {
+        "data_release": 2,
+        "assembly": 7,
+        "organism": 7,
+        "genebuild": "2014-05-FlyBase",
+        "has_pan_compara": 0,
+        "has_variations": 1,
+        "has_peptide_compara": 0,
+        "has_genome_alignments": 0,
+        "has_synteny": 0,
+        "has_other_alignments": 1,
+        "division_id": 5
+    }
+},
+{
+    "model": "metadata_registry.genome",
+    "pk": 4,
+    "fields": {
+        "data_release": 1,
+        "assembly": 6,
+        "organism": 6,
+        "genebuild": "2006-05-Ensembl",
+        "has_pan_compara": 0,
+        "has_variations": 0,
+        "has_peptide_compara": 0,
+        "has_genome_alignments": 0,
+        "has_synteny": 0,
+        "has_other_alignments": 1,
+        "division_id": 1
+    }
+},
+{
+    "model": "metadata_registry.genome",
+    "pk": 3,
+    "fields": {
+        "data_release": 1,
+        "assembly": 3,
+        "organism": 3,
+        "genebuild": "2011-02-Ensembl",
+        "has_pan_compara": 0,
+        "has_variations": 0,
+        "has_peptide_compara": 0,
+        "has_genome_alignments": 0,
+        "has_synteny": 0,
+        "has_other_alignments": 1,
+        "division_id": 1
+    }
+},
+{
+    "model": "metadata_registry.genome",
+    "pk": 2,
+    "fields": {
+        "data_release": 1,
+        "assembly": 2,
+        "organism": 2,
+        "genebuild": "2011-08-Ensembl",
+        "has_pan_compara": 0,
+        "has_variations": 0,
+        "has_peptide_compara": 0,
+        "has_genome_alignments": 0,
+        "has_synteny": 0,
+        "has_other_alignments": 1,
+        "division_id": 1
+    }
+},
+{
+    "model": "metadata_registry.genome",
+    "pk": 1,
+    "fields": {
+        "data_release": 1,
+        "assembly": 1,
+        "organism": 1,
+        "genebuild": "2006-04-Ensembl",
+        "has_pan_compara": 0,
+        "has_variations": 0,
+        "has_peptide_compara": 0,
+        "has_genome_alignments": 0,
+        "has_synteny": 0,
+        "has_other_alignments": 1,
+        "division_id": 1
+    }
+}
+]
