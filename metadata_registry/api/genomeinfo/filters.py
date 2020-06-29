@@ -25,7 +25,7 @@ from metadata_registry.models.genomeinfo import Genome
 from django.db.models import Q
 from metadata_registry.api.assembly.filters import assembly_level_field, assembly_name_field,\
     assembly_ucsc_field, assembly_accession_field
-
+from metadata_registry.api.division.filters import division_name_field, division_short_name_field
 
 # Fields
 genome_id_field = coreapi.Field(
@@ -209,9 +209,7 @@ class GenomeDivisionFilterBackend(BaseFilterBackend):
         return queryset
 
     def get_schema_fields(self, view):
-        # FIXME Import filters globally
-        from metadata_registry.api.division.filters import DivisionFilterBackend# division_name_field, division_short_name_field
-        return DivisionFilterBackend.get_schema_fields()#[division_name_field, division_short_name_field]
+        return [division_name_field, division_short_name_field]
 
 
 class GenomeAssemblyFilterBackend(BaseFilterBackend):

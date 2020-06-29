@@ -19,6 +19,22 @@ from rest_framework.filters import BaseFilterBackend
 from rest_framework.compat import coreapi
 from metadata_registry.utils.division import DivisionUtils
 
+division_name_field = coreapi.Field(
+    name='division_name',
+    location='query',
+    required=False,
+    type='string',
+    description='division_name to filter(eg: ' + ",".join(DivisionUtils.get_all_division_names()) + ')'
+)
+
+division_short_name_field = coreapi.Field(
+    name='short_name',
+    location='query',
+    required=False,
+    type='string',
+    description='short_name to filter(eg: ' + ",".join(DivisionUtils.get_all_division_short_names()) + ')'
+)
+
 class DivisionFilterBackend(BaseFilterBackend):
     """
     Filter to filter by division_name, short_name.
@@ -35,19 +51,4 @@ class DivisionFilterBackend(BaseFilterBackend):
         return queryset
 
     def get_schema_fields(self, view):
-        division_name_field = coreapi.Field(
-            name='division_name',
-            location='query',
-            required=False,
-            type='string',
-            description='division_name to filter(eg: ' + ",".join(DivisionUtils.get_all_division_names()) + ')'
-        )
-
-        division_short_name_field = coreapi.Field(
-            name='short_name',
-            location='query',
-            required=False,
-            type='string',
-            description='short_name to filter(eg: ' + ",".join(DivisionUtils.get_all_division_short_names()) + ')'
-        )
         return [division_name_field, division_short_name_field]
