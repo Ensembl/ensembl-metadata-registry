@@ -21,6 +21,6 @@ import metadata_registry.views.meta as views
 from django.views.generic.base import TemplateView
 
 urlpatterns = [
-    url(r'^dashboard/ensembl', TemplateView.as_view(template_name="dashboard_ens.html")),
+    url(r'^dashboard/ensembl', TemplateView.as_view(template_name="metadata_registry/meta_stats/dashboard_ens.html")),
     url(r'^(?P<division>[\w]+)/$', views.AggregatorView.as_view(), name='get_db_count'),
 ]

@@ -70,7 +70,8 @@ internal_apis = [
 
     url(r'^datatable_serverside/datarelease', DataReleaseDatatableView.as_view(),
         name="datatablefetch_serverside_datarelease"),
-    url(r'^privacy_notice_emr', TemplateView.as_view(template_name='privacy_notice_emr.html'), name="privacy_note_emr"),
+    url(r'^privacy_notice_emr', TemplateView.as_view(template_name='metadata_registry/privacy_notice_emr.html'),
+        name="privacy_note_emr"),
 ]
 
 urlpatterns = urlpatterns + emr_apis + internal_apis
