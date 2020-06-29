@@ -1,21 +1,18 @@
-'''
-Copyright [1999-2015] Wellcome Trust Sanger Institute and the EMBL-European Bioinformatics Institute
-Copyright [2016-2019] EMBL-European Bioinformatics Institute
+"""
+.. See the NOTICE file distributed with this work for additional information
+   regarding copyright ownership.
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+       http://www.apache.org/licenses/LICENSE-2.0
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+"""
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-     http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-'''
-
-
+from django.urls import reverse
 from rest_framework.test import APITestCase
 from ncbi_taxonomy.models import NcbiTaxaNode
 from ncbi_taxonomy.utils import NcbiTaxonomyUtils
@@ -39,3 +36,7 @@ class NcbiTaxonomyTest(APITestCase):
         expected_list = [10090, 10091, 10092, 35531, 39442, 46456, 57486, 80274, 116058, 179238,
                          477815, 477816, 947985, 1266728, 1385377, 1643390, 1879032]
         self.assertListEqual(expected_list, results, 'fetch_descendant_nodes ok. Both list contains the same ids')
+
+    def test_assembly_urls(self):
+        response = self.client.get(reverse('ncbi_taxonomy_node_list'))
+        self.assertEqual(response.status_code, 200)
