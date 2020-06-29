@@ -45,8 +45,8 @@ schema_view = get_swagger_view(title='Ensembl Metadata Registry REST API Endpoin
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^docs/', schema_view),
-    url(r'^$', schema_view),
+    url(r'^docs/', schema_view, name='doc_view'),
+    url(r'^$', schema_view, name='home_view'),
 
 ]
 
@@ -54,7 +54,8 @@ internal_apis = [
     # for datatables
     url(r'^datatable/(?P<table_name>[\w]+)/', datatable_view, name="datatable_view"),
 
-    url(r'^datatable_clientside/(?P<table_name>[\w]+)/', datatable_fetch, name="datatablefetch_clientside"),
+    # FIXME this url doens't work but doesn't seem to be used anywhere, anyway.
+    # url(r'^datatable_clientside/(?P<table_name>[\w]+)/', datatable_fetch, name="datatablefetch_clientside"),
 
     url(r'^datatable_serverside/assembly', AssemblyDatatableView.as_view(),
         name="datatablefetch_serverside_assembly"),

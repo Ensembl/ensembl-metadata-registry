@@ -28,6 +28,5 @@ urlpatterns = [
     url(r'^publication/$', views.OrganismPublicationList.as_view(), name='organism_publication_list'),
     url(r'^publication/(?P<pk>[0-9]+)/$', views.OrganismPublicationDetail.as_view(),
         name='organism_publication_detail'),
-    # url(r'^nopagination', views.OrganismInfoView.as_view(), name="organism_info_nopagination_table"),
-
+    url(r'^nopagination', views.OrganismInfoView.as_view(), name="organism_info_nopagination_table"),
 ]

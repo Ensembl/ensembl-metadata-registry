@@ -15,17 +15,16 @@ See the License for the specific language governing permissions and
 limitations under the License.
 '''
 
-
-
-from django.shortcuts import render
-import requests
-from django.http.response import JsonResponse
 import json
-from metadata_registry.utils.schema_utils import SchemaUtils
 
-from rest_framework import generics
+import requests
 from django.db.models import Q
+from django.http.response import JsonResponse
+from django.shortcuts import render
+from rest_framework import generics
+
 from metadata_registry.utils.pagination import DataTablePagination
+from metadata_registry.utils.schema_utils import SchemaUtils
 
 
 class DataTableListApi(generics.ListAPIView):
@@ -36,6 +35,7 @@ class DataTableListApi(generics.ListAPIView):
     pagination_class = DataTablePagination
     search_parameters = ()
     unfiltered_query_set = None
+    default_order_by = None
 
     def get_queryset(self):
         self.unfiltered_query_set = query_set = super(DataTableListApi, self).get_queryset()
@@ -46,8 +46,8 @@ class DataTableListApi(generics.ListAPIView):
         if order_by_index == 0 or not orderable:
             order_by_index = 1
 
-        order_by = self.request.query_params.get('columns[{}][data]'.format(order_by_index), self.default_order_by).\
-            replace('.', '__')
+        order_by = self.request.query_params.get('columns[{}][data]'.format(order_by_index), self.default_order_by)
+        order_by = str(order_by).replace('.', '__')
         order_by_dir = self.request.query_params.get('order[0][dir]', 'asc')
 
         if order_by_dir == 'desc':
@@ -97,13 +97,12 @@ def datatable_view(request, table_name):
     if table_name in mappings:
         data_fields = SchemaUtils.get_field_names(mappings[table_name], table_name, False)
 
-    return render(request, 'datatable_view.html', {'table_name': table_name,
-                                                   'server_side_processing': server_side_processing,
-                                                   'data_fields': data_fields})
+    return render(request, 'metadata_registry/datatable_view.html', {'table_name': table_name,
+                                                                     'server_side_processing': server_side_processing,
+                                                                     'data_fields': data_fields})
 
 
 def datatable_fetch(request, table_name):
-
     draw = request.GET.get('draw', None)
     server_side = request.GET.get('serverSide', False)
 
@@ -118,4 +117,5 @@ def datatable_fetch(request, table_name):
         data = {"data": json_data}
         return JsonResponse(data, safe=False)
 
-    return JsonResponse(json_data, safe=False)
+    # FIXME shouldn't return nothing
+    return JsonResponse({}, safe=False)

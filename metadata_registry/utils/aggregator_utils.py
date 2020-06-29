@@ -44,5 +44,6 @@ class AggregatorUtils(object):
                 division__name=division).\
                 values('division__name', 'data_release__ensembl_genomes_version').\
                 annotate(Count("genome_id"))
-
+        else:
+            return queryset
         return queryset.order_by('-data_release__ensembl_version', 'division__name')
