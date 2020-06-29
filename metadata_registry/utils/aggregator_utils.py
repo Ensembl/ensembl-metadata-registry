@@ -15,10 +15,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 '''
 
+from django.db.models import Q
+from django.db.models.aggregates import Count
 
 from metadata_registry.models.genomeinfo import Genome
-from django.db.models.aggregates import Count
-from django.db.models import Q
 from metadata_registry.utils.division import DivisionUtils
 
 
@@ -31,20 +31,18 @@ class AggregatorUtils(object):
         division = division.lower()
         if division == 'ensemblvertebrates':
             queryset = Genome.objects.filter(
-                 division__name='EnsemblVertebrates').values('division__name',
-                                                             'data_release__ensembl_version').order_by().annotate(  # @IgnorePep8
-                                             Count("genome_id"))
+                division__name='EnsemblVertebrates').\
+                values('division__name', 'data_release__ensembl_version').\
+                annotate(Count("genome_id"))
         elif 'genomes' in division:
             queryset = Genome.objects.filter(
-                 ~Q(division__name='Ensembl')).values('division__name',
-                                                      'data_release__ensembl_genomes_version').order_by().annotate(
-                                             Count("genome_id"))
+                ~Q(division__name='Ensembl')).\
+                values('division__name','data_release__ensembl_genomes_version').\
+                annotate(Count("genome_id"))
         elif division in [d.lower() for d in DivisionUtils.get_all_division_names(eg_only=True)]:
             queryset = Genome.objects.filter(
-                 division__name=division).values('division__name',
-                                                 'data_release__ensembl_genomes_version').order_by().annotate(
-                                             Count("genome_id"))
+                division__name=division).\
+                values('division__name', 'data_release__ensembl_genomes_version').\
+                annotate(Count("genome_id"))
 
-
-        return queryset.order_by('data_release__ensembl_version')
-
+        return queryset.order_by('-data_release__ensembl_version', 'division__name')

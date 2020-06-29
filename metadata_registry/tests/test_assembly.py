@@ -38,7 +38,8 @@ class AssemblyTest(APITestCase):
         response = client.get('/assembly/')
         self.assertEqual(response.status_code, 200)
         json_response = (json.loads(response.content.decode('utf8')))
-        self.assertEqual(len(json_response), 5)
+
+        self.assertEqual(len(json_response['results']), 5)
 
         expected_assembly_response = {'assembly_name': 'CSAV 2.0',
                                       'assembly_ucsc': None,
@@ -47,7 +48,7 @@ class AssemblyTest(APITestCase):
                                       'assembly_level': 'reftig',
                                       'assembly_accession': None}
 
-        self.assertDictEqual(json_response[0], expected_assembly_response)
+        self.assertDictEqual(json_response['results'][0], expected_assembly_response)
 
         response = client.get('/assembly/1/')
         self.assertEqual(response.status_code, 200)

@@ -36,18 +36,23 @@ class AggregatorUtilsTest(APITestCase):
     def test_get_db_count(self):
 
         queryset = AggregatorUtils.get_db_count(division="ensemblvertebrates")
-        expected_queryset = [{'data_release__ensembl_version': 80, 'division__name': 'EnsemblVertebrates',
-                              'genome_id__count': 9},
-                             {'data_release__ensembl_version': 81, 'division__name': 'EnsemblVertebrates',
-                              'genome_id__count': 5}]
+        expected_queryset = [{'data_release__ensembl_version': 81, 'division__name': 'EnsemblVertebrates',
+                              'genome_id__count': 5},
+                             {'data_release__ensembl_version': 80, 'division__name': 'EnsemblVertebrates',
+                              'genome_id__count': 9}]
 
         self.assertListEqual(expected_queryset, list(queryset), "Results are equal for EnsemblVertebrates")
 
         queryset_eg = AggregatorUtils.get_db_count(division="ensembl_genomes")
-        expected_queryset_eg = [{'data_release__ensembl_genomes_version': None, 'genome_id__count': 9,
-                                 'division__name': 'EnsemblVertebrates'},
-                                {'data_release__ensembl_genomes_version': 27, 'genome_id__count': 1,
+        expected_queryset_eg = [{'data_release__ensembl_genomes_version': 27,
+                                 'genome_id__count': 1,
                                  'division__name': 'EnsemblProtists'},
                                 {'data_release__ensembl_genomes_version': 27,
-                                 'genome_id__count': 5, 'division__name': 'EnsemblVertebrates'}]
-        self.assertListEqual(expected_queryset_eg, list(queryset_eg), "Results are equal for eg")
+                                 'genome_id__count': 5,
+                                 'division__name': 'EnsemblVertebrates'},
+                                {'data_release__ensembl_genomes_version': None,
+                                 'genome_id__count': 9,
+                                 'division__name': 'EnsemblVertebrates'}
+                                ]
+        self.assertListEqual(expected_queryset_eg, list(queryset_eg), "Results list are equal for eg")
+
