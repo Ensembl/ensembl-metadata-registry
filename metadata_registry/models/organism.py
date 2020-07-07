@@ -32,6 +32,7 @@ class Organism(models.Model):
     image = models.TextField(blank=True, null=True)
     scientific_name = models.CharField(max_length=128, blank=True, null=True)
     url_name = models.CharField(max_length=128)
+    group = models.ForeignKey('Group', models.DO_NOTHING, db_column='group_id', related_name='group_in_organims', null=True)
 
     class Meta:
         managed = True
@@ -59,3 +60,15 @@ class OrganismPublication(models.Model):
         managed = True
         db_table = 'organism_publication'
         unique_together = (('organism', 'publication'),)
+
+class Group(models.Model):
+    group_id = models.IntegerField(primary_key=True,blank=True, null=True) #FK -> Group
+    type = models.CharField(max_length=255, blank=True, null=True)
+    reference_organism = models.ForeignKey(Organism, models.DO_NOTHING,
+                                              db_column='reference_organism_id',
+                                 related_name='reference_in_groups')
+    label = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = True
+        db_table = 'group'
