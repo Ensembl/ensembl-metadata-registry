@@ -21,7 +21,7 @@ division_name_field = coreapi.Field(
     location='query',
     required=False,
     type='string',
-    description='division_name to filter(eg: ' + ",".join(DivisionUtils.get_all_division_names()) + ')'
+    description='division_name to filter against'
 )
 
 division_short_name_field = coreapi.Field(
@@ -29,7 +29,7 @@ division_short_name_field = coreapi.Field(
     location='query',
     required=False,
     type='string',
-    description='short_name to filter(eg: ' + ",".join(DivisionUtils.get_all_division_short_names()) + ')'
+    description='short_name to filter'
 )
 
 class DivisionFilterBackend(BaseFilterBackend):
