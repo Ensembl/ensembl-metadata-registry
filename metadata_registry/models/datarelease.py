@@ -18,38 +18,24 @@ from django.db import models
 # Create your models here.
 class DataRelease(models.Model):
     data_release_id = models.AutoField(primary_key=True)
-    ensembl_version = models.IntegerField()
-    ensembl_genomes_version = models.IntegerField(blank=True, null=True)
+    label = models.CharField(max_length=64)
+    version = models.IntegerField()
     release_date = models.DateField()
     is_current = models.IntegerField(blank=True, null=True)
+    site_id = models.ForeignKey('metadata_registry.EnsemblSite', on_delete=models.DO_NOTHING,
+                              related_name='site_id_release', blank=True,
+                              null=True)
 
     class Meta:
         managed = True
-        db_table = 'data_release'
-        unique_together = (('ensembl_version', 'ensembl_genomes_version'),)
+        db_table = 'ensembl_release'
 
 
-class DataReleaseDatabase(models.Model):
-    data_release_database_id = models.AutoField(primary_key=True)
-    data_release = models.ForeignKey(DataRelease, models.DO_NOTHING)
-    dbname = models.CharField(max_length=64)
-    type = models.CharField(max_length=5, blank=True, null=True)
-    division = models.ForeignKey('Division', models.DO_NOTHING)
+class EnsemblSite(models.Model):
+    site_id = models.AutoField(primary_key=True)
+    label = models.CharField(max_length=64)
+    uri = models.CharField(max_length=64)
 
     class Meta:
         managed = True
-        db_table = 'data_release_database'
-        unique_together = (('data_release', 'dbname'),)
-
-
-class DataReleaseDatabaseEvent(models.Model):
-    data_release_database_event_id = models.AutoField(primary_key=True)
-    data_release_database = models.ForeignKey(DataReleaseDatabase, models.DO_NOTHING)
-    type = models.CharField(max_length=32)
-    source = models.CharField(max_length=128, blank=True, null=True)
-    creation_time = models.DateTimeField()
-    details = models.TextField(blank=True, null=True)
-
-    class Meta:
-        managed = True
-        db_table = 'data_release_database_event'
+        db_table = 'ensembl_site'

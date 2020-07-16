@@ -18,13 +18,6 @@ import metadata_registry.views.datarelease as views
 urlpatterns = [
     url(r'^$', views.DataReleaseList.as_view(), name='datarelease_list'),
     url(r'^(?P<pk>[0-9]+)/$', views.DataReleaseDetail.as_view(), name='datarelease_detail'),
-
-    url(r'^database/$', views.DataReleaseDatabaseList.as_view(), name='datarelease_database_list'),
-    url(r'^database/(?P<pk>[0-9]+)/$', views.DataReleaseDatabaseDetail.as_view(), name='datarelease_database_detail'),
-
-    url(r'^event/$', views.DataReleaseDatabaseEventList.as_view(), name='datarelease_database_event_list'),
-    url(r'^event/(?P<pk>[0-9]+)/$', views.DataReleaseDatabaseEventDetail.as_view(),
-        name='datarelease_database_event_detail'),
     url(r'^nopagination', views.DatareleaseInfoView.as_view(), name="datarelease_info_nopagination_table"),
 
 ]

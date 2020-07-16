@@ -44,3 +44,18 @@ class AssemblySequence(models.Model):
         managed = True
         db_table = 'assembly_sequence'
         unique_together = (('assembly', 'name', 'acc'),)
+
+
+class AssemblyKaryotype(models.Model):
+    assembly_karyotype_id = models.AutoField(primary_key=True)
+    assembly = models.ForeignKey(Assembly, models.DO_NOTHING,
+                                 related_name=Assembly.ONE2MANY_RELATED['ASSEMBLY_SEQEUNCE'])
+    region_name = models.CharField(max_length=40)
+    region_start = models.IntegerField()
+    region_end = models.IntegerField()
+    band = models.CharField(max_length=50)
+    strain = models.CharField(max_length=50)
+
+    class Meta:
+        managed = True
+        db_table = 'assembly_karyotype'

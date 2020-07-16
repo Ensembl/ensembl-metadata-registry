@@ -86,34 +86,6 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='DataReleaseDatabase',
-            fields=[
-                ('data_release_database_id', models.AutoField(primary_key=True, serialize=False)),
-                ('dbname', models.CharField(max_length=64)),
-                ('type', models.CharField(blank=True, max_length=5, null=True)),
-                ('data_release', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='metadata_registry.DataRelease')),
-            ],
-            options={
-                'db_table': 'data_release_database',
-                'managed': True,
-            },
-        ),
-        migrations.CreateModel(
-            name='DataReleaseDatabaseEvent',
-            fields=[
-                ('data_release_database_event_id', models.AutoField(primary_key=True, serialize=False)),
-                ('type', models.CharField(max_length=32)),
-                ('source', models.CharField(blank=True, max_length=128, null=True)),
-                ('creation_time', models.DateTimeField()),
-                ('details', models.TextField(blank=True, null=True)),
-                ('data_release_database', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='metadata_registry.DataReleaseDatabase')),
-            ],
-            options={
-                'db_table': 'data_release_database_event',
-                'managed': True,
-            },
-        ),
-        migrations.CreateModel(
             name='Division',
             fields=[
                 ('division_id', models.AutoField(primary_key=True, serialize=False)),
@@ -128,7 +100,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Genome',
             fields=[
-                ('genome_id', models.AutoField(primary_key=True, serialize=False)),
+                ('genome_id', models.IntegerField()),
+                ('genome_uuid',models.CharField(max_length=128, primary_key=True, serialize=False)),
                 ('genebuild', models.CharField(max_length=64)),
                 ('has_pan_compara', models.IntegerField()),
                 ('has_variations', models.IntegerField()),
@@ -303,11 +276,6 @@ class Migration(migrations.Migration):
             name='organism',
             field=models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='organism', to='metadata_registry.Organism'),
         ),
-        migrations.AddField(
-            model_name='datareleasedatabase',
-            name='division',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='metadata_registry.Division'),
-        ),
         migrations.AlterUniqueTogether(
             name='datarelease',
             unique_together=set([('ensembl_version', 'ensembl_genomes_version')]),
@@ -362,10 +330,6 @@ class Migration(migrations.Migration):
         migrations.AlterUniqueTogether(
             name='genome',
             unique_together=set([('data_release', 'genome_id')]),
-        ),
-        migrations.AlterUniqueTogether(
-            name='datareleasedatabase',
-            unique_together=set([('data_release', 'dbname')]),
         ),
         migrations.AlterUniqueTogether(
             name='comparaanalysis',

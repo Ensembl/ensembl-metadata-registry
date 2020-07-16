@@ -18,6 +18,7 @@ from metadata_registry.models.assembly import Assembly
 from metadata_registry.models.organism import Organism
 from metadata_registry.models.compara import ComparaAnalysis
 from metadata_registry.models.division import Division
+import uuid
 
 
 # Create your models here.
@@ -30,14 +31,14 @@ class Genome(models.Model):
                         'GENOME_FEATURE': 'genome_feature', 'GENOME_VARIATION': 'genome_variation',
                         'GENOME_COMPARA_ANALYSIS': 'genome_compara_analysis'}
 
-    genome_id = models.AutoField(primary_key=True)
-    data_release = models.ForeignKey(DataRelease, models.DO_NOTHING, related_name=MANY2ONE_RELATED['DATA_RELEASE'])
+    genome_id = models.IntegerField()
+    genome_uuid = models.CharField(primary_key=True, max_length=128, default=uuid.uuid1, editable=False)
     assembly = models.ForeignKey(Assembly, models.DO_NOTHING, related_name=MANY2ONE_RELATED['ASSEMBLY'])
     organism = models.ForeignKey(Organism, models.DO_NOTHING, related_name=MANY2ONE_RELATED['ORGANISM'])
-    division = models.ForeignKey(Division, models.DO_NOTHING, related_name=MANY2ONE_RELATED['DIVISION'])
     genebuild = models.CharField(max_length=64)
     has_pan_compara = models.IntegerField()
-    has_variations = models.IntegerField()
+    has_variation = models.IntegerField()
+    has_microarray = models.IntegerField()
     has_peptide_compara = models.IntegerField()
     has_genome_alignments = models.IntegerField()
     has_synteny = models.IntegerField()
@@ -46,8 +47,6 @@ class Genome(models.Model):
     class Meta:
         managed = True
         db_table = 'genome'
-        unique_together = (('data_release', 'genome_id'),)
-
 
 class GenomeDatabase(models.Model):
 
@@ -146,3 +145,22 @@ class GenomeVariation(models.Model):
         managed = True
         db_table = 'genome_variation'
         unique_together = (('genome', 'type', 'name', 'genome_database'),)
+
+class GenomeBest(models.Model):
+  
+    common_name = models.CharField(max_length=128,primary_key=True)
+    genome_uuid = models.ForeignKey('metadata_registry.Genome',
+                                           on_delete=models.CASCADE)
+    class Meta:
+        managed = True
+        db_table = 'genome_best'
+        
+class GenomeRelease(models.Model):
+    genome_release_id = models.AutoField(primary_key=True)
+    genome_uuid = models.ForeignKey('metadata_registry.Genome',on_delete=models.CASCADE)
+    division = models.ForeignKey('metadata_registry.Division',on_delete=models.CASCADE)
+    data_release = models.ForeignKey('metadata_registry.DataRelease',on_delete=models.CASCADE)
+
+    class Meta:
+        managed = True
+        db_table = 'genome_release'

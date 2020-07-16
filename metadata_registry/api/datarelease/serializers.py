@@ -13,23 +13,10 @@
 """
 
 from rest_framework import serializers
-from metadata_registry.models.datarelease import DataRelease, DataReleaseDatabase,\
-    DataReleaseDatabaseEvent
+from metadata_registry.models.datarelease import DataRelease
 
 
 class DataReleaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = DataRelease
-        fields = '__all__'
-
-
-class DataReleaseDatabaseSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = DataReleaseDatabase
-        fields = '__all__'
-
-
-class DataReleaseDatabaseEventSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = DataReleaseDatabaseEvent
         fields = '__all__'

@@ -24,3 +24,8 @@ class Division(models.Model):
     class Meta:
         managed = True
         db_table = 'division'
+
+class genome_division(models.Model):
+    genome_division_id = models.AutoField(primary_key=True)
+    division = models.ForeignKey('metadata_registry.Division',on_delete=models.CASCADE)
+    genome = models.ForeignKey('metadata_registry.Genome',on_delete=models.CASCADE)

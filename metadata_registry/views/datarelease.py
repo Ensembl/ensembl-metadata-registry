@@ -15,9 +15,8 @@
 
 
 from rest_framework import generics
-from metadata_registry.models.datarelease import DataRelease, DataReleaseDatabase, DataReleaseDatabaseEvent
-from metadata_registry.api.datarelease.serializers import DataReleaseSerializer, \
-    DataReleaseDatabaseSerializer, DataReleaseDatabaseEventSerializer
+from metadata_registry.models.datarelease import DataRelease
+from metadata_registry.api.datarelease.serializers import DataReleaseSerializer
 from metadata_registry.api.datarelease.filters import DatareleaseFilterBackend
 from rest_framework.pagination import PageNumberPagination
 from metadata_registry.utils.decorators import setup_eager_loading
@@ -41,27 +40,6 @@ class DataReleaseDatatableView(DataTableListApi):
 class DataReleaseDetail(generics.RetrieveAPIView):
     queryset = DataRelease.objects.all()
     serializer_class = DataReleaseSerializer
-
-
-class DataReleaseDatabaseList(generics.ListAPIView):
-    queryset = DataReleaseDatabase.objects.all()
-    serializer_class = DataReleaseDatabaseSerializer
-
-
-class DataReleaseDatabaseDetail(generics.RetrieveAPIView):
-    queryset = DataReleaseDatabase.objects.all()
-    serializer_class = DataReleaseDatabaseSerializer
-
-
-class DataReleaseDatabaseEventList(generics.ListAPIView):
-    queryset = DataReleaseDatabaseEvent.objects.all()
-    serializer_class = DataReleaseDatabaseEventSerializer
-
-
-class DataReleaseDatabaseEventDetail(generics.RetrieveAPIView):
-    queryset = DataReleaseDatabaseEvent.objects.all()
-    serializer_class = DataReleaseDatabaseEventSerializer
-
 
 # ============For Datatables========
 class NotPaginatedSetPagination(PageNumberPagination):
