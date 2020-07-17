@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('group_id', models.AutoField(primary_key=True, serialize=False)),
                 ('type', models.CharField(blank=True, max_length=255, null=True)),
                 ('label', models.CharField(blank=True, max_length=255, null=True)),
-                ('reference_organism', models.ForeignKey(null=True, on_delete=django.db.models.deletion.DO_NOTHING, related_name='reference_groups', to='metadata_registry.Organism')),
+                ('reference_organism', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='reference_groups', to='metadata_registry.Organism')),
             ],
             options={
                 'db_table': 'group',

@@ -52,10 +52,6 @@ class Migration(migrations.Migration):
             field=models.IntegerField(default=0),
             preserve_default=False,
         ),
-        migrations.AlterUniqueTogether(
-            name='genome',
-            unique_together=set([]),
-        ),
         migrations.AddField(
             model_name='genomerelease',
             name='genome_uuid',

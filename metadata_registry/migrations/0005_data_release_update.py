@@ -53,4 +53,18 @@ class Migration(migrations.Migration):
             name='site_id',
             field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.DO_NOTHING, related_name='site_id_release', to='metadata_registry.EnsemblSite'),
         ),
+        migrations.RemoveField(
+            model_name='datareleasedatabase',
+            name='data_release',
+        ),
+        migrations.RemoveField(
+            model_name='datareleasedatabaseevent',
+            name='data_release_database',
+        ),
+        migrations.DeleteModel(
+            name='DataReleaseDatabase',
+        ),
+        migrations.DeleteModel(
+            name='DataReleaseDatabaseEvent',
+        ),
     ]
