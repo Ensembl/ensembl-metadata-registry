@@ -31,8 +31,8 @@ class Genome(models.Model):
                         'GENOME_FEATURE': 'genome_feature', 'GENOME_VARIATION': 'genome_variation',
                         'GENOME_COMPARA_ANALYSIS': 'genome_compara_analysis'}
 
-    genome_id = models.IntegerField()
-    genome_uuid = models.CharField(primary_key=True, max_length=128, default=uuid.uuid1, editable=False)
+    genome_id = models.IntegerField(primary_key=True)
+    genome_uuid = models.CharField(max_length=128, default=uuid.uuid1, unique=True)
     assembly = models.ForeignKey(Assembly, models.DO_NOTHING, related_name=MANY2ONE_RELATED['ASSEMBLY'])
     organism = models.ForeignKey(Organism, models.DO_NOTHING, related_name=MANY2ONE_RELATED['ORGANISM'])
     genebuild = models.CharField(max_length=64)

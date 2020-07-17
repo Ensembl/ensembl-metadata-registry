@@ -100,8 +100,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Genome',
             fields=[
-                ('genome_id', models.IntegerField()),
-                ('genome_uuid',models.CharField(max_length=128, primary_key=True, serialize=False)),
+                ('genome_id', models.IntegerField(primary_key=True, serialize=False)),
                 ('genebuild', models.CharField(max_length=64)),
                 ('has_pan_compara', models.IntegerField()),
                 ('has_variations', models.IntegerField()),
