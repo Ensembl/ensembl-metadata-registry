@@ -10,7 +10,7 @@ import uuid
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('metadata_registry', '0005_data_release_update'),
+        ('metadata_registry', '0004_data_release_update'),
     ]
 
     operations = [
@@ -21,6 +21,18 @@ class Migration(migrations.Migration):
             ],
             options={
                 'db_table': 'genome_best',
+                'managed': True,
+            },
+        ),
+        migrations.CreateModel(
+            name='GenomeDivision',
+            fields=[
+                ('genome_division_id', models.AutoField(primary_key=True, serialize=False)),
+                ('division', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='metadata_registry.Division')),
+                ('genome', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='metadata_registry.Genome')),
+            ],
+            options={
+                'db_table': 'genome_division',
                 'managed': True,
             },
         ),
@@ -45,6 +57,12 @@ class Migration(migrations.Migration):
             model_name='genome',
             name='genome_uuid',
             field=models.CharField(default=uuid.uuid1, max_length=128, unique=True),
+        ),
+        migrations.AddField(
+            model_name='genome',
+            name='created',
+            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),
+            preserve_default=False,
         ),
         migrations.AddField(
             model_name='genome',

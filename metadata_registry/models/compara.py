@@ -28,8 +28,8 @@ class ComparaAnalysis(models.Model):
     method = models.CharField(max_length=50)
     set_name = models.CharField(max_length=128, blank=True, null=True)
     dbname = models.CharField(max_length=64)
-    data_release = models.ForeignKey(DataRelease, models.DO_NOTHING, related_name=MANY2ONE_RELATED['DATA_RELEASE'])
-    division = models.ForeignKey(Division, models.DO_NOTHING, related_name=MANY2ONE_RELATED['DIVISION'])
+    data_release = models.ForeignKey(DataRelease, models.CASCADE, related_name=MANY2ONE_RELATED['DATA_RELEASE'])
+    division = models.ForeignKey(Division, models.CASCADE, related_name=MANY2ONE_RELATED['DIVISION'])
 
     class Meta:
         managed = True
@@ -39,7 +39,7 @@ class ComparaAnalysis(models.Model):
 
 class ComparaAnalysisEvent(models.Model):
     compara_analysis_event_id = models.AutoField(primary_key=True)
-    compara_analysis = models.ForeignKey('ComparaAnalysis', models.DO_NOTHING)
+    compara_analysis = models.ForeignKey('ComparaAnalysis', models.CASCADE)
     type = models.CharField(max_length=32)
     source = models.CharField(max_length=128, blank=True, null=True)
     creation_time = models.DateTimeField()

@@ -355,10 +355,6 @@ class Migration(migrations.Migration):
             unique_together=set([('genome', 'type', 'name', 'genome_database')]),
         ),
         migrations.AlterUniqueTogether(
-            name='genome',
-            unique_together=set([('data_release', 'genome_id')]),
-        ),
-        migrations.AlterUniqueTogether(
             name='comparaanalysis',
             unique_together=set([('method', 'set_name', 'dbname')]),
         ),

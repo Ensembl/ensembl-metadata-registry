@@ -24,7 +24,7 @@ import uuid
 # Create your models here.
 class Genome(models.Model):
 
-    MANY2ONE_RELATED = {'DATA_RELEASE': 'data_release', 'ASSEMBLY': 'assembly', 'ORGANISM': 'organism',
+    MANY2ONE_RELATED = {'ASSEMBLY': 'assembly', 'ORGANISM': 'organism',
                         'DIVISION': 'division'}
     ONE2MANY_RELATED = {'GENOME_ALIGNMENT': 'genome_alignment', 'GENOME_ANNOTATION': 'genome_annotation',
                         'GENOME_DATABASE': 'genome_database', 'GENOME_EVENT': 'genome_event',
@@ -33,8 +33,8 @@ class Genome(models.Model):
 
     genome_id = models.IntegerField(primary_key=True)
     genome_uuid = models.CharField(max_length=128, default=uuid.uuid1, unique=True)
-    assembly = models.ForeignKey(Assembly, models.DO_NOTHING, related_name=MANY2ONE_RELATED['ASSEMBLY'])
-    organism = models.ForeignKey(Organism, models.DO_NOTHING, related_name=MANY2ONE_RELATED['ORGANISM'])
+    assembly = models.ForeignKey(Assembly, models.CASCADE, related_name=MANY2ONE_RELATED['ASSEMBLY'])
+    organism = models.ForeignKey(Organism, models.CASCADE, related_name=MANY2ONE_RELATED['ORGANISM'])
     genebuild = models.CharField(max_length=64)
     has_pan_compara = models.IntegerField()
     has_variation = models.IntegerField()
@@ -43,6 +43,7 @@ class Genome(models.Model):
     has_genome_alignments = models.IntegerField()
     has_synteny = models.IntegerField()
     has_other_alignments = models.IntegerField()
+    created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         managed = True
@@ -53,7 +54,7 @@ class GenomeDatabase(models.Model):
     ONE2MANY_RELATED = {'GENOME_ALIGNMENT': 'genome_alignment', 'GENOME_ANNOTATION': 'genome_annotation',
                         'GENOME_FEATURE': 'genome_feature', 'GENOME_VARIATION': 'genome_variation'}
     genome_database_id = models.AutoField(primary_key=True)
-    genome = models.ForeignKey(Genome, models.DO_NOTHING, related_name=Genome.ONE2MANY_RELATED['GENOME_DATABASE'])
+    genome = models.ForeignKey(Genome, models.CASCADE, related_name=Genome.ONE2MANY_RELATED['GENOME_DATABASE'])
     dbname = models.CharField(max_length=64)
     species_id = models.IntegerField()
     type = models.CharField(max_length=13, blank=True, null=True)
@@ -66,11 +67,11 @@ class GenomeDatabase(models.Model):
 
 class GenomeAlignment(models.Model):
     genome_alignment_id = models.AutoField(primary_key=True)
-    genome = models.ForeignKey(Genome, models.DO_NOTHING, related_name=Genome.ONE2MANY_RELATED['GENOME_ALIGNMENT'])
+    genome = models.ForeignKey(Genome, models.CASCADE, related_name=Genome.ONE2MANY_RELATED['GENOME_ALIGNMENT'])
     type = models.CharField(max_length=32)
     name = models.CharField(max_length=128)
     count = models.IntegerField()
-    genome_database = models.ForeignKey(GenomeDatabase, models.DO_NOTHING,
+    genome_database = models.ForeignKey(GenomeDatabase, models.CASCADE,
                                         related_name=GenomeDatabase.ONE2MANY_RELATED['GENOME_ALIGNMENT'])
 
     class Meta:
@@ -81,10 +82,10 @@ class GenomeAlignment(models.Model):
 
 class GenomeAnnotation(models.Model):
     genome_annotation_id = models.AutoField(primary_key=True)
-    genome = models.ForeignKey(Genome, models.DO_NOTHING, related_name=Genome.ONE2MANY_RELATED['GENOME_ANNOTATION'])
+    genome = models.ForeignKey(Genome, models.CASCADE, related_name=Genome.ONE2MANY_RELATED['GENOME_ANNOTATION'])
     type = models.CharField(max_length=32)
     value = models.CharField(max_length=128)
-    genome_database = models.ForeignKey(GenomeDatabase, models.DO_NOTHING,
+    genome_database = models.ForeignKey(GenomeDatabase, models.CASCADE,
                                         related_name=GenomeDatabase.ONE2MANY_RELATED['GENOME_ANNOTATION'])
 
     class Meta:
@@ -95,8 +96,8 @@ class GenomeAnnotation(models.Model):
 
 class GenomeComparaAnalysis(models.Model):
     genome_compara_analysis_id = models.AutoField(primary_key=True)
-    genome = models.ForeignKey(Genome, models.DO_NOTHING)
-    compara_analysis = models.ForeignKey(ComparaAnalysis, models.DO_NOTHING)
+    genome = models.ForeignKey(Genome, models.CASCADE)
+    compara_analysis = models.ForeignKey(ComparaAnalysis, models.CASCADE)
 
     class Meta:
         managed = True
@@ -106,7 +107,7 @@ class GenomeComparaAnalysis(models.Model):
 
 class GenomeEvent(models.Model):
     genome_event_id = models.AutoField(primary_key=True)
-    genome = models.ForeignKey(Genome, models.DO_NOTHING, related_name=Genome.ONE2MANY_RELATED['GENOME_EVENT'])
+    genome = models.ForeignKey(Genome, models.CASCADE, related_name=Genome.ONE2MANY_RELATED['GENOME_EVENT'])
     type = models.CharField(max_length=32)
     source = models.CharField(max_length=128, blank=True, null=True)
     creation_time = models.DateTimeField()
@@ -119,11 +120,11 @@ class GenomeEvent(models.Model):
 
 class GenomeFeature(models.Model):
     genome_feature_id = models.AutoField(primary_key=True)
-    genome = models.ForeignKey(Genome, models.DO_NOTHING, related_name=Genome.ONE2MANY_RELATED['GENOME_FEATURE'])
+    genome = models.ForeignKey(Genome, models.CASCADE, related_name=Genome.ONE2MANY_RELATED['GENOME_FEATURE'])
     type = models.CharField(max_length=32)
     analysis = models.CharField(max_length=128)
     count = models.IntegerField()
-    genome_database = models.ForeignKey(GenomeDatabase, models.DO_NOTHING,
+    genome_database = models.ForeignKey(GenomeDatabase, models.CASCADE,
                                         related_name=GenomeDatabase.ONE2MANY_RELATED['GENOME_FEATURE'])
 
     class Meta:
@@ -134,26 +135,17 @@ class GenomeFeature(models.Model):
 
 class GenomeVariation(models.Model):
     genome_variation_id = models.AutoField(primary_key=True)
-    genome = models.ForeignKey(Genome, models.DO_NOTHING, related_name=Genome.ONE2MANY_RELATED['GENOME_VARIATION'])
+    genome = models.ForeignKey(Genome, models.CASCADE, related_name=Genome.ONE2MANY_RELATED['GENOME_VARIATION'])
     type = models.CharField(max_length=32)
     name = models.CharField(max_length=128)
     count = models.IntegerField()
-    genome_database = models.ForeignKey(GenomeDatabase, models.DO_NOTHING,
+    genome_database = models.ForeignKey(GenomeDatabase, models.CASCADE,
                                         related_name=GenomeDatabase.ONE2MANY_RELATED['GENOME_VARIATION'])
 
     class Meta:
         managed = True
         db_table = 'genome_variation'
         unique_together = (('genome', 'type', 'name', 'genome_database'),)
-
-class GenomeBest(models.Model):
-  
-    common_name = models.CharField(max_length=128,primary_key=True)
-    genome_uuid = models.ForeignKey('metadata_registry.Genome',
-                                           on_delete=models.CASCADE)
-    class Meta:
-        managed = True
-        db_table = 'genome_best'
         
 class GenomeRelease(models.Model):
     genome_release_id = models.AutoField(primary_key=True)
@@ -164,3 +156,12 @@ class GenomeRelease(models.Model):
     class Meta:
         managed = True
         db_table = 'genome_release'
+
+class GenomeDivision(models.Model):
+    genome_division_id = models.AutoField(primary_key=True)
+    division = models.ForeignKey('metadata_registry.Division',on_delete=models.CASCADE)
+    genome = models.ForeignKey('metadata_registry.Genome',on_delete=models.CASCADE)
+    
+    class Meta:
+        managed = True
+        db_table = 'genome_division'

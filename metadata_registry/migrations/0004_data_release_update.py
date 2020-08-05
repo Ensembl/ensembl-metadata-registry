@@ -9,7 +9,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('metadata_registry', '0004_genome_division_table'),
+        ('metadata_registry', '0003_assembly_karyotype_table'),
     ]
 
     operations = [

@@ -65,8 +65,7 @@ class GenomeSerializer(SerializerMixin, serializers.ModelSerializer,):
     """
     A ModelSerializer that controls which fields should be displayed.
     """
-    MANY2ONE_SERIALIZER = {Genome.MANY2ONE_RELATED['DATA_RELEASE']: DataReleaseSerializer,
-                           Genome.MANY2ONE_RELATED['ASSEMBLY']: AssemblySerializer,
+    MANY2ONE_SERIALIZER = {Genome.MANY2ONE_RELATED['ASSEMBLY']: AssemblySerializer,
                            Genome.MANY2ONE_RELATED['ORGANISM']: OrganismSerializer,
                            Genome.MANY2ONE_RELATED['DIVISION']: DivisionSerializer}
 

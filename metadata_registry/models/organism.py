@@ -30,7 +30,7 @@ class Organism(models.Model):
     image = models.TextField(blank=True, null=True)
     scientific_name = models.CharField(max_length=128, blank=True, null=True)
     url_name = models.CharField(max_length=128)
-    group = models.ForeignKey('metadata_registry.OrganismGroup', on_delete=models.DO_NOTHING,
+    group = models.ForeignKey('metadata_registry.OrganismGroup', on_delete=models.CASCADE,
                               related_name='group_organisms', blank=True,
                               null=True)
 
@@ -41,7 +41,7 @@ class Organism(models.Model):
 
 class OrganismAlias(models.Model):
     organism_alias_id = models.AutoField(primary_key=True)
-    organism = models.ForeignKey(Organism, models.DO_NOTHING, related_name=Organism.ONE2MANY_RELATED['ORGANISM_ALIAS'])
+    organism = models.ForeignKey(Organism, models.CASCADE, related_name=Organism.ONE2MANY_RELATED['ORGANISM_ALIAS'])
     alias = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
@@ -52,7 +52,7 @@ class OrganismAlias(models.Model):
 
 class OrganismPublication(models.Model):
     organism_publication_id = models.AutoField(primary_key=True)
-    organism = models.ForeignKey(Organism, models.DO_NOTHING,
+    organism = models.ForeignKey(Organism, models.CASCADE,
                                  related_name=Organism.ONE2MANY_RELATED['ORGANISM_PUBLICAION'])
     publication = models.CharField(max_length=64, blank=True, null=True)
 
@@ -72,6 +72,6 @@ class OrganismGroup(models.Model):
     label = models.CharField(max_length=255, blank=True, null=True)
     reference_organism = models.ForeignKey('metadata_registry.Organism',
                                            null=True,
-                                           on_delete=models.DO_NOTHING,
+                                           on_delete=models.CASCADE,
                                            related_name='reference_groups')
 

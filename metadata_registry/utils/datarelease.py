@@ -25,7 +25,7 @@ class DataReleaseUtils(object):
             return None
 
         if datarelease is not None:
-            return datarelease.ensembl_version
+            return datarelease.version
         return None
 
     @classmethod
@@ -37,5 +37,5 @@ class DataReleaseUtils(object):
             return None
 
         if datarelease is not None:
-            return datarelease.ensembl_genomes_version
+            return datarelease.version
         return None
