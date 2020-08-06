@@ -22,7 +22,7 @@ class DataRelease(models.Model):
     version = models.IntegerField()
     release_date = models.DateField()
     is_current = models.IntegerField(blank=True, null=True)
-    site_id = models.ForeignKey('metadata_registry.EnsemblSite', on_delete=models.DO_NOTHING,
+    site_id = models.ForeignKey('metadata_registry.EnsemblSite', on_delete=models.CASCADE,
                               related_name='site_id_release', blank=True,
                               null=True)
 

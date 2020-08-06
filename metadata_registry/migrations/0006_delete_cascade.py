@@ -128,4 +128,9 @@ class Migration(migrations.Migration):
             name='genome',
             unique_together=set([]),
         ),
+        migrations.AlterField(
+            model_name='datarelease',
+            name='site_id',
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='site_id_release', to='metadata_registry.EnsemblSite'),
+        ),
     ]

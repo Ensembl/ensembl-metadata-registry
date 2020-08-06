@@ -30,7 +30,7 @@ class Assembly(models.Model):
     class Meta:
         managed = True
         db_table = 'assembly'
-
+        unique_together = (('assembly_accession', 'assembly_default', 'base_count'),)
 
 class AssemblySequence(models.Model):
     assembly_sequence_id = models.AutoField(primary_key=True)

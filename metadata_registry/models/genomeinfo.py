@@ -62,7 +62,7 @@ class GenomeDatabase(models.Model):
     class Meta:
         managed = True
         db_table = 'genome_database'
-        unique_together = (('dbname', 'species_id'), ('genome', 'dbname'),)
+        unique_together = (('dbname', 'species_id', 'genome'),)
 
 
 class GenomeAlignment(models.Model):

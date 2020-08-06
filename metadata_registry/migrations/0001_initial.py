@@ -323,6 +323,10 @@ class Migration(migrations.Migration):
             field=models.ManyToManyField(related_name='genome_compara_analysis', through='metadata_registry.GenomeComparaAnalysis', to='metadata_registry.Genome'),
         ),
         migrations.AlterUniqueTogether(
+            name='assembly',
+            unique_together=set([('assembly_accession', 'assembly_default', 'base_count')]),
+        ),
+        migrations.AlterUniqueTogether(
             name='organismpublication',
             unique_together=set([('organism', 'publication')]),
         ),
@@ -340,7 +344,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterUniqueTogether(
             name='genomedatabase',
-            unique_together=set([('dbname', 'species_id'), ('genome', 'dbname')]),
+            unique_together=set([('dbname', 'species_id', 'genome')]),
         ),
         migrations.AlterUniqueTogether(
             name='genomecomparaanalysis',
