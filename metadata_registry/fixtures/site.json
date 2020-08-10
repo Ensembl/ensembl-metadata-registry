@@ -1,0 +1,10 @@
+[
+{
+    "model": "metadata_registry.ensemblsite",
+    "pk": 1,
+    "fields": {
+        "label": "Ensembl",
+        "url" : "http://www.ensembl.org"
+    }
+}
+]

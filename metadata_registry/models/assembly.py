@@ -35,7 +35,7 @@ class Assembly(models.Model):
 class AssemblySequence(models.Model):
     assembly_sequence_id = models.AutoField(primary_key=True)
     assembly = models.ForeignKey(Assembly, models.CASCADE,
-                                 related_name=Assembly.ONE2MANY_RELATED['ASSEMBLY_SEQEUNCE'])
+                                 related_name=Assembly.ONE2MANY_RELATED['ASSEMBLY_SEQUENCE'])
 
     name = models.CharField(max_length=40)
     acc = models.CharField(max_length=24, blank=True, null=True)
