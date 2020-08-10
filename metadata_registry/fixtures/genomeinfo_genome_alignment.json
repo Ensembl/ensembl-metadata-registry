@@ -11,7 +11,8 @@
         "strain": null,
         "serotype": null,
         "description": null,
-        "image": null
+        "image": null,
+        "group_id": null
     }
 },
 {
@@ -25,30 +26,57 @@
     }
 },
 {
+    "model": "metadata_registry.ensemblsite",
+    "pk": 1,
+    "fields": {
+        "label": "Ensembl",
+        "url" : "http://www.ensembl.org"
+    }
+},
+{
     "model": "metadata_registry.datarelease",
     "pk": 1,
     "fields": {
-        "ensembl_version": 80,
-        "ensembl_genomes_version": null,
+        "version": 80,
         "release_date": "2015-05-20",
-        "is_current": null
+        "is_current": null,
+        "site_id": 1,
+        "label": ""
     }
 },
 {
     "model": "metadata_registry.genome",
     "pk": 1,
     "fields": {
-        "data_release": 1,
         "assembly": 1,
         "organism": 1,
         "genebuild": "2006-04-Ensembl",
         "has_pan_compara": 0,
-        "has_variations": 0,
+        "has_variation": 0,
+        "has_microarray": 0,
         "has_peptide_compara": 0,
         "has_genome_alignments": 0,
         "has_synteny": 0,
         "has_other_alignments": 1,
-        "division_id": 1
+        "genome_uuid": "e7489676-d7cc-11ea-8939-a860b61be8b7",
+        "created" : "2020-08-06 10:09:23.030895"
+    }
+},
+{
+    "model": "metadata_registry.genomedivision",
+    "pk": 1,
+    "fields": {
+        "division_id":1,
+        "genome_id":1
+    }
+},
+{
+    "model": "metadata_registry.genomerelease",
+    "pk": 1,
+    "fields": {
+        "data_release_id":1,
+        "division_id":1,
+        "genome_uuid_id":"e7489676-d7cc-11ea-8939-a860b61be8b7"
     }
 },
 {

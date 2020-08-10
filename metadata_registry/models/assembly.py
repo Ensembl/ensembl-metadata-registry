@@ -17,7 +17,7 @@ from django.db import models
 
 class Assembly(models.Model):
 
-    ONE2MANY_RELATED = {'ASSEMBLY_SEQEUNCE': 'assembly_sequence'}
+    ONE2MANY_RELATED = {'ASSEMBLY_SEQUENCE': 'assembly_sequence', 'ASSEMBLY_KARYOTYPE': 'assembly_karyotype'}
 
     assembly_id = models.AutoField(primary_key=True)
     assembly_accession = models.CharField(unique=True, max_length=16, blank=True, null=True)
@@ -49,7 +49,7 @@ class AssemblySequence(models.Model):
 class AssemblyKaryotype(models.Model):
     assembly_karyotype_id = models.AutoField(primary_key=True)
     assembly = models.ForeignKey(Assembly, models.CASCADE,
-                                 related_name=Assembly.ONE2MANY_RELATED['ASSEMBLY_SEQEUNCE'])
+                                 related_name=Assembly.ONE2MANY_RELATED['ASSEMBLY_KARYOTYPE'])
     region_name = models.CharField(max_length=40)
     region_start = models.IntegerField()
     region_end = models.IntegerField()

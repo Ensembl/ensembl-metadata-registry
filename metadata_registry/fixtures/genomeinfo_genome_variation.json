@@ -11,7 +11,8 @@
         "strain": null,
         "serotype": null,
         "description": null,
-        "image": null
+        "image": null,
+        "group_id": null
     }
 },
 {
@@ -36,7 +37,8 @@
         "strain": null,
         "serotype": null,
         "description": null,
-        "image": null
+        "image": null,
+        "group_id": null
     }
 },
 {
@@ -61,7 +63,8 @@
         "strain": "S288C",
         "serotype": null,
         "description": null,
-        "image": null
+        "image": null,
+        "group_id": null
     }
 },
 {
@@ -86,7 +89,8 @@
         "strain": null,
         "serotype": null,
         "description": null,
-        "image": null
+        "image": null,
+        "group_id": null
     }
 },
 {
@@ -111,7 +115,8 @@
         "strain": null,
         "serotype": null,
         "description": null,
-        "image": null
+        "image": null,
+        "group_id": null
     }
 },
 {
@@ -125,13 +130,22 @@
     }
 },
 {
+    "model": "metadata_registry.ensemblsite",
+    "pk": 1,
+    "fields": {
+        "label": "Ensembl",
+        "url" : "http://www.ensembl.org"
+    }
+},
+{
     "model": "metadata_registry.datarelease",
     "pk": 1,
     "fields": {
-        "ensembl_version": 80,
-        "ensembl_genomes_version": null,
+        "version": 80,
         "release_date": "2015-05-20",
-        "is_current": null
+        "is_current": null,
+        "site_id": 1,
+        "label": ""
     }
 },
 {
@@ -143,12 +157,14 @@
         "organism": 21,
         "genebuild": "2007-09-Ensembl",
         "has_pan_compara": 0,
-        "has_variations": 1,
+        "has_variation": 1,
+        "has_microarray": 0,
         "has_peptide_compara": 0,
         "has_genome_alignments": 0,
         "has_synteny": 0,
         "has_other_alignments": 1,
-        "division_id": 1
+        "genome_uuid": "e83cf75c-d7cc-11ea-8939-a860b61be8b7",
+        "created" : "2020-08-06 10:09:23.030895"
     }
 },
 {
@@ -160,12 +176,14 @@
         "organism": 20,
         "genebuild": "2010-09-Ensembl",
         "has_pan_compara": 0,
-        "has_variations": 1,
+        "has_variation": 1,
+        "has_microarray": 0,
         "has_peptide_compara": 0,
         "has_genome_alignments": 0,
         "has_synteny": 0,
         "has_other_alignments": 1,
-        "division_id": 1
+        "genome_uuid": "e84e56e6-d7cc-11ea-8939-a860b61be8b7",
+        "created" : "2020-08-06 10:09:23.030895"
     }
 },
 {
@@ -177,12 +195,14 @@
         "organism": 16,
         "genebuild": "2011-09-SGD",
         "has_pan_compara": 0,
-        "has_variations": 1,
+        "has_variation": 1,
+        "has_microarray": 0,
         "has_peptide_compara": 0,
         "has_genome_alignments": 0,
         "has_synteny": 0,
         "has_other_alignments": 1,
-        "division_id": 5
+        "genome_uuid": "e85f51b2-d7cc-11ea-8939-a860b61be8b7",
+        "created" : "2020-08-06 10:09:23.030895"
     }
 },
 {
@@ -194,12 +214,14 @@
         "organism": 14,
         "genebuild": "2011-12-Ensembl",
         "has_pan_compara": 0,
-        "has_variations": 1,
+        "has_variation": 1,
+        "has_microarray": 0,
         "has_peptide_compara": 0,
         "has_genome_alignments": 0,
         "has_synteny": 0,
         "has_other_alignments": 1,
-        "division_id": 1
+        "genome_uuid": "e870be8e-d7cc-11ea-8939-a860b61be8b7",
+        "created" : "2020-08-06 10:09:23.030895"
     }
 },
 {
@@ -211,12 +233,99 @@
         "organism": 7,
         "genebuild": "2014-05-FlyBase",
         "has_pan_compara": 0,
-        "has_variations": 1,
+        "has_variation": 1,
+        "has_microarray": 0,
         "has_peptide_compara": 0,
         "has_genome_alignments": 0,
         "has_synteny": 0,
         "has_other_alignments": 1,
-        "division_id": 1
+        "genome_uuid": "e8acb7d6-d7cc-11ea-8939-a860b61be8b7",
+        "created" : "2020-08-06 10:09:23.030895"
+    }
+},
+{
+    "model": "metadata_registry.genomedivision",
+    "pk": 5,
+    "fields": {
+        "division_id": 1,
+        "genome_id": 21
+    }
+},
+{
+    "model": "metadata_registry.genomedivision",
+    "pk": 4,
+    "fields": {
+        "division_id": 1,
+        "genome_id": 20
+    }
+},
+{
+    "model": "metadata_registry.genomedivision",
+    "pk": 3,
+    "fields": {
+        "division_id": 5,
+        "genome_id": 16
+    }
+},
+{
+    "model": "metadata_registry.genomedivision",
+    "pk": 2,
+    "fields": {
+        "division_id": 1,
+        "genome_id": 14
+    }
+},
+{
+    "model": "metadata_registry.genomedivision",
+    "pk": 1,
+    "fields": {
+        "division_id": 1,
+        "genome_id": 7
+    }
+},
+{
+    "model": "metadata_registry.genomerelease",
+    "pk": 5,
+    "fields": {
+        "data_release_id":1,
+        "division_id":1,
+        "genome_uuid_id":"e83cf75c-d7cc-11ea-8939-a860b61be8b7"
+    }
+},
+{
+    "model": "metadata_registry.genomerelease",
+    "pk": 4,
+    "fields": {
+        "data_release_id":1,
+        "division_id":1,
+        "genome_uuid_id":"e84e56e6-d7cc-11ea-8939-a860b61be8b7"
+    }
+},
+{
+    "model": "metadata_registry.genomerelease",
+    "pk": 3,
+    "fields": {
+        "data_release_id":1,
+        "division_id":5,
+        "genome_uuid_id":"e85f51b2-d7cc-11ea-8939-a860b61be8b7"
+    }
+},
+{
+    "model": "metadata_registry.genomerelease",
+    "pk": 2,
+    "fields": {
+        "data_release_id":1,
+        "division_id":1,
+        "genome_uuid_id":"e870be8e-d7cc-11ea-8939-a860b61be8b7"
+    }
+},
+{
+    "model": "metadata_registry.genomerelease",
+    "pk": 1,
+    "fields": {
+        "data_release_id":1,
+        "division_id":1,
+        "genome_uuid_id":"e8acb7d6-d7cc-11ea-8939-a860b61be8b7"
     }
 },
 {

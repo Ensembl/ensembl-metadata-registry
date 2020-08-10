@@ -11,7 +11,8 @@
         "strain": null,
         "serotype": null,
         "description": null,
-        "image": null
+        "image": null,
+        "group_id": null
     }
 },
 {
