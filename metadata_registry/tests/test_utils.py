@@ -28,18 +28,14 @@ class DataReleaseUtilsTest(APITestCase):
     def test_loaddata(self):
         datarelease = DataRelease.objects.get(pk=1)
         self.assertEqual(1, datarelease.data_release_id)
-        self.assertEqual(80, datarelease.ensembl_version)
+        self.assertEqual(80, datarelease.version)
 
         all_ = DataRelease.objects.all()
         self.assertEquals(len(all_), 5)
 
-    def test_get_latest_ensembl_version(self):
-        ensembl_version = DataReleaseUtils.get_latest_ensembl_version()
-        self.assertEqual(96, ensembl_version, "Got the right ensemblverteberates version version")
-
-    def test_get_latest_ensemblgenomes_version(self):
-        ensemblgenomes_version = DataReleaseUtils.get_latest_ensemblgenomes_version()
-        self.assertEqual(43, ensemblgenomes_version, 'Got the right ensemblgenomes_version version')
+    def test_get_latest_version(self):
+        version = DataReleaseUtils.get_latest_version()
+        self.assertEqual(96, version, "Got the right version")
 
 
 class DivisionUtilsTest(APITestCase):
@@ -65,15 +61,15 @@ class UtilsTestCase(TestCase):
 
     def test_get_field_names(self):
         field_names_datarelease = SchemaUtils.get_field_names("metadata_registry", "datarelease")
-        expected_fields_datarelease = ['data_release_id', 'ensembl_version', 'ensembl_genomes_version',
+        expected_fields_datarelease = ['data_release_id', 'label', 'version',
                                        'release_date', 'is_current']
         self.assertListEqual(expected_fields_datarelease, field_names_datarelease,
                              "Got the right fields names for datarelease")
 
         field_names_genomeinfo = SchemaUtils.get_field_names("metadata_registry", "genome")
-        expected_fields_genomeinfo = ['genome_id', 'genebuild', 'has_pan_compara', 'has_variations',
-                                      'has_peptide_compara', 'has_genome_alignments', 'has_synteny',
-                                      'has_other_alignments']
+        expected_fields_genomeinfo = ['genome_id', 'genome_uuid', 'genebuild', 'has_pan_compara', 'has_variation',
+                                      'has_microarray', 'has_peptide_compara', 'has_genome_alignments', 'has_synteny',
+                                      'has_other_alignments','created']
         self.assertListEqual(expected_fields_genomeinfo, field_names_genomeinfo,
                              "Got the right fields names for genomeinfo")
 

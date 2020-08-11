@@ -134,7 +134,7 @@
     "pk": 1,
     "fields": {
         "label": "Ensembl",
-        "url" : "http://www.ensembl.org"
+        "uri" : "http://www.ensembl.org"
     }
 },
 {
@@ -153,7 +153,6 @@
     "pk": 2,
     "fields": {
         "version": 80,
-        "ensembl_genomes_version": 27,
         "release_date": "2015-05-21",
         "is_current": null,
         "site_id": 1,

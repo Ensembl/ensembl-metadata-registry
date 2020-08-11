@@ -149,7 +149,7 @@ class GenomeVariation(models.Model):
         
 class GenomeRelease(models.Model):
     genome_release_id = models.AutoField(primary_key=True)
-    genome_uuid = models.ForeignKey('metadata_registry.Genome',on_delete=models.CASCADE)
+    genome_uuid = models.ForeignKey('metadata_registry.Genome',to_field='genome_uuid',on_delete=models.CASCADE)
     division = models.ForeignKey('metadata_registry.Division',on_delete=models.CASCADE)
     data_release = models.ForeignKey('metadata_registry.DataRelease',on_delete=models.CASCADE)
 

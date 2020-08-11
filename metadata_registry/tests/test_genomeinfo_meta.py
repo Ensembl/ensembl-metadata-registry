@@ -29,15 +29,15 @@ class GenomeinfoMetaTest(APITestCase):
         self.assertListEqual(sorted(one2many), sorted(one2many_expected))
 
         many2one = DrfUtils.get_related_entities(Genome, 'many2one')
-        expected_many2one = ['data_release', 'assembly', 'organism', 'division']
+        expected_many2one = ['assembly', 'organism', 'division']
         self.assertListEqual(sorted(many2one), sorted(expected_many2one))
 
         many2many = DrfUtils.get_related_entities(Genome, 'many2many')
-        expected_many2many = ['data_release', 'assembly', 'organism', 'division']
+        expected_many2many = ['assembly', 'organism', 'division']
         self.assertListEqual(sorted(many2many), sorted(expected_many2many))
 
         many2one = DrfUtils.get_related_entities(Genome)
-        expected_many2one = ['data_release', 'assembly', 'organism', 'division', 'genome_feature', 'genome_event',
+        expected_many2one = ['assembly', 'organism', 'division', 'genome_feature', 'genome_event',
                              'genome_annotation', 'genome_variation', 'genome_database',
                              'genome_compara_analysis', 'genome_alignment']
         self.assertListEqual(sorted(many2one), sorted(expected_many2one))

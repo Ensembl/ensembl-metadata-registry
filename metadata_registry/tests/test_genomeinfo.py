@@ -15,7 +15,7 @@
 from rest_framework.test import APIClient
 from rest_framework.test import APITestCase
 
-from metadata_registry.models.genomeinfo import Genome
+from metadata_registry.models.genomeinfo import Genome, GenomeRelease
 
 
 class GenomeinfoTest(APITestCase):
@@ -27,8 +27,9 @@ class GenomeinfoTest(APITestCase):
 
     def test_loaddata(self):
         genome = Genome.objects.get(pk=1)
+        genomerelease = GenomeRelease.objects.get(pk=1)
         self.assertEqual(1, genome.assembly_id)
-        self.assertEqual(1, genome.division_id)
+        self.assertEqual(1, genomerelease.division_id)
 
     def test_api_request(self):
         # Using the standard APIClient to create a GET request

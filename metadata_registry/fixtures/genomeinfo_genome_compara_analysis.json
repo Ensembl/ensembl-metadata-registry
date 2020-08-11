@@ -134,7 +134,7 @@
     "pk": 1,
     "fields": {
         "label": "Ensembl",
-        "url" : "http://www.ensembl.org"
+        "uri" : "http://www.ensembl.org"
     }
 },
 {
@@ -235,7 +235,6 @@
     "model": "metadata_registry.genome",
     "pk": 131,
     "fields": {
-        "data_release": 2,
         "assembly": 60,
         "organism": 60,
         "genebuild": "2006-10-Ensembl",
@@ -246,7 +245,6 @@
         "has_genome_alignments": 1,
         "has_synteny": 0,
         "has_other_alignments": 1,
-        "division_id": 1,
         "genome_uuid": "e7ad7492-d7cc-11ea-8939-a860b61be8b7",
         "created" : "2020-08-06 10:09:23.030895"
     }

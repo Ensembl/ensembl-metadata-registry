@@ -45,10 +45,8 @@ urlpatterns = [
     url(r'^variationcount/(?P<pk>[0-9]+)/$', views.GenomeVariationDetail.as_view(), name='genome_variation_detail'),
 
     # for genomeinfo datatable
-    url(r'^info/division/(?P<division>[\w]+)/release/' + str(DataReleaseUtils.get_latest_ensembl_version()),
-        TemplateView.as_view(template_name="metadata_registry/genomeinfo/datatable_ens.html"), name="genomeinfo_ens_table"),
-    url(r'^info/division/(?P<division>[\w]+)/release/' + str(DataReleaseUtils.get_latest_ensemblgenomes_version()),
-        TemplateView.as_view(template_name="metadata_registry/genomeinfo/datatable_ens.html"), name="genomeinfo_eg_table"),
+    url(r'^info/division/(?P<division>[\w]+)/release/' + str(DataReleaseUtils.get_latest_version()),
+        TemplateView.as_view(template_name="metadata_registry/genomeinfo/datatable_ens.html"), name="genomeinfo_table"),
     url(r'^nopagination', views.GenomeInfoView.as_view(), name="genomeinfo_nopagination_ens_table"),
 
 ]

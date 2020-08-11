@@ -17,20 +17,12 @@ from rest_framework.compat import coreapi
 from metadata_registry.utils.datarelease import DataReleaseUtils
 
 # Fields
-ensembl_version_field = coreapi.Field(
-            name='ensembl_version',
+version_field = coreapi.Field(
+            name='version',
             location='query',
             required=False,
             type='integer',
-            description='ensembl_version to filter(eg: ' + str(DataReleaseUtils.get_latest_ensembl_version()) + ' )')
-
-ensembl_genomes_version_field = coreapi.Field(
-            name='ensembl_genomes_version',
-            location='query',
-            required=False,
-            type='integer',
-            description='ensembl_genomes_version to filter(eg: ' +
-            str(DataReleaseUtils.get_latest_ensemblgenomes_version()) + ' )')
+            description='version to filter(eg: ' + str(DataReleaseUtils.get_latest_version()) + ' )')
 
 is_current_field = coreapi.Field(
             name='is_current',
@@ -42,16 +34,12 @@ is_current_field = coreapi.Field(
 
 class DatareleaseFilterBackend(BaseFilterBackend):
     """
-    Filter to filter by ensembl_version, ensembl_genomes_version.
+    Filter to filter by ensembl_version.
     """
     def filter_queryset(self, request, queryset, view):
-        ensembl_version = request.query_params.get('ensembl_version', None)
-        if ensembl_version is not None:
-            queryset = queryset.filter(ensembl_version=ensembl_version)
-
-        ensembl_genomes_version = request.query_params.get('ensembl_genomes_version', None)
-        if ensembl_genomes_version is not None:
-            queryset = queryset.filter(ensembl_genomes_version=ensembl_genomes_version)
+        version = request.query_params.get('version', None)
+        if version is not None:
+            queryset = queryset.filter(version=version)
 
         is_current = request.query_params.get('is_current', None)
         if is_current is not None:
@@ -60,4 +48,4 @@ class DatareleaseFilterBackend(BaseFilterBackend):
         return queryset
 
     def get_schema_fields(self, view):
-        return [ensembl_version_field, ensembl_genomes_version_field, is_current_field]
+        return [version_field, is_current_field]

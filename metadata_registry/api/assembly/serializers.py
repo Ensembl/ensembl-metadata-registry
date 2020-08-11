@@ -25,7 +25,7 @@ class AssemblySequenceSerializer(serializers.ModelSerializer):
 
 class AssemblySerializer(SerializerMixin, serializers.ModelSerializer):
 
-    ONE2MANY_SERIALIZER = {Assembly.ONE2MANY_RELATED['ASSEMBLY_SEQEUNCE']: AssemblySequenceSerializer}
+    ONE2MANY_SERIALIZER = {Assembly.ONE2MANY_RELATED['ASSEMBLY_SEQUENCE']: AssemblySequenceSerializer}
 
     class Meta:
         model = Assembly

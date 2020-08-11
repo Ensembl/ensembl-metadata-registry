@@ -133,7 +133,7 @@
     "pk": 1,
     "fields": {
         "label": "Ensembl",
-        "url" : "http://www.ensembl.org"
+        "uri" : "http://www.ensembl.org"
     }
 },
 {
@@ -233,7 +233,6 @@
         "has_genome_alignments": 0,
         "has_synteny": 0,
         "has_other_alignments": 1,
-        "division_id": 1,
         "genome_uuid": "e8055c0c-d7cc-11ea-8939-a860b61be8b7",
         "created" : "2020-08-06 10:09:23.030895"
     }

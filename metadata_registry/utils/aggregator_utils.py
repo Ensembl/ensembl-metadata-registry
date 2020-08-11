@@ -15,7 +15,7 @@
 from django.db.models import Q
 from django.db.models.aggregates import Count
 
-from metadata_registry.models.genomeinfo import Genome
+from metadata_registry.models.genomeinfo import GenomeRelease
 from metadata_registry.utils.division import DivisionUtils
 
 
@@ -27,20 +27,20 @@ class AggregatorUtils(object):
         queryset = None
         division = division.lower()
         if division == 'ensemblvertebrates':
-            queryset = Genome.objects.filter(
+            queryset = GenomeRelease.objects.filter(
                 division__name='EnsemblVertebrates').\
-                values('division__name', 'data_release__ensembl_version').\
-                annotate(Count("genome_id"))
+                values('division__name', 'data_release__version').\
+                annotate(Count("genome_uuid"))
         elif 'genomes' in division:
-            queryset = Genome.objects.filter(
+            queryset = GenomeRelease.objects.filter(
                 ~Q(division__name='Ensembl')).\
-                values('division__name','data_release__ensembl_genomes_version').\
-                annotate(Count("genome_id"))
+                values('division__name','data_release__version').\
+                annotate(Count("genome_uuid"))
         elif division in [d.lower() for d in DivisionUtils.get_all_division_names(eg_only=True)]:
-            queryset = Genome.objects.filter(
+            queryset = GenomeRelease.objects.filter(
                 division__name=division).\
-                values('division__name', 'data_release__ensembl_genomes_version').\
-                annotate(Count("genome_id"))
+                values('division__name', 'data_release__version').\
+                annotate(Count("genome_uuid"))
         else:
             return queryset
-        return queryset.order_by('-data_release__ensembl_version', 'division__name')
+        return queryset.order_by('-data_release__version', 'division__name')

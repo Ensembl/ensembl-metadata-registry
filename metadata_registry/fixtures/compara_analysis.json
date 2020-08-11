@@ -3,8 +3,7 @@
     "model": "metadata_registry.datarelease",
     "pk": 40,
     "fields": {
-        "ensembl_version": 81,
-        "ensembl_genomes_version": null,
+        "version": 81,
         "release_date": "2015-12-08",
         "is_current": 0
     }

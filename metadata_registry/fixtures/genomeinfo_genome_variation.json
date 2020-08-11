@@ -134,7 +134,7 @@
     "pk": 1,
     "fields": {
         "label": "Ensembl",
-        "url" : "http://www.ensembl.org"
+        "uri" : "http://www.ensembl.org"
     }
 },
 {
@@ -152,7 +152,6 @@
     "model": "metadata_registry.genome",
     "pk": 21,
     "fields": {
-        "data_release": 1,
         "assembly": 21,
         "organism": 21,
         "genebuild": "2007-09-Ensembl",
@@ -171,7 +170,6 @@
     "model": "metadata_registry.genome",
     "pk": 20,
     "fields": {
-        "data_release": 1,
         "assembly": 20,
         "organism": 20,
         "genebuild": "2010-09-Ensembl",
@@ -190,7 +188,6 @@
     "model": "metadata_registry.genome",
     "pk": 16,
     "fields": {
-        "data_release": 2,
         "assembly": 16,
         "organism": 16,
         "genebuild": "2011-09-SGD",
@@ -209,7 +206,6 @@
     "model": "metadata_registry.genome",
     "pk": 14,
     "fields": {
-        "data_release": 1,
         "assembly": 14,
         "organism": 14,
         "genebuild": "2011-12-Ensembl",
@@ -228,7 +224,6 @@
     "model": "metadata_registry.genome",
     "pk": 5,
     "fields": {
-        "data_release": 1,
         "assembly": 7,
         "organism": 7,
         "genebuild": "2014-05-FlyBase",
@@ -280,7 +275,7 @@
     "pk": 1,
     "fields": {
         "division_id": 1,
-        "genome_id": 7
+        "genome_id": 5
     }
 },
 {

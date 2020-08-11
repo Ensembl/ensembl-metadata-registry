@@ -15,8 +15,7 @@
 
 from rest_framework.filters import BaseFilterBackend
 from rest_framework.compat import coreapi
-from metadata_registry.api.datarelease.filters import ensembl_genomes_version_field,\
-    ensembl_version_field
+from metadata_registry.api.datarelease.filters import version_field
 from metadata_registry.utils.drf_filters import DrfFilters
 from metadata_registry.models.genomeinfo import Genome
 from django.db.models import Q
@@ -67,19 +66,19 @@ has_synteny_field = coreapi.Field(
             type='boolean',
             description='filter genomes which has_synteny  (eg. true, false)')
 
-has_variations_field = coreapi.Field(
-            name='has_variations',
+has_variation_field = coreapi.Field(
+            name='has_variation',
             location='query',
             required=False,
             type='boolean',
-            description='filter genomes which has_variations  (eg. true, false)')
+            description='filter genomes which has_variation  (eg. true, false)')
 
-has_genome_alignments_field = coreapi.Field(
-            name='has_genome_alignments',
+has_microarray_field = coreapi.Field(
+            name='has_microarray',
             location='query',
             required=False,
             type='boolean',
-            description='filter genomes which has_genome_alignments  (eg. true, false)')
+            description='filter genomes which has_microarray  (eg. true, false)')
 
 has_genome_alignments_field = coreapi.Field(
             name='has_genome_alignments',
@@ -162,25 +161,18 @@ class GenomeDatabasereleaseFilterBackend(BaseFilterBackend):
 
 class GenomeDatareleaseFilterBackend(BaseFilterBackend):
     """
-    Filter to filter by ensembl_version, ensembl_genomes_version from data_release.
+    Filter to filter by ensembl_version
     """
     def filter_queryset(self, request, queryset, view):
-        # ensembl_version = request.query_params.get('ensembl_version', DataReleaseUtils.get_latest_ensembl_version())
-        ensembl_version = request.query_params.get('ensembl_version', None)
-        if ensembl_version is not None:
-            queryset = queryset.filter(data_release__ensembl_version=ensembl_version)
-
-        # ensembl_genomes_version = request.query_params.get('ensembl_genomes_version',
-        #                                                   DataReleaseUtils.get_latest_ensemblgenomes_version())
-        ensembl_genomes_version = request.query_params.get('ensembl_genomes_version',
-                                                           None)
-        if ensembl_genomes_version is not None:
-            queryset = queryset.filter(data_release__ensembl_genomes_version=ensembl_genomes_version)
+        # version = request.query_params.get('ensembl_version', DataReleaseUtils.get_latest_ensembl_version())
+        version = request.query_params.get('version', None)
+        if version is not None:
+            queryset = queryset.filter(data_release__version=version)
 
         return queryset
 
     def get_schema_fields(self, view):
-        return [ensembl_version_field, ensembl_genomes_version_field]
+        return [version_field]
 
 
 class GenomeDivisionFilterBackend(BaseFilterBackend):
@@ -262,12 +254,12 @@ class GenomeVariationFilterBackend(BaseFilterBackend):
     Filter to filter by has_variations.
     """
     def filter_queryset(self, request, queryset, view):
-        has_variations = request.query_params.get('has_variations', None)
-        if has_variations is not None:
-            has_variations = int(1) if has_variations == 'true' else int(0)
-            queryset = queryset.filter(has_variations=has_variations)
+        has_variation = request.query_params.get('has_variation', None)
+        if has_variation is not None:
+            has_variation = int(1) if has_variation == 'true' else int(0)
+            queryset = queryset.filter(has_variations=has_variation)
 
         return queryset
 
     def get_schema_fields(self, view):
-        return [has_variations_field]
+        return [has_variation_field]

@@ -21,10 +21,6 @@ class UrlUtils(object):
 
     @classmethod
     def get_genomeinfo_url(cls, division='ensembl'):
-        current_version = None
-        if division == 'ensembl':
-            current_version = DataReleaseUtils.get_latest_ensembl_version()
-        else:
-            current_version = DataReleaseUtils.get_latest_ensemblgenomes_version()
+        current_version = DataReleaseUtils.get_latest_version()
 
         return reverse("genomeinfo_table", kwargs={"release": current_version, "division": division})
