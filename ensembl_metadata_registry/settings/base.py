@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'metadata_registry',
+    'metadata_registry_current',
     'ncbi_taxonomy',
     'rest_framework',
     'rest_framework_swagger',
@@ -119,6 +120,19 @@ else:
         'meta': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'ensembl_metadata',
+            'USER': secrets.DATABASE_USER,
+            'PASSWORD': secrets.DATABASE_PASSWORD,
+            'HOST': secrets.DATABASE_HOST,
+            'PORT': secrets.DATABASE_PORT,
+            'OPTIONS': {
+            # Tell MySQLdb to connect with 'utf8mb4' character set
+            'charset': 'utf8mb4',
+             'init_command': 'SET default_storage_engine=InnoDB'
+            }
+        },
+        'meta_current': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'ensembl_metadata_current',
             'USER': secrets.DATABASE_USER,
             'PASSWORD': secrets.DATABASE_PASSWORD,
             'HOST': secrets.DATABASE_HOST,

@@ -26,6 +26,8 @@ class EnsemblMetaDataRegistryRouter(object):
         """
         if model._meta.app_label == 'ncbi_taxonomy':
             return 'ncbi_taxonomy'
+        if model._meta.app_label == 'metadata_registry_current':
+            return 'meta_current'
         if model._meta.app_label in EnsemblMetaDataRegistryRouter.META_DBS:
             return 'meta'
         return 'default'
@@ -36,6 +38,8 @@ class EnsemblMetaDataRegistryRouter(object):
         """
         if model._meta.app_label == 'ncbi_taxonomy':
             return 'ncbi_taxonomy'
+        if model._meta.app_label == 'metadata_registry_current':
+            return 'meta_current'
         if model._meta.app_label in EnsemblMetaDataRegistryRouter.META_DBS:
             return 'meta'
         return 'default'
@@ -46,6 +50,9 @@ class EnsemblMetaDataRegistryRouter(object):
         """
         if obj1._meta.app_label == 'ncbi_taxonomy' or \
            obj2._meta.app_label == 'ncbi_taxonomy':
+            return True
+        if obj1._meta.app_label == 'metadata_registry_current' or \
+           obj2._meta.app_label == 'metadata_registry_current':
             return True
         if obj1._meta.app_label in EnsemblMetaDataRegistryRouter.META_DBS or \
            obj2._meta.app_label in EnsemblMetaDataRegistryRouter.META_DBS:
@@ -58,6 +65,8 @@ class EnsemblMetaDataRegistryRouter(object):
         """
         if app_label == 'ncbi_taxonomy':
             return db == 'ncbi_taxonomy'
+        if app_label == 'metadata_registry_current':
+            return db == 'meta_current'
         if app_label in EnsemblMetaDataRegistryRouter.META_DBS:
             return db == 'meta'
         return 'default'
