@@ -406,7 +406,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterUniqueTogether(
             name='comparaanalysis',
-            unique_together=set([('method', 'set_name', 'dbname')]),
+            unique_together=set([('division','method', 'set_name', 'dbname')]),
         ),
         migrations.AlterUniqueTogether(
             name='assemblysequence',
