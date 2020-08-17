@@ -65,7 +65,7 @@ DATABASES = {
 
 Run the migrate step with --fake-initial (No need to run the migrations as the database is already there and it is not managed by Django)
 ```
-./manage.py migrate --fake-initial
+./manage.py migrate --database meta metadata_registry --fake-initial
 ```
 
 Start the development server
