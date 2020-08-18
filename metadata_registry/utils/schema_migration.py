@@ -11,7 +11,6 @@ from metadata_registry_current.models.division import Division as DivisionCurren
 from metadata_registry.models.genomeinfo import Genome, GenomeAlignment, GenomeAnnotation, GenomeComparaAnalysis, GenomeDatabase, GenomeEvent, GenomeFeature, GenomeVariation, GenomeRelease, GenomeDivision 
 from metadata_registry_current.models.genomeinfo import Genome as GenomeCurrent, GenomeAlignment as GenomeAlignmentCurrent, GenomeAnnotation as GenomeAnnotationCurrent, GenomeComparaAnalysis as GenomeComparaAnalysisCurrent, GenomeDatabase as GenomeDatabaseCurrent, GenomeEvent as GenomeEventCurrent, GenomeFeature as GenomeFeatureCurrent, GenomeVariation as GenomeVariationCurrent
 
-
 # RR or ensembl
 site='Ensembl'
 # 96 import 96
@@ -149,8 +148,9 @@ for GenomeCurr in GenomeCurrent.objects.filter(data_release_id__in=release_list)
         NewAssembly.base_count=AssemblyCurr.base_count
         NewAssembly.save()
         # Dealing with Assembly sequence table
+        batch_size = 10000
         AssemblySequenceCurr=AssemblySequenceCurrent.objects.filter(assembly_id=AssemblyCurr.assembly_id)
-        AssemblySequence.objects.bulk_create(AssemblySequenceCurr)
+        AssemblySequence.objects.bulk_create(AssemblySequenceCurr, batch_size)
         NewGenome.assembly=NewAssembly
         NewGenome.save()
     else:
