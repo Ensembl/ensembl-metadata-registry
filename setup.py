@@ -1,17 +1,12 @@
 # -*- coding: utf-8 -*-
-from setuptools import setup, find_packages
+from setuptools import setup, find_packages, find_namespace_packages
 
 setup(
-    name='ensembl-metadata-registry',
+    name='ensembl_metadata_0_1',
     version='0.1',
-    packages=find_packages(),
-#    ['ensembl_metadata_registry',
-#              'ensembl_metadata_registry.assembly',
-#              'ensembl_metadata_registry.compara',
-#              'ensembl_metadata_registry.datarelease',
-#              ],
+    packages=find_namespace_packages(),
     package_dir={
-        'ensembl_metadata_0_1': 'ensembl_metadata_reistry',
+        'ensembl_metadata_0_1': 'ensembl_metadata_registry'
     },
     url='https://test-metadata-registry.ensembl.org',
     license='Apache',
