@@ -71,7 +71,7 @@ Run the migrate step with --fake-initial (No need to run the migrations as the d
 Start the development server
 cd ensembl_metadata_registry/ensembl_metadata_registry/
 ```
- ./manage.py runserver 0:9000 --settings=ensembl_metadata_registry.settings.local
+ ./manage.py runserver 0:9000 --settings=ensembl_metadata.settings.local
 ```
 
 Check in the browsesr
