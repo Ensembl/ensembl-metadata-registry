@@ -24,7 +24,6 @@ class EnsemblMetaDataRegistryRouter(object):
         """
         Attempts to read ncbi_taxonomy models go to ncbi_taxonomy.
         """
-        print('get db for read')
         if model._meta.app_label == 'ncbi_taxonomy':
             return 'ncbi_taxonomy'
         if model._meta.app_label == 'metadata_registry':
