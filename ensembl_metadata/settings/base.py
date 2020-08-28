@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'ncbi_taxonomy',
     'rest_framework',
     'rest_framework_swagger',
-    'ensembl_metadata_registry'
 ]
 
 MIDDLEWARE = [
@@ -55,7 +54,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'ensembl_metadata_registry.urls'
+ROOT_URLCONF = 'ensembl_metadata.urls'
 
 TEMPLATES = [
     {
@@ -92,7 +91,7 @@ if 'TRAVIS' in os.environ:
         },
         'meta': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'ensembl_metadata',
+            'NAME': 'ensembl_metadata_2020',
             'USER': 'root',
             'PASSWORD': '',
             'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
@@ -117,7 +116,7 @@ else:
             'HOST': secrets.DATABASE_HOST,
             'PORT': secrets.DATABASE_PORT,
         },
-        'meta': {
+        'ensembl_meta': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': secrets.METADATA_DB,
             'USER': secrets.DATABASE_USER,

@@ -24,13 +24,12 @@ class EnsemblMetaDataRegistryRouter(object):
         """
         Attempts to read ncbi_taxonomy models go to ncbi_taxonomy.
         """
+        print('get db for read')
         if model._meta.app_label == 'ncbi_taxonomy':
             return 'ncbi_taxonomy'
-        if model._meta.app_label == 'ensembl_metadata_registry':
-            return 'meta_current'
-        if model._meta.app_label in EnsemblMetaDataRegistryRouter.META_DBS:
-            return 'meta'
-        return 'default'
+        if model._meta.app_label == 'metadata_registry':
+            return 'ensembl_meta'
+        return None
 
     def db_for_write(self, model, **hints):
         """
@@ -38,26 +37,21 @@ class EnsemblMetaDataRegistryRouter(object):
         """
         if model._meta.app_label == 'ncbi_taxonomy':
             return 'ncbi_taxonomy'
-        if model._meta.app_label == 'ensembl_metadata_registry':
-            return 'meta_current'
-        if model._meta.app_label in EnsemblMetaDataRegistryRouter.META_DBS:
-            return 'meta'
-        return 'default'
+        if model._meta.app_label == 'metadata_registry':
+            return 'ensembl_meta'
+        return None
 
     def allow_relation(self, obj1, obj2, **hints):
         """
 
         """
-        if obj1._meta.app_label == 'ncbi_taxonomy' or \
-           obj2._meta.app_label == 'ncbi_taxonomy':
-            return True
-        if obj1._meta.app_label == 'ensembl_metadata_registry' or \
-           obj2._meta.app_label == 'ensembl_metadata_registry':
+        if obj1._meta.app_label == 'metadata_registry' or \
+           obj2._meta.app_label == 'metadata_registry':
             return True
         if obj1._meta.app_label in EnsemblMetaDataRegistryRouter.META_DBS or \
            obj2._meta.app_label in EnsemblMetaDataRegistryRouter.META_DBS:
             return True
-        return 'default'
+        return None
 
     def allow_migrate(self, db, app_label, model_name=None, **hints):
         """
@@ -65,8 +59,6 @@ class EnsemblMetaDataRegistryRouter(object):
         """
         if app_label == 'ncbi_taxonomy':
             return db == 'ncbi_taxonomy'
-        if app_label == 'ensembl_metadata_registry':
-            return db == 'meta_current'
-        if app_label in EnsemblMetaDataRegistryRouter.META_DBS:
-            return db == 'meta'
-        return 'default'
+        if app_label == 'metadata_registry':
+            return db == 'ensembl_meta'
+        return None

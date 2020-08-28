@@ -2,7 +2,7 @@ import ensembl_metadata.settings.env
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '$@_oa*gtx=_xx$g+$u__^5@-#ig33rt$pcs%=zaiuq1*k4y&mn'
 
-METADATA_DB = 'ensembl_metadata'
+METADATA_DB = 'ensembl_metadata_2020'
 
 if ensembl_metadata.settings.env.TRAVIS_ENV:
     DATABASE_USER = 'readuser'

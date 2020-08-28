@@ -20,28 +20,14 @@ Authors: Thomas Maurel / Marc Chakiachvili
 from django.conf import settings
 from ensembl_metadata.settings import secrets
 
-settings.INSTALLED_APPS += ['ensembl_metadata_registry']
-settings.DATABASES.update({
-    'meta_current': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ensembl_metadata',
-        'USER': secrets.DATABASE_USER,
-        'PASSWORD': secrets.DATABASE_PASSWORD,
-        'HOST': secrets.DATABASE_HOST,
-        'PORT': secrets.DATABASE_PORT,
-    }})
-from ensembl_metadata_registry.assembly.models import Assembly as AssemblyCurrent, \
-    AssemblySequence as AssemblySequenceCurrent
-from ensembl_metadata_registry.compara.models import ComparaAnalysis as ComparaAnalysisCurrent, \
-    ComparaAnalysisEvent as ComparaAnalysisEventCurrent
-from ensembl_metadata_registry.datarelease.models import DataRelease as DataReleaseCurrent
-from ensembl_metadata_registry.division.models import Division as DivisionCurrent
-from ensembl_metadata_registry.genomeinfo.models import Genome as GenomeCurrent, \
-    GenomeAlignment as GenomeAlignmentCurrent, GenomeAnnotation as GenomeAnnotationCurrent, \
+from metadata_orm.models import Assembly as AssemblyCurrent, AssemblySequence as AssemblySequenceCurrent, \
+    ComparaAnalysis as ComparaAnalysisCurrent, \
+    ComparaAnalysisEvent as ComparaAnalysisEventCurrent, \
+    DataRelease as DataReleaseCurrent, Division as DivisionCurrent, \
+    Genome as GenomeCurrent, GenomeAlignment as GenomeAlignmentCurrent, GenomeAnnotation as GenomeAnnotationCurrent, \
     GenomeComparaAnalysis as GenomeComparaAnalysisCurrent, GenomeDatabase as GenomeDatabaseCurrent, \
-    GenomeEvent as GenomeEventCurrent, GenomeFeature as GenomeFeatureCurrent, GenomeVariation as GenomeVariationCurrent
-from ensembl_metadata_registry.organism.models import Organism as OrganismCurrent, \
-    OrganismAlias as OrganismAliasCurrent, OrganismPublication as OrganismPublicationCurrent
+    GenomeEvent as GenomeEventCurrent, GenomeFeature as GenomeFeatureCurrent, GenomeVariation as GenomeVariationCurrent, \
+    Organism as OrganismCurrent, OrganismAlias as OrganismAliasCurrent, OrganismPublication as OrganismPublicationCurrent
 
 from metadata_registry.models.assembly import Assembly, AssemblySequence
 from metadata_registry.models.compara import ComparaAnalysis, ComparaAnalysisEvent
@@ -87,6 +73,7 @@ class Command(BaseCommand):
         else:
             NewEnsemblSite.label = 'Ensembl Release'
             NewEnsemblSite.uri = 'https://www.ensembl.org/index.html'
+
         NewEnsemblSite.save()
 
         # Dealing with data release

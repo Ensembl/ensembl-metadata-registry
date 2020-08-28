@@ -75,23 +75,6 @@ internal_apis = [
 
     # FIXME this url doens't work but doesn't seem to be used anywhere, anyway.
     # url(r'^datatable_clientside/(?P<table_name>[\w]+)/', datatable_fetch, name="datatablefetch_clientside"),
-
-    url(r'^datatable_serverside/assemblycurrent', AssemblyDatatableViewCurrent.as_view(),
-        name="datatablefetch_serverside_assembly_current"),
-
-    url(r'^datatable_serverside/organismcurrent', OrganismDatatableViewCurrent.as_view(),
-        name="datatablefetch_serverside_organism_current"),
-
-    url(r'^datatable_serverside/genomecurrent', GenomeDatatableViewCurrent.as_view(),
-        name="datatablefetch_serverside_genome_current"),
-
-    url(r'^datatable_serverside/divisioncurrent', DivisionDatatableViewCurrent.as_view(),
-        name="datatablefetch_serverside_division_current"),
-
-    url(r'^datatable_serverside/datareleasecurrent', DataReleaseDatatableViewCurrent.as_view(),
-        name="datatablefetch_serverside_datarelease_current"),
-    url(r'^privacy_notice_emr', TemplateView.as_view(template_name='metadata_registry/privacy_notice_emr.html'),
-        name="privacy_note_emr_current"),
 ]
 
 urlpatterns = urlpatterns + emr_apis + internal_apis
