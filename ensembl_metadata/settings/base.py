@@ -89,7 +89,7 @@ if 'TRAVIS' in os.environ:
             'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
             'PORT': '3306',
         },
-        'meta': {
+        'ensembl_meta': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'ensembl_metadata_2020',
             'USER': 'root',
