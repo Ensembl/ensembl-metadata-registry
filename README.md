@@ -20,9 +20,7 @@ Installation
 Clone the project from git
 
 ```
-
 git clone https://github.com/Ensembl/ensembl-metadata-registry.git
-
 ```
 
 Create the Python environment
@@ -31,7 +29,7 @@ Create the Python environment
 mkvirtualenv emrenv
 workon emrenv
 
-cd ensembl_metadata_registry
+cd metadata_registry
 pip install -r requirements.txt 
 
 ```
@@ -39,21 +37,21 @@ pip install -r requirements.txt
 Provide the right credentials to connect to the ensembl-metata database in secrets.py (created from secrets_template.py)
 
 ```
-cd ensembl_metadata_registry/ensembl_metadata_registry/ensembl_metadata_registry/settings
+cd metadata_registry/metadata_registry/metadata_registry/settings
 cp secrets_template.py secrets.py
 
 ```
 
-Provide the right credentials to connect to the django manager database (ensembl_metadata_registry) in base.py
-Note: All the django's management table while running the migration step will be created in ensembl_metadata_registry
+Provide the right credentials to connect to the django manager database (metadata_registry) in base.py
+Note: All the django's management table while running the migration step will be created in metadata_registry
 ```
-cd ensembl_metadata_registry/ensembl_metadata_registry/ensembl_metadata_registry/settings
+cd metadata_registry/metadata_registry/metadata_registry/settings
 
 Look in the following section of base.py
 DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'ensembl_metadata_registry',
+            'NAME': 'metadata_registry',
             'USER': 'xxxx',
             'PASSWORD': 'xxxx',
             'HOST': 'localhost',
@@ -65,13 +63,13 @@ DATABASES = {
 
 Run the migrate step with --fake-initial (No need to run the migrations as the database is already there and it is not managed by Django)
 ```
-./manage.py migrate --fake-initial
+./manage.py migrate --database meta metadata_registry --fake-initial
 ```
 
 Start the development server
-cd ensembl_metadata_registry/ensembl_metadata_registry/
+cd metadata_registry/metadata_registry/
 ```
- ./manage.py runserver 0:9000 --settings=ensembl_metadata_registry.settings.local
+ ./manage.py runserver 0:9000 --settings=ensembl_metadata.settings.local
 ```
 
 Check in the browsesr

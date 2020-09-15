@@ -1,0 +1,1 @@
+-e git+ssh://git@github.com/Ensembl/ensembl-dj-metadata-orm.git#egg=metadata_orm

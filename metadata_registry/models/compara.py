@@ -34,7 +34,7 @@ class ComparaAnalysis(models.Model):
     class Meta:
         managed = True
         db_table = 'compara_analysis'
-        unique_together = (('method', 'set_name', 'dbname'),)
+        unique_together = (('division','method', 'set_name', 'dbname'),)
 
 
 class ComparaAnalysisEvent(models.Model):
