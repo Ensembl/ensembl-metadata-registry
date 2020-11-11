@@ -11,11 +11,9 @@ coverage.xml
 *.swp
 .DS_Store
 settings_secret.py
-*_initial.py
 log
 apache
 tmp
-migrations
 
 *.py~
 

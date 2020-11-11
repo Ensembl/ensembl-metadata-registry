@@ -1,0 +1,18 @@
+[
+{
+    "model": "metadata_registry.division",
+    "pk": 1,
+    "fields": {
+        "name": "Ensembl",
+        "short_name": "E"
+    }
+},
+{
+    "model": "metadata_registry.division",
+    "pk": 2,
+    "fields": {
+        "name": "EnsemblMetazoa",
+        "short_name": "EM"
+    }
+}
+]

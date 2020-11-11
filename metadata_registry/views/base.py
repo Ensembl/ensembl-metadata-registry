@@ -1,0 +1,118 @@
+"""
+.. See the NOTICE file distributed with this work for additional information
+   regarding copyright ownership.
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+       http://www.apache.org/licenses/LICENSE-2.0
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+"""
+
+import json
+
+import requests
+from django.db.models import Q
+from django.http.response import JsonResponse
+from django.shortcuts import render
+from rest_framework import generics
+
+from metadata_registry.utils.pagination import DataTablePagination
+from metadata_registry.utils.schema_utils import SchemaUtils
+
+
+class DataTableListApi(generics.ListAPIView):
+    """
+    Base Class for DataTable View
+    Provides support for datatable searching, pagination and sorting at server-side
+    """
+    pagination_class = DataTablePagination
+    search_parameters = ()
+    unfiltered_query_set = None
+    default_order_by = None
+
+    def get_queryset(self):
+        self.unfiltered_query_set = query_set = super(DataTableListApi, self).get_queryset()
+
+        order_by_index = int(self.request.query_params.get('order[0][column]', 0))
+        orderable = bool(self.request.query_params.get('columns[{}][orderable]'.format(order_by_index), 'false'))
+
+        if order_by_index == 0 or not orderable:
+            order_by_index = 1
+
+        order_by = self.request.query_params.get('columns[{}][data]'.format(order_by_index), self.default_order_by)
+        order_by = str(order_by).replace('.', '__')
+        order_by_dir = self.request.query_params.get('order[0][dir]', 'asc')
+
+        if order_by_dir == 'desc':
+            order_by = '-{}'.format(order_by)
+
+        search_queries = self.request.query_params.get('search[value]', '').strip().split(' ')
+
+        q = Q()
+
+        if len(search_queries) > 0 and search_queries[0] != u'':
+            for params in self.search_parameters:
+
+                for query in search_queries:
+                    temp = {
+                        '{}__icontains'.format(params): query,
+                    }
+                    q |= Q(**temp)
+
+        query_set = query_set.filter(q)
+
+        if order_by == '':
+            return query_set
+
+        return query_set.order_by(order_by)
+
+    def get(self, request, *args, **kwargs):
+        result = super(DataTableListApi, self).get(request, *args, **kwargs)
+        result.data['draw'] = int(request.query_params.get('draw', 0))
+
+        result.data['recordsFiltered'] = result.data['count']
+        result.data['recordsTotal'] = self.unfiltered_query_set.count()
+        del result.data['count']
+
+        result.data['data'] = result.data['results']
+        del result.data['results']
+        return result
+
+
+def datatable_view(request, table_name):
+    server_side_processing = "false"
+    if table_name in ['genome', 'organism', 'assembly', 'division', 'datarelease']:
+        server_side_processing = "true"
+
+    data_fields = []
+    mappings = SchemaUtils.get_app_model_mappings()
+
+    if table_name in mappings:
+        data_fields = SchemaUtils.get_field_names(mappings[table_name], table_name, False)
+
+    return render(request, 'metadata_registry/datatable_view.html', {'table_name': table_name,
+                                                                     'server_side_processing': server_side_processing,
+                                                                     'data_fields': data_fields})
+
+
+def datatable_fetch(request, table_name):
+    draw = request.GET.get('draw', None)
+    server_side = request.GET.get('serverSide', False)
+
+    hostname = request.get_host()
+    http_protocal = 'https' if request.is_secure() else 'http'
+
+    host_url = http_protocal + '://' + hostname + '/'
+    if draw is None and server_side is False:
+        url = host_url + table_name + "/nopagination"
+        response = requests.get(url)
+        json_data = json.loads(response.text)
+        data = {"data": json_data}
+        return JsonResponse(data, safe=False)
+
+    # FIXME shouldn't return nothing
+    return JsonResponse({}, safe=False)

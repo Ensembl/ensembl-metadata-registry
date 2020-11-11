@@ -1,0 +1,137 @@
+[
+{
+    "model": "metadata_registry.organism",
+    "pk": 4,
+    "fields": {
+        "taxonomy_id": 30538,
+        "reference":null,
+        "species_taxonomy_id": 30538,
+        "name": "vicugna_pacos",
+        "display_name": "Alpaca",
+        "strain": null,
+        "serotype": null,
+        "description": null,
+        "image": null,
+        "group_id": null
+    }
+},
+{
+    "model": "metadata_registry.assembly",
+    "pk": 4,
+    "fields": {
+        "assembly_accession": null,
+        "assembly_name": "vicPac1",
+        "assembly_level": "genescaffold",
+        "base_count": 2967746133
+    }
+},
+{
+    "model": "metadata_registry.ensemblsite",
+    "pk": 1,
+    "fields": {
+        "label": "Ensembl",
+        "uri" : "http://www.ensembl.org"
+    }
+},
+{
+    "model": "metadata_registry.datarelease",
+    "pk": 1,
+    "fields": {
+        "version": 80,
+        "release_date": "2015-05-20",
+        "is_current": null,
+        "site_id": 1,
+        "label": ""
+    }
+},
+{
+    "model": "metadata_registry.genome",
+    "pk": 6,
+    "fields": {
+        "assembly": 4,
+        "organism": 4,
+        "genebuild": "2008-11-Ensembl",
+        "has_pan_compara": 0,
+        "has_variation": 0,
+        "has_microarray": 0,
+        "has_peptide_compara": 0,
+        "has_genome_alignments": 0,
+        "has_synteny": 0,
+        "has_other_alignments": 1,
+        "genome_uuid": "e828bc42-d7cc-11ea-8939-a860b61be8b7",
+        "created" : "2020-08-06 10:09:23.030895"
+    }
+},
+{
+    "model": "metadata_registry.genomedivision",
+    "pk": 1,
+    "fields": {
+        "division_id":1,
+        "genome_id":6
+    }
+},
+{
+    "model": "metadata_registry.genomerelease",
+    "pk": 1,
+    "fields": {
+        "data_release_id":1,
+        "division_id":1,
+        "genome_uuid_id":"e828bc42-d7cc-11ea-8939-a860b61be8b7"
+    }
+},
+{
+    "model": "metadata_registry.genomefeature",
+    "pk": 5,
+    "fields": {
+        "genome": 6,
+        "type": "simpleFeatures",
+        "analysis": "cpg",
+        "count": 9846, 
+        "genome_database_id":5
+    }
+},
+{
+    "model": "metadata_registry.genomefeature",
+    "pk": 4,
+    "fields": {
+        "genome": 6,
+        "type": "simpleFeatures",
+        "analysis": "eponine",
+        "count": 15629, 
+        "genome_database_id":5
+    }
+},
+{
+    "model": "metadata_registry.genomefeature",
+    "pk": 3,
+    "fields": {
+        "genome": 6,
+        "type": "repeatFeatures",
+        "analysis": "trf",
+        "count": 495238, 
+        "genome_database_id":5
+    }
+},
+{
+    "model": "metadata_registry.genomefeature",
+    "pk": 2,
+    "fields": {
+        "genome": 6,
+        "type": "repeatFeatures",
+        "analysis": "dust",
+        "count": 1676705, 
+        "genome_database_id":5
+    }
+},
+{
+    "model": "metadata_registry.genomefeature",
+    "pk": 1,
+    "fields": {
+        "genome": 6,
+        "type": "repeatFeatures",
+        "analysis": "repeatmask",
+        "count": 2151009, 
+        "genome_database_id":5
+    }
+}
+]

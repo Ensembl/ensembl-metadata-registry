@@ -1,0 +1,381 @@
+[
+{
+    "model": "metadata_registry.organism",
+    "pk": 21,
+    "fields": {
+        "taxonomy_id": 9796,
+        "reference":null,
+        "species_taxonomy_id": 9796,
+        "name": "equus_caballus",
+        "display_name": "Horse",
+        "strain": null,
+        "serotype": null,
+        "description": null,
+        "image": null,
+        "group_id": null
+    }
+},
+{
+    "model": "metadata_registry.assembly",
+    "pk": 21,
+    "fields": {
+        "assembly_accession": null,
+        "assembly_name": "Equ Cab 2",
+        "assembly_level": "chromosome",
+        "base_count": 2474929062
+    }
+},
+{
+    "model": "metadata_registry.organism",
+    "pk": 20,
+    "fields": {
+        "taxonomy_id": 9103,
+        "reference":null,
+        "species_taxonomy_id": 9103,
+        "name": "meleagris_gallopavo",
+        "display_name": "Turkey",
+        "strain": null,
+        "serotype": null,
+        "description": null,
+        "image": null,
+        "group_id": null
+    }
+},
+{
+    "model": "metadata_registry.assembly",
+    "pk": 20,
+    "fields": {
+        "assembly_accession": null,
+        "assembly_name": "Turkey_2.01",
+        "assembly_level": "chromosome",
+        "base_count": 1061817103
+    }
+},
+{
+    "model": "metadata_registry.organism",
+    "pk": 16,
+    "fields": {
+        "taxonomy_id": 559292,
+        "reference":null,
+        "species_taxonomy_id": 4932,
+        "name": "saccharomyces_cerevisiae",
+        "display_name": "Saccharomyces cerevisiae",
+        "strain": "S288C",
+        "serotype": null,
+        "description": null,
+        "image": null,
+        "group_id": null
+    }
+},
+{
+    "model": "metadata_registry.assembly",
+    "pk": 16,
+    "fields": {
+        "assembly_accession": null,
+        "assembly_name": "R64-1-1",
+        "assembly_level": "chromosome",
+        "base_count": 12157105
+    }
+},
+{
+    "model": "metadata_registry.organism",
+    "pk": 14,
+    "fields": {
+        "taxonomy_id": 9031,
+        "reference":null,
+        "species_taxonomy_id": 9031,
+        "name": "gallus_gallus",
+        "display_name": "Chicken",
+        "strain": null,
+        "serotype": null,
+        "description": null,
+        "image": null,
+        "group_id": null
+    }
+},
+{
+    "model": "metadata_registry.assembly",
+    "pk": 14,
+    "fields": {
+        "assembly_accession": null,
+        "assembly_name": "Galgal4",
+        "assembly_level": "chromosome",
+        "base_count": 1046932099
+    }
+},
+{
+    "model": "metadata_registry.organism",
+    "pk": 7,
+    "fields": {
+        "taxonomy_id": 7227,
+        "reference":null,
+        "species_taxonomy_id": 7227,
+        "name": "drosophila_melanogaster",
+        "display_name": "Drosophila melanogaster",
+        "strain": null,
+        "serotype": null,
+        "description": null,
+        "image": null,
+        "group_id": null
+    }
+},
+{
+    "model": "metadata_registry.assembly",
+    "pk": 7,
+    "fields": {
+        "assembly_accession": null,
+        "assembly_name": "BDGP6",
+        "assembly_level": "chromosome",
+        "base_count": 143725995
+    }
+},
+{
+    "model": "metadata_registry.ensemblsite",
+    "pk": 1,
+    "fields": {
+        "label": "Ensembl",
+        "uri" : "http://www.ensembl.org"
+    }
+},
+{
+    "model": "metadata_registry.datarelease",
+    "pk": 1,
+    "fields": {
+        "version": 80,
+        "release_date": "2015-05-20",
+        "is_current": null,
+        "site_id": 1,
+        "label": ""
+    }
+},
+{
+    "model": "metadata_registry.genome",
+    "pk": 21,
+    "fields": {
+        "assembly": 21,
+        "organism": 21,
+        "genebuild": "2007-09-Ensembl",
+        "has_pan_compara": 0,
+        "has_variation": 1,
+        "has_microarray": 0,
+        "has_peptide_compara": 0,
+        "has_genome_alignments": 0,
+        "has_synteny": 0,
+        "has_other_alignments": 1,
+        "genome_uuid": "e83cf75c-d7cc-11ea-8939-a860b61be8b7",
+        "created" : "2020-08-06 10:09:23.030895"
+    }
+},
+{
+    "model": "metadata_registry.genome",
+    "pk": 20,
+    "fields": {
+        "assembly": 20,
+        "organism": 20,
+        "genebuild": "2010-09-Ensembl",
+        "has_pan_compara": 0,
+        "has_variation": 1,
+        "has_microarray": 0,
+        "has_peptide_compara": 0,
+        "has_genome_alignments": 0,
+        "has_synteny": 0,
+        "has_other_alignments": 1,
+        "genome_uuid": "e84e56e6-d7cc-11ea-8939-a860b61be8b7",
+        "created" : "2020-08-06 10:09:23.030895"
+    }
+},
+{
+    "model": "metadata_registry.genome",
+    "pk": 16,
+    "fields": {
+        "assembly": 16,
+        "organism": 16,
+        "genebuild": "2011-09-SGD",
+        "has_pan_compara": 0,
+        "has_variation": 1,
+        "has_microarray": 0,
+        "has_peptide_compara": 0,
+        "has_genome_alignments": 0,
+        "has_synteny": 0,
+        "has_other_alignments": 1,
+        "genome_uuid": "e85f51b2-d7cc-11ea-8939-a860b61be8b7",
+        "created" : "2020-08-06 10:09:23.030895"
+    }
+},
+{
+    "model": "metadata_registry.genome",
+    "pk": 14,
+    "fields": {
+        "assembly": 14,
+        "organism": 14,
+        "genebuild": "2011-12-Ensembl",
+        "has_pan_compara": 0,
+        "has_variation": 1,
+        "has_microarray": 0,
+        "has_peptide_compara": 0,
+        "has_genome_alignments": 0,
+        "has_synteny": 0,
+        "has_other_alignments": 1,
+        "genome_uuid": "e870be8e-d7cc-11ea-8939-a860b61be8b7",
+        "created" : "2020-08-06 10:09:23.030895"
+    }
+},
+{
+    "model": "metadata_registry.genome",
+    "pk": 5,
+    "fields": {
+        "assembly": 7,
+        "organism": 7,
+        "genebuild": "2014-05-FlyBase",
+        "has_pan_compara": 0,
+        "has_variation": 1,
+        "has_microarray": 0,
+        "has_peptide_compara": 0,
+        "has_genome_alignments": 0,
+        "has_synteny": 0,
+        "has_other_alignments": 1,
+        "genome_uuid": "e8acb7d6-d7cc-11ea-8939-a860b61be8b7",
+        "created" : "2020-08-06 10:09:23.030895"
+    }
+},
+{
+    "model": "metadata_registry.genomedivision",
+    "pk": 5,
+    "fields": {
+        "division_id": 1,
+        "genome_id": 21
+    }
+},
+{
+    "model": "metadata_registry.genomedivision",
+    "pk": 4,
+    "fields": {
+        "division_id": 1,
+        "genome_id": 20
+    }
+},
+{
+    "model": "metadata_registry.genomedivision",
+    "pk": 3,
+    "fields": {
+        "division_id": 5,
+        "genome_id": 16
+    }
+},
+{
+    "model": "metadata_registry.genomedivision",
+    "pk": 2,
+    "fields": {
+        "division_id": 1,
+        "genome_id": 14
+    }
+},
+{
+    "model": "metadata_registry.genomedivision",
+    "pk": 1,
+    "fields": {
+        "division_id": 1,
+        "genome_id": 5
+    }
+},
+{
+    "model": "metadata_registry.genomerelease",
+    "pk": 5,
+    "fields": {
+        "data_release_id":1,
+        "division_id":1,
+        "genome_uuid_id":"e83cf75c-d7cc-11ea-8939-a860b61be8b7"
+    }
+},
+{
+    "model": "metadata_registry.genomerelease",
+    "pk": 4,
+    "fields": {
+        "data_release_id":1,
+        "division_id":1,
+        "genome_uuid_id":"e84e56e6-d7cc-11ea-8939-a860b61be8b7"
+    }
+},
+{
+    "model": "metadata_registry.genomerelease",
+    "pk": 3,
+    "fields": {
+        "data_release_id":1,
+        "division_id":5,
+        "genome_uuid_id":"e85f51b2-d7cc-11ea-8939-a860b61be8b7"
+    }
+},
+{
+    "model": "metadata_registry.genomerelease",
+    "pk": 2,
+    "fields": {
+        "data_release_id":1,
+        "division_id":1,
+        "genome_uuid_id":"e870be8e-d7cc-11ea-8939-a860b61be8b7"
+    }
+},
+{
+    "model": "metadata_registry.genomerelease",
+    "pk": 1,
+    "fields": {
+        "data_release_id":1,
+        "division_id":1,
+        "genome_uuid_id":"e8acb7d6-d7cc-11ea-8939-a860b61be8b7"
+    }
+},
+{
+    "model": "metadata_registry.genomevariation",
+    "pk": 5,
+    "fields": {
+        "genome": 21,
+        "type": "variations",
+        "name": "dbSNP",
+        "count": 4974054,
+        "genome_database_id": 1
+    }
+},
+{
+    "model": "metadata_registry.genomevariation",
+    "pk": 4,
+    "fields": {
+        "genome": 20,
+        "type": "variations",
+        "name": "dbSNP",
+        "count": 9275,
+        "genome_database_id": 1
+    }
+},
+{
+    "model": "metadata_registry.genomevariation",
+    "pk": 3,
+    "fields": {
+        "genome": 16,
+        "type": "variations",
+        "name": "SGRP",
+        "count": 263537,
+        "genome_database_id": 1
+    }
+},
+{
+    "model": "metadata_registry.genomevariation",
+    "pk": 2,
+    "fields": {
+        "genome": 14,
+        "type": "variations",
+        "name": "dbSNP",
+        "count": 9526068,
+        "genome_database_id": 1
+    }
+},
+{
+    "model": "metadata_registry.genomevariation",
+    "pk": 1,
+    "fields": {
+        "genome": 5,
+        "type": "variations",
+        "name": "DPGP",
+        "count": 6794559,
+        "genome_database_id": 1
+    }
+}
+]

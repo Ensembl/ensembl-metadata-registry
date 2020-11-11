@@ -1,0 +1,65 @@
+[
+{
+    "model": "metadata_registry.datarelease",
+    "pk": 5,
+    "fields": {
+        "version": 96,
+        "release_date": "2019-03-27",
+        "is_current": 1,
+        "site_id": 1,
+        "label": "Release 96"
+    }
+},
+{
+    "model": "metadata_registry.datarelease",
+    "pk": 4,
+    "fields": {
+        "version": 83,
+        "release_date": "2015-12-08",
+        "is_current": 0,
+        "site_id": 1,
+        "label": "Release 83"
+    }
+},
+{
+    "model": "metadata_registry.datarelease",
+    "pk": 3,
+    "fields": {
+        "version": 82,
+        "release_date": "2015-09-30",
+        "is_current": 0,
+        "site_id": 1,
+        "label": "Release 82"
+    }
+},
+{
+    "model": "metadata_registry.datarelease",
+    "pk": 2,
+    "fields": {
+        "version": 81,
+        "release_date": "2015-07-16",
+        "is_current": 0,
+        "site_id": 1,
+        "label": "Release 81"
+    }
+},
+{
+    "model": "metadata_registry.datarelease",
+    "pk": 1,
+    "fields": {
+        "version": 80,
+        "release_date": "2015-05-20",
+        "is_current": 0,
+        "site_id": 1,
+        "label": "Release 80"
+    }
+},
+{
+    "model": "metadata_registry.ensemblsite",
+    "pk": 1,
+    "fields": {
+        "label": "Ensembl",
+        "uri" : "http://www.ensembl.org"
+    }
+}
+]

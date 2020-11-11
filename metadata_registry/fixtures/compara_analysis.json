@@ -1,0 +1,67 @@
+[
+{
+    "model": "metadata_registry.datarelease",
+    "pk": 40,
+    "fields": {
+        "version": 81,
+        "release_date": "2015-12-08",
+        "is_current": 0
+    }
+},
+{
+    "model": "metadata_registry.comparaanalysis",
+    "pk": 5,
+    "fields": {
+        "method": "LASTZ_NET",
+        "set_name": "H.sap-T.nig lastz-net (on H.sap)",
+        "dbname": "ensembl_compara_81",
+        "division": 2,
+        "data_release": 40
+    }
+},
+{
+    "model": "metadata_registry.comparaanalysis",
+    "pk": 4,
+    "fields": {
+        "method": "LASTZ_NET",
+        "set_name": "D.rer-R.nor lastz-net (on R.nor)",
+        "dbname": "ensembl_compara_81",
+        "division": 2,
+        "data_release": 40
+    }
+},
+{
+    "model": "metadata_registry.comparaanalysis",
+    "pk": 3,
+    "fields": {
+        "division": "ensembl_compara_81",
+        "method": "BLASTZ_NET",
+        "set_name": "O.lat-G.acu blastz-net (on O.lat)",
+        "dbname": "ensembl_compara_81",
+        "division": 2,
+        "data_release": 40
+    }
+},
+{
+    "model": "metadata_registry.comparaanalysis",
+    "pk": 2,
+    "fields": {
+        "method": "BLASTZ_NET",
+        "set_name": "M.dom-M.eug blastz-net (on M.dom)",
+        "dbname": "ensembl_compara_81",
+        "division": 2,
+        "data_release": 40
+    }
+},
+{
+    "model": "metadata_registry.comparaanalysis",
+    "pk": 1,
+    "fields": {
+        "method": "PROTEIN_TREES",
+        "set_name": "collection-ensembl",
+        "dbname": "ensembl_compara_81",
+        "division": 2,
+        "data_release": 40
+    }
+}
+]
