@@ -17,7 +17,7 @@ INSTALLED_APPS += ['metadata_orm']
 DATABASES.update({
     'metadata': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ensembl_metadata',
+        'NAME': env.METADATA_DB_OLD,
         'USER': secrets.DATABASE_USER,
         'PASSWORD': secrets.DATABASE_PASSWORD,
         'HOST': secrets.DATABASE_HOST,
