@@ -18,7 +18,6 @@ This script is intended to allow import migration from pre-2020 Ensembl metadata
 Authors: Thomas Maurel / Marc Chakiachvili
 '''
 from django.conf import settings
-from ensembl_metadata.settings import secrets
 
 from metadata_orm.models import Assembly as AssemblyCurrent, AssemblySequence as AssemblySequenceCurrent, \
     ComparaAnalysis as ComparaAnalysisCurrent, \
@@ -43,7 +42,7 @@ class Command(BaseCommand):
     help = 'Migrate data from previous Ensembl Metadata schema version'
 
     def add_arguments(self, parser):
-        parser.add_argument('-r', '--releases', type=str, required=True,
+        parser.add_argument('-r', '--releases', type=str, required=False,
                             help='Ensembl release number(s) - format: XX, -XX, XX-, XX-YY')
         parser.add_argument('-s', '--site', type=str, required=False, default='Ensembl',
                             help='Ensembl release number(s) - format: XX, -XX, XX-, XX-YY')
@@ -139,8 +138,7 @@ class Command(BaseCommand):
             NewGenome.genebuild = GenomeCurr.genebuild
             NewGenome.has_pan_compara = GenomeCurr.has_pan_compara
             NewGenome.has_variation = GenomeCurr.has_variations
-            # NewGenome.has_microarray = GenomeCurr.has_microarray
-            NewGenome.has_microarray = 0
+            NewGenome.has_microarray = GenomeCurr.has_microarray
             NewGenome.has_peptide_compara = GenomeCurr.has_peptide_compara
             NewGenome.has_genome_alignments = GenomeCurr.has_genome_alignments
             NewGenome.has_synteny = GenomeCurr.has_synteny

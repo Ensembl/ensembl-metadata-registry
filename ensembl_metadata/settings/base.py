@@ -11,22 +11,22 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from ensembl_metadata.settings import env
 from ensembl_metadata.settings import secrets
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '$@_oa*gtx=_xx$g+$u__^5@-#ig33rt$pcs%=zaiuq1*k4y&mn'
+SECRET_KEY = secrets.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'prem-ml']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 DATABASE_ROUTERS = ['ensembl_metadata.routers.EnsemblMetaDataRegistryRouter']
 
@@ -74,71 +74,32 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ensembl_metadata.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-if 'TRAVIS' in os.environ:
-    SECRET_KEY = "SecretKeyForUseOnTravis"
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'ensembl_metadata',
-            'USER': 'root',
-            'PASSWORD': '',
-            'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-            'PORT': '3306',
-        },
-        'ensembl_meta': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'ensembl_metadata_2020',
-            'USER': 'root',
-            'PASSWORD': '',
-            'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-            'PORT': '3306',
-        },
-        'ncbi_taxonomy': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'ncbi_taxonomy',
-            'USER': 'root',
-            'PASSWORD': '',
-            'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-            'PORT': '3306',
-        }
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'ensembl_metadata_registry',
-            'USER': secrets.DATABASE_USER,
-            'PASSWORD': secrets.DATABASE_PASSWORD,
-            'HOST': secrets.DATABASE_HOST,
-            'PORT': secrets.DATABASE_PORT,
-        },
-        'ensembl_meta': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': secrets.METADATA_DB,
-            'USER': secrets.DATABASE_USER,
-            'PASSWORD': secrets.DATABASE_PASSWORD,
-            'HOST': secrets.DATABASE_HOST,
-            'PORT': secrets.DATABASE_PORT,
-            'OPTIONS': {
-            # Tell MySQLdb to connect with 'utf8mb4' character set
+DATABASES = {
+    'default': {},
+    'ensembl_metadata': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env.METADATA_DB,
+        'USER': secrets.DATABASE_USER,
+        'PASSWORD': secrets.DATABASE_PASSWORD,
+        'HOST': secrets.DATABASE_HOST,
+        'PORT': secrets.DATABASE_PORT,
+        'OPTIONS': {
             'charset': 'utf8mb4',
-             'init_command': 'SET default_storage_engine=InnoDB'
-            }
-        },
-        'ncbi_taxonomy': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'ncbi_taxonomy',
-            'USER': secrets.DATABASE_USER,
-            'PASSWORD': secrets.DATABASE_PASSWORD,
-            'HOST': secrets.DATABASE_HOST,
-            'PORT': secrets.DATABASE_PORT,
+            'init_command': 'SET default_storage_engine=InnoDB'
         }
+    },
+    'ncbi_taxonomy': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env.TAXONOMY_DB,
+        'USER': secrets.DATABASE_USER,
+        'PASSWORD': secrets.DATABASE_PASSWORD,
+        'HOST': secrets.DATABASE_HOST,
+        'PORT': secrets.DATABASE_PORT,
     }
-
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators

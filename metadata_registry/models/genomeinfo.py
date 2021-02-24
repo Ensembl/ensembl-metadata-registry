@@ -35,7 +35,7 @@ class Genome(models.Model):
     genome_uuid = models.CharField(max_length=128, default=uuid.uuid1, unique=True)
     assembly = models.ForeignKey(Assembly, models.CASCADE, related_name=MANY2ONE_RELATED['ASSEMBLY'])
     organism = models.ForeignKey(Organism, models.CASCADE, related_name=MANY2ONE_RELATED['ORGANISM'])
-    genebuild = models.CharField(max_length=64)
+    genebuild = models.CharField(max_length=255)
     has_pan_compara = models.IntegerField()
     has_variation = models.IntegerField()
     has_microarray = models.IntegerField()
