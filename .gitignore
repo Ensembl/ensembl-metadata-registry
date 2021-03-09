@@ -11,7 +11,7 @@ __pycache__/
 coverage.xml
 *.swp
 .DS_Store
-ensembl_metadata/settings/secrets.py
+metadata_registry/settings/secrets.py
 log
 apache
 tmp
