@@ -1,0 +1,4 @@
+/* Hide the over-large and unnecessary 'Authorize' section */
+.scheme-container {
+    display: none;
+}
