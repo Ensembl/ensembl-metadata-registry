@@ -1,23 +1,7 @@
-"""
-.. See the NOTICE file distributed with this work for additional information
-   regarding copyright ownership.
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-       http://www.apache.org/licenses/LICENSE-2.0
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-"""
-
 from django.db import models
 
 
 class Organism(models.Model):
-    ONE2MANY_RELATED = {'ORGANISM_ALIAS': 'organism_alias', 'ORGANISM_PUBLICAION': 'organism_publication'}
-
     organism_id = models.AutoField(primary_key=True)
     taxonomy_id = models.IntegerField()
     reference = models.CharField(max_length=128, blank=True, null=True)
@@ -30,8 +14,8 @@ class Organism(models.Model):
     image = models.TextField(blank=True, null=True)
     scientific_name = models.CharField(max_length=128, blank=True, null=True)
     url_name = models.CharField(max_length=128)
-    group = models.ForeignKey('metadata_registry.OrganismGroup', on_delete=models.CASCADE,
-                              related_name='group_organisms', blank=True,
+    group = models.ForeignKey('ensembl_metadata.OrganismGroup', on_delete=models.CASCADE,
+                              related_name='organisms', blank=True,
                               null=True)
 
     class Meta:
@@ -41,7 +25,7 @@ class Organism(models.Model):
 
 class OrganismAlias(models.Model):
     organism_alias_id = models.AutoField(primary_key=True)
-    organism = models.ForeignKey(Organism, models.CASCADE, related_name=Organism.ONE2MANY_RELATED['ORGANISM_ALIAS'])
+    organism = models.ForeignKey(Organism, on_delete=models.CASCADE, related_name='aliases')
     alias = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
@@ -52,8 +36,8 @@ class OrganismAlias(models.Model):
 
 class OrganismPublication(models.Model):
     organism_publication_id = models.AutoField(primary_key=True)
-    organism = models.ForeignKey(Organism, models.CASCADE,
-                                 related_name=Organism.ONE2MANY_RELATED['ORGANISM_PUBLICAION'])
+    organism = models.ForeignKey(Organism, on_delete=models.CASCADE,
+                                 related_name='publications')
     publication = models.CharField(max_length=64, blank=True, null=True)
 
     class Meta:
@@ -63,15 +47,15 @@ class OrganismPublication(models.Model):
 
 
 class OrganismGroup(models.Model):
-    class Meta:
-        managed = True
-        db_table = 'group'
-
     group_id = models.AutoField(primary_key=True, blank=True)
     type = models.CharField(max_length=255, blank=True, null=True)
     label = models.CharField(max_length=255, blank=True, null=True)
-    reference_organism = models.ForeignKey('metadata_registry.Organism',
+    reference_organism = models.ForeignKey(Organism,
                                            null=True,
                                            on_delete=models.CASCADE,
                                            related_name='reference_groups')
+
+    class Meta:
+        managed = True
+        db_table = 'group'
 
