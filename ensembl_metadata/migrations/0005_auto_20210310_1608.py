@@ -15,16 +15,19 @@ class Migration(migrations.Migration):
             name='chromosomal',
             field=models.BooleanField(default=False),
         ),
+        migrations.RunSQL('ALTER TABLE assembly_sequence ALTER COLUMN chromosomal SET DEFAULT 0'),
         migrations.AddField(
             model_name='assemblysequence',
             name='length',
             field=models.IntegerField(default=0),
         ),
+        migrations.RunSQL('ALTER TABLE assembly_sequence ALTER COLUMN length SET DEFAULT 0'),
         migrations.AddField(
             model_name='assemblysequence',
             name='sequence_location',
             field=models.CharField(default='SO:0000738', max_length=10),
         ),
+        migrations.RunSQL('ALTER TABLE assembly_sequence ALTER COLUMN sequence_location SET DEFAULT "SO:0000738"'),
         migrations.AlterUniqueTogether(
             name='assemblysequence',
             unique_together={('assembly', 'name')},
