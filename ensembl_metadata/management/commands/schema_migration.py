@@ -21,14 +21,11 @@ from metadata_orm.models import \
 from ensembl_metadata.models.assembly import \
     Assembly, \
     AssemblySequence
-from ensembl_metadata.models.compara import \
-    ComparaAnalysis, \
-    ComparaAnalysisEvent
 from ensembl_metadata.models.datarelease import \
     DataRelease, \
-    Division, \
-    EnsemblSite
+    Site
 from ensembl_metadata.models.genome import \
+    Division, \
     Genome, \
     GenomeAlignment, \
     GenomeAnnotation, \
@@ -38,11 +35,12 @@ from ensembl_metadata.models.genome import \
     GenomeFeature, \
     GenomeVariation, \
     GenomeRelease, \
-    GenomeDivision
+    GenomeDivision, \
+    ComparaAnalysis, \
+    ComparaAnalysisEvent
 from ensembl_metadata.models.organism import \
     Organism, \
     OrganismAlias, \
-    OrganismPublication, \
     OrganismGroup
 from django.core.management.base import BaseCommand
 
@@ -76,18 +74,18 @@ class Command(BaseCommand):
         # Use EG=1 for RR or sister projects of ensembl
         eg = options['eg']
 
-        # Dealing with Ensembl Site
-        new_ensembl_site = EnsemblSite()
+        # Dealing with Site
+        new_site = Site()
 
         if site == 'RR':
             # For Rapid Release
-            new_ensembl_site.label = 'Rapid Release'
-            new_ensembl_site.uri = 'https://rapid.ensembl.org/index.html'
+            new_site.label = 'Rapid Release'
+            new_site.uri = 'https://rapid.ensembl.org/index.html'
         else:
-            new_ensembl_site.label = 'Ensembl Release'
-            new_ensembl_site.uri = 'https://www.ensembl.org/index.html'
+            new_site.label = 'Ensembl Release'
+            new_site.uri = 'https://www.ensembl.org/index.html'
 
-        new_ensembl_site.save()
+        new_site.save()
 
         # Dealing with data release
         if release:
@@ -131,7 +129,7 @@ class Command(BaseCommand):
             new_data_release.release_date = DataReleaseCurr.release_date
             new_data_release.is_current = DataReleaseCurr.is_current
             new_data_release.data_release_id = DataReleaseCurr.data_release_id
-            new_data_release.site_id = new_ensembl_site.site_id
+            new_data_release.site_id = new_site.site_id
             new_data_release.save()
 
         # Populating division table
@@ -183,9 +181,6 @@ class Command(BaseCommand):
             # Deal with organism Alias
             organism_alias_curr = OrganismAliasCurrent.objects.filter(organism_id=new_organism.organism_id)
             OrganismAlias.objects.bulk_create(organism_alias_curr, ignore_conflicts=True)
-            # Deal with organism publication
-            organism_publication_curr = OrganismPublicationCurrent.objects.filter(organism_id=new_organism.organism_id)
-            OrganismPublication.objects.bulk_create(organism_publication_curr)
             new_genome.organism = new_organism
             # Dealing with Assembly table
             # Populating AssemblySequence table is time consuming so better check if data exist first
