@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from ensembl_metadata.models.datarelease import DataRelease, EnsemblSite
+from ensembl_metadata.models.datarelease import DataRelease, Site
 
 
 class SiteSerializer(serializers.ModelSerializer):
     class Meta:
-        model = EnsemblSite
+        model = Site
         exclude = ['site_id']
 
 

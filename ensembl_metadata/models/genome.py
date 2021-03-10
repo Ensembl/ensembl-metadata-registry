@@ -196,3 +196,4 @@ class GenomeComparaAnalysis(models.Model):
         managed = True
         db_table = 'genome_compara_analysis'
         unique_together = (('genome', 'compara_analysis'),)
+

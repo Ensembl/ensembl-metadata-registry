@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class EnsemblSite(models.Model):
+class Site(models.Model):
     site_id = models.AutoField(primary_key=True)
     label = models.CharField(max_length=64)
     uri = models.CharField(max_length=64)
@@ -17,12 +17,11 @@ class DataRelease(models.Model):
     version = models.IntegerField()
     release_date = models.DateField()
     is_current = models.IntegerField(blank=True, null=True)
-    site = models.ForeignKey(EnsemblSite, on_delete=models.CASCADE,
+    site = models.ForeignKey(Site, on_delete=models.CASCADE,
                              blank=True, null=True,
                              related_name='data_releases')
 
     class Meta:
         managed = True
         db_table = 'ensembl_release'
-
-
+        unique_together = (('version', 'site'),)

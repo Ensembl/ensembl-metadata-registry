@@ -1,4 +1,5 @@
 from django.db import models
+from ncbi_taxonomy.models import TaxonomyNode
 
 
 class Organism(models.Model):
@@ -6,12 +7,9 @@ class Organism(models.Model):
     taxonomy_id = models.IntegerField()
     reference = models.CharField(max_length=128, blank=True, null=True)
     species_taxonomy_id = models.IntegerField()
-    name = models.CharField(max_length=128)
+    name = models.CharField(unique=True, max_length=128)
     display_name = models.CharField(max_length=128)
     strain = models.CharField(max_length=128, blank=True, null=True)
-    serotype = models.CharField(max_length=128, blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
-    image = models.TextField(blank=True, null=True)
     scientific_name = models.CharField(max_length=128, blank=True, null=True)
     url_name = models.CharField(max_length=128)
     group = models.ForeignKey('ensembl_metadata.OrganismGroup', on_delete=models.CASCADE,
@@ -21,6 +19,9 @@ class Organism(models.Model):
     class Meta:
         managed = True
         db_table = 'organism'
+
+    def taxon(self):
+        return TaxonomyNode.objects.get(taxon_id=self.taxonomy_id)
 
 
 class OrganismAlias(models.Model):
@@ -32,18 +33,6 @@ class OrganismAlias(models.Model):
         managed = True
         db_table = 'organism_alias'
         unique_together = (('organism', 'alias'),)
-
-
-class OrganismPublication(models.Model):
-    organism_publication_id = models.AutoField(primary_key=True)
-    organism = models.ForeignKey(Organism, on_delete=models.CASCADE,
-                                 related_name='publications')
-    publication = models.CharField(max_length=64, blank=True, null=True)
-
-    class Meta:
-        managed = True
-        db_table = 'organism_publication'
-        unique_together = (('organism', 'publication'),)
 
 
 class OrganismGroup(models.Model):
