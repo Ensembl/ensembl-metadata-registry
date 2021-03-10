@@ -20,22 +20,11 @@ class AssemblySequence(models.Model):
     assembly = models.ForeignKey(Assembly, on_delete=models.CASCADE, related_name='sequences')
     name = models.CharField(max_length=40)
     acc = models.CharField(max_length=24, blank=True, null=True)
+    sequence_location = models.CharField(max_length=10, default='SO:0000738')
+    length = models.IntegerField(default=0)  # default to be removed once we have fully migrated to new schema
+    chromosomal = models.BooleanField(default=False)  # default to be removed once we have fully migrated to new schema
 
     class Meta:
         managed = True
         db_table = 'assembly_sequence'
-        unique_together = (('assembly', 'name', 'acc'),)
-
-
-class AssemblyKaryotype(models.Model):
-    assembly_karyotype_id = models.AutoField(primary_key=True)
-    assembly = models.ForeignKey(Assembly, models.CASCADE, related_name='karyotypes')
-    region_name = models.CharField(max_length=40)
-    region_start = models.IntegerField()
-    region_end = models.IntegerField()
-    band = models.CharField(max_length=50)
-    strain = models.CharField(max_length=50)
-
-    class Meta:
-        managed = True
-        db_table = 'assembly_karyotype'
+        unique_together = (('assembly', 'name'),)
