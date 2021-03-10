@@ -1,56 +1,42 @@
-"""
-.. See the NOTICE file distributed with this work for additional information
-   regarding copyright ownership.
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-       http://www.apache.org/licenses/LICENSE-2.0
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-"""
-
-
-
-from rest_framework import generics
-from metadata_registry.models.datarelease import DataRelease
-from metadata_registry.api.datarelease.serializers import DataReleaseSerializer
-from metadata_registry.api.datarelease.filters import DatareleaseFilterBackend
-from rest_framework.pagination import PageNumberPagination
-from metadata_registry.utils.decorators import setup_eager_loading
-from metadata_registry.views.base import DataTableListApi
-from metadata_registry.utils.schema_utils import SchemaUtils
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters, generics
+from ensembl_metadata.models.datarelease import DataRelease
+from ensembl_metadata.api.datarelease.serializers import DataReleaseSerializer
 
 
 class DataReleaseList(generics.ListAPIView):
+    """
+    Return a list of releases.
+    """
+    name = 'Releases'
+
     queryset = DataRelease.objects.all()
     serializer_class = DataReleaseSerializer
-    filter_backends = (DatareleaseFilterBackend,)
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    filterset_fields = ['is_current']
+    ordering_fields = ['version', 'release_date']
+    ordering = ['version']
 
-
-class DataReleaseDatatableView(DataTableListApi):
-    serializer_class = DataReleaseSerializer
-    search_parameters = SchemaUtils.get_field_names(app_name='metadata_registry', model_name='datarelease', exclude_pk=False)
-    default_order_by = 2
-    queryset = DataRelease.objects.all()
+    def get_queryset(self):
+        version = self.kwargs.get('version', None)
+        if version is not None:
+            queryset = DataRelease.objects.filter(version=version)
+        else:
+            queryset = DataRelease.objects.all()
+        return queryset
 
 
 class DataReleaseDetail(generics.RetrieveAPIView):
+    """
+    Return a single release.
+    """
+    name = 'Release'
+
     queryset = DataRelease.objects.all()
     serializer_class = DataReleaseSerializer
 
-# ============For Datatables========
-class NotPaginatedSetPagination(PageNumberPagination):
-    page_size = None
-
-
-class DatareleaseInfoView(generics.ListAPIView):
-    serializer_class = DataReleaseSerializer
-    pagination_class = NotPaginatedSetPagination
-
-    @setup_eager_loading(DataReleaseSerializer)
-    def get_queryset(self):
-        queryset = DataRelease.objects.order_by('pk')
-        return queryset
+    def get_object(self):
+        version = self.kwargs['version']
+        site_label = self.kwargs['site']
+        obj = DataRelease.objects.get(version=version, site__label__startswith=site_label)
+        return obj
