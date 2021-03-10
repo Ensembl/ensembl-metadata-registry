@@ -1,29 +1,21 @@
-"""
-.. See the NOTICE file distributed with this work for additional information
-   regarding copyright ownership.
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-       http://www.apache.org/licenses/LICENSE-2.0
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-"""
-
-
 from rest_framework import serializers
-from ncbi_taxonomy.models import NcbiTaxaName, NcbiTaxaNode
+from ncbi_taxonomy.models import TaxonomyName, TaxonomyNode
 
 
-class NcbiTaxaNameSerializer(serializers.ModelSerializer):
+class TaxonomyNameSerializer(serializers.ModelSerializer):
     class Meta:
-        model = NcbiTaxaName
-        fields = '__all__'
+        model = TaxonomyName
+        fields = ['taxon_id', 'name_class', 'name']
 
 
-class NcbiTaxaNodeSerializer(serializers.ModelSerializer):
+class TaxonomyNodeSerializer(serializers.ModelSerializer):
+    names = TaxonomyNameSerializer(many=True, required=False)
+    scientific_name = serializers.SerializerMethodField()
+
     class Meta:
-        model = NcbiTaxaNode
-        fields = '__all__'
+        model = TaxonomyNode
+        fields = ['taxon_id', 'parent_id', 'rank', 'scientific_name', 'names']
+
+    def get_scientific_name(self, obj):
+        return TaxonomyName.objects.get(
+            taxon_id=obj.taxon_id, name_class='scientific name').name
