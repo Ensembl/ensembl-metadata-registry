@@ -14,7 +14,7 @@ class Command(BaseCommand):
     help = 'Add a primary key to the taxonomy name table'
 
     def handle(self, *args, **options):
-    auto_inc_sql = \
-        'ALTER TABLE ncbi_taxa_name ADD COLUMN name_id INT AUTO_INCREMENT PRIMARY KEY FIRST'
+        auto_inc_sql = \
+            'ALTER TABLE ncbi_taxa_name ADD COLUMN name_id INT AUTO_INCREMENT PRIMARY KEY FIRST'
         cursor = connections['ncbi_taxonomy'].cursor()
         cursor.execute(auto_inc_sql)
