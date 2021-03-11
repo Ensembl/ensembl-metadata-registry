@@ -32,14 +32,14 @@ class TaxonomyNode(models.Model):
 class TaxonomyName(models.Model):
     name_id = models.AutoField(primary_key=True)
     taxon = models.ForeignKey(TaxonomyNode, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255, blank=True, null=True)
-    name_class = models.CharField(max_length=50, blank=True, null=True)
+    name = models.CharField(max_length=255)
+    name_class = models.CharField(max_length=50)
 
     class Meta:
         managed = True
         db_table = 'ncbi_taxa_name'
         verbose_name = 'Taxon name'
-        unique_together = (('taxon_id', 'name', 'name_class'),)
+        unique_together = (('taxon', 'name', 'name_class'),)
 
     def __str__(self):
         return '{}: {} = {}'.format(self.taxon_id, self.name_class, self.name)

@@ -34,13 +34,13 @@ class Migration(migrations.Migration):
             fields=[
                 ('name_id', models.AutoField(primary_key=True)),
                 ('taxon', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ncbi_taxonomy.taxonomynode')),
-                ('name', models.CharField(blank=True, max_length=255, null=True)),
-                ('name_class', models.CharField(blank=True, max_length=50, null=True)),
+                ('name', models.CharField(max_length=255)),
+                ('name_class', models.CharField(max_length=50)),
             ],
             options={
                 'db_table': 'ncbi_taxa_name',
                 'managed': True,
-                'unique_together': {('taxon_id', 'name', 'name_class')},
+                'unique_together': {('taxon', 'name', 'name_class')},
                 'verbose_name': 'Taxon name'
             },
         ),
