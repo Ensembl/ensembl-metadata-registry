@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-from metadata_registry.settings import env
-from metadata_registry.settings import secrets
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -20,9 +18,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = secrets.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -77,37 +72,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'metadata_registry.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': env.REGISTRY_DB,
-        'USER': secrets.DATABASE_USER,
-        'PASSWORD': secrets.DATABASE_PASSWORD,
-        'HOST': secrets.DATABASE_HOST,
-        'PORT': secrets.DATABASE_PORT,
-    },
-    'ensembl_metadata': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': env.METADATA_DB,
-        'USER': secrets.DATABASE_USER,
-        'PASSWORD': secrets.DATABASE_PASSWORD,
-        'HOST': secrets.DATABASE_HOST,
-        'PORT': secrets.DATABASE_PORT,
-    },
-    'ncbi_taxonomy': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': env.TAXONOMY_DB,
-        'USER': secrets.DATABASE_USER,
-        'PASSWORD': secrets.DATABASE_PASSWORD,
-        'HOST': secrets.DATABASE_HOST,
-        'PORT': secrets.DATABASE_PORT,
-    }
-}
 
 
 # Password validation

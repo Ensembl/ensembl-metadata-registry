@@ -1,6 +1,7 @@
 from .base import *
 
 INSTALLED_APPS += ['metadata_orm']
+
 DATABASES.update({
     'metadata': {
         'ENGINE': 'django.db.backends.mysql',
