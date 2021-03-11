@@ -1,4 +1,4 @@
-from .base import *
+from .standard import *
 
 INSTALLED_APPS += ['metadata_orm']
 
