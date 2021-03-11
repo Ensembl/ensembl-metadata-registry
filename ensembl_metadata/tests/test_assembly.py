@@ -1,26 +1,13 @@
-"""
-.. See the NOTICE file distributed with this work for additional information
-   regarding copyright ownership.
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-       http://www.apache.org/licenses/LICENSE-2.0
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-"""
-
 import json
 
 from django.urls import reverse
 from rest_framework.test import APIClient
 from rest_framework.test import APITestCase
 
-from metadata_registry.models.assembly import Assembly
+from ensembl_metadata.models.assembly import Assembly
 
 
+"""
 class AssemblyTest(APITestCase):
     # TODO test assembly_sequence once enabled again in urls
     fixtures = ['assembly']
@@ -61,3 +48,4 @@ class AssemblyTest(APITestCase):
         self.assertEqual(response.status_code, 200)
         json_response = (json.loads(response.content.decode('utf8')))
         self.assertDictEqual(json_response, expected_assembly_response)
+"""

@@ -1,26 +1,14 @@
-"""
-.. See the NOTICE file distributed with this work for additional information
-   regarding copyright ownership.
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-       http://www.apache.org/licenses/LICENSE-2.0
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-"""
 from django.test import TestCase
 from rest_framework.test import APITestCase
 
-from metadata_registry.models.division import Division
-from metadata_registry.utils.division import DivisionUtils
-from metadata_registry.models.datarelease import DataRelease
-from metadata_registry.utils.datarelease import DataReleaseUtils
-from metadata_registry.utils.schema_utils import SchemaUtils
+from ensembl_metadata.models.genome import Division
+from ensembl_metadata.utils.division import DivisionUtils
+from ensembl_metadata.models.datarelease import DataRelease
+from ensembl_metadata.utils.datarelease import DataReleaseUtils
+from ensembl_metadata.utils.schema_utils import SchemaUtils
 
 
+"""
 class DataReleaseUtilsTest(APITestCase):
     fixtures = ['data_release']
     multi_db = True
@@ -77,3 +65,4 @@ class UtilsTestCase(TestCase):
         mappings = SchemaUtils.get_app_model_mappings()
         self.assertIn('metadata_registry', mappings['genome'], "Found model genome in metadata_registry app")
         self.assertIn('metadata_registry', mappings['datarelease'], "Found model datarelease in metadata_registry app")
+"""

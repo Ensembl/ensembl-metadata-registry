@@ -1,4 +1,4 @@
-from ensembl_metadata.models.division import Division
+from ensembl_metadata.models.genome import Division
 
 
 class DivisionUtils(object):
