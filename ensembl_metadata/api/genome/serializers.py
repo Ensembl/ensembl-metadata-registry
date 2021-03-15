@@ -1,78 +1,58 @@
 from rest_framework import serializers
-from ensembl_metadata.api.assembly.serializers import AssemblySerializer
-from ensembl_metadata.api.organism.serializers import OrganismSerializer
 from ensembl_metadata.models.genome import \
-    Division, Genome, GenomeAlignment, GenomeAnnotation, GenomeComparaAnalysis, \
-    GenomeDatabase, GenomeEvent, GenomeFeature, GenomeVariation, \
-    ComparaAnalysis, ComparaAnalysisEvent
+    Dataset, DatasetDatabase, DatasetStatistic, DatasetRelease, \
+    Genome, Bundle, GenomeBundle
+from ensembl_metadata.api.assembly.serializers import AssemblySerializer
+from ensembl_metadata.api.release.serializers import ReleaseSerializer
+from ncbi_taxonomy.api.serializers import TaxonomyNodeSerializer
 
 
-class DivisionSerializer(serializers.ModelSerializer):
+class DatasetDatabaseSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Division
-        fields = '__all__'
+        model = DatasetDatabase
+        exclude = ['dataset_database_id']
 
 
-class GenomeDatabaseSerializer(serializers.ModelSerializer):
+class DatasetStatisticSerializer(serializers.ModelSerializer):
     class Meta:
-        model = GenomeDatabase
-        exclude = ['genome_database_id', 'genome', 'species_id']
+        model = DatasetStatistic
+        fields = ('type', 'name', 'value')
+
+
+class DatasetSerializer(serializers.ModelSerializer):
+    dataset_database = DatasetDatabaseSerializer(many=False, required=True)
+
+    class Meta:
+        model = Dataset
+        exclude = ['dataset_id', 'genome']
+
+
+class DatasetReleaseSerializer(serializers.ModelSerializer):
+    dataset = DatasetSerializer(many=True, required=True)
+    release = ReleaseSerializer(many=True, required=True)
+
+    class Meta:
+        model = DatasetRelease
+        exclude = ['dataset_release_id']
 
 
 class GenomeSerializer(serializers.ModelSerializer):
-    assembly = AssemblySerializer(many=False, required=False)
-    organism = OrganismSerializer(many=False, required=False)
-    databases = GenomeDatabaseSerializer(many=True, required=False)
+    assembly = AssemblySerializer(many=False, required=True)
+    taxon = TaxonomyNodeSerializer(many=False, required=True)
+    datasets = DatasetSerializer(many=True, required=False)
 
     class Meta:
         model = Genome
-        exclude = ['genome_id', 'created']
+        exclude = ['genome_id']
 
 
-class GenomeAlignmentSerializer(serializers.ModelSerializer):
+class BundleSerializer(serializers.ModelSerializer):
     class Meta:
-        model = GenomeAlignment
-        fields = '__all__'
+        model = Bundle
+        exclude = ['bundle_id']
 
 
-class GenomeAnnotationSerializer(serializers.ModelSerializer):
+class GenomeBundleSerializer(serializers.ModelSerializer):
     class Meta:
-        model = GenomeAnnotation
-        fields = ['type', 'value']
-
-
-class GenomeComparaAnalysisSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = GenomeComparaAnalysis
-        fields = ('genome', 'compara_analysis')
-
-
-class GenomeEventSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = GenomeEvent
-        fields = '__all__'
-
-
-class GenomeFeatureSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = GenomeFeature
-        fields = '__all__'
-
-
-class GenomeVariationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = GenomeVariation
-        fields = ('type', 'name', 'count')
-
-
-class ComparaAnalysisSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ComparaAnalysis
-        fields = '__all__'
-
-
-class ComparaAnalysisEventSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ComparaAnalysisEvent
-        fields = '__all__'
+        model = GenomeBundle
+        exclude = ['genome_bundle_id']

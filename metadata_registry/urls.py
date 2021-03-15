@@ -8,8 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('assembly/', include('ensembl_metadata.urls.assembly')),
     path('genome/', include('ensembl_metadata.urls.genome')),
-    path('organism/', include('ensembl_metadata.urls.organism')),
-    path('release/', include('ensembl_metadata.urls.datarelease')),
+    path('release/', include('ensembl_metadata.urls.release')),
     path('taxonomy/', include('ncbi_taxonomy.urls')),
     path(
         'schema/',

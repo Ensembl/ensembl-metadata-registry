@@ -5,10 +5,10 @@ from ensembl_metadata.models.assembly import Assembly, AssemblySequence
 class AssemblySerializer(serializers.ModelSerializer):
     class Meta:
         model = Assembly
-        exclude = ['assembly_id', 'assembly_default']
+        exclude = ['assembly_id']
 
 
 class AssemblySequenceSerializer(serializers.ModelSerializer):
     class Meta:
         model = AssemblySequence
-        exclude = ['assembly', 'assembly_sequence_id']
+        exclude = ['assembly_sequence_id', 'assembly']
