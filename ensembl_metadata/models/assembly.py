@@ -7,7 +7,6 @@ class Assembly(models.Model):
     name = models.CharField(max_length=128)
     ucsc_name = models.CharField(max_length=16, blank=True, null=True)
     level = models.CharField(max_length=32)
-    base_count = models.BigIntegerField()
 
 
 class AssemblySequence(models.Model):
