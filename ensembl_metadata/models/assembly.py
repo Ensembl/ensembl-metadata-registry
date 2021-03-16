@@ -3,7 +3,7 @@ from django.db import models
 
 class Assembly(models.Model):
     assembly_id = models.AutoField(primary_key=True)
-    accession = models.CharField(unique=True, max_length=16, blank=True, null=True)
+    accession = models.CharField(unique=True, max_length=16)
     name = models.CharField(max_length=128)
     ucsc_name = models.CharField(max_length=16, blank=True, null=True)
     level = models.CharField(max_length=32)
