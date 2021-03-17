@@ -11,6 +11,7 @@ class TaxonomyUtils(object):
 
     @classmethod
     def fetch_descendent_ids(cls, taxon_ids):
+        # TODO: Replace raw SQL with a queryset command.
         cursor = connections['ncbi_taxonomy'].cursor()
         sql = "SELECT n.taxon_id FROM ncbi_taxa_node n  JOIN ncbi_taxa_node parent ON " + \
               " (n.left_index BETWEEN parent.left_index AND parent.right_index) " + \
