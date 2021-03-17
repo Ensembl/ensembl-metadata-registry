@@ -16,10 +16,6 @@ class Organism(models.Model):
                               related_name='organisms', blank=True,
                               null=True)
 
-    class Meta:
-        managed = True
-        db_table = 'organism'
-
     def taxon(self):
         return TaxonomyNode.objects.get(taxon_id=self.taxonomy_id)
 
@@ -30,8 +26,6 @@ class OrganismAlias(models.Model):
     alias = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
-        managed = True
-        db_table = 'organism_alias'
         unique_together = (('organism', 'alias'),)
 
 
@@ -45,6 +39,4 @@ class OrganismGroup(models.Model):
                                            related_name='reference_groups')
 
     class Meta:
-        managed = True
         db_table = 'group'
-

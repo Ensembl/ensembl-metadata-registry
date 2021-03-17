@@ -10,10 +10,6 @@ class Division(models.Model):
     name = models.CharField(unique=True, max_length=32)
     short_name = models.CharField(unique=True, max_length=8)
 
-    class Meta:
-        managed = True
-        db_table = 'division'
-
 
 class Genome(models.Model):
     genome_id = models.IntegerField(primary_key=True)
@@ -30,10 +26,6 @@ class Genome(models.Model):
     has_other_alignments = models.IntegerField()
     created = models.DateTimeField(auto_now_add=True)
 
-    class Meta:
-        managed = True
-        db_table = 'genome'
-
 
 class GenomeDatabase(models.Model):
     genome_database_id = models.AutoField(primary_key=True)
@@ -44,8 +36,6 @@ class GenomeDatabase(models.Model):
     type = models.CharField(max_length=13, blank=True, null=True)
 
     class Meta:
-        managed = True
-        db_table = 'genome_database'
         unique_together = (('dbname', 'species_id', 'genome'),)
 
 
@@ -60,8 +50,6 @@ class GenomeAlignment(models.Model):
                                         related_name='alignments')
 
     class Meta:
-        managed = True
-        db_table = 'genome_alignment'
         unique_together = (('genome', 'type', 'name', 'genome_database'),)
 
 
@@ -75,8 +63,6 @@ class GenomeAnnotation(models.Model):
                                         related_name='annotations')
 
     class Meta:
-        managed = True
-        db_table = 'genome_annotation'
         unique_together = (('genome', 'type', 'genome_database'),)
 
 
@@ -86,10 +72,6 @@ class GenomeDivision(models.Model):
                                  related_name='divisions')
     genome = models.ForeignKey(Genome, on_delete=models.CASCADE,
                                related_name='divisions')
-    
-    class Meta:
-        managed = True
-        db_table = 'genome_division'
 
 
 class GenomeEvent(models.Model):
@@ -100,10 +82,6 @@ class GenomeEvent(models.Model):
     source = models.CharField(max_length=128, blank=True, null=True)
     creation_time = models.DateTimeField()
     details = models.TextField(blank=True, null=True)
-
-    class Meta:
-        managed = True
-        db_table = 'genome_event'
 
 
 class GenomeFeature(models.Model):
@@ -117,8 +95,6 @@ class GenomeFeature(models.Model):
                                         related_name='features')
 
     class Meta:
-        managed = True
-        db_table = 'genome_feature'
         unique_together = (('genome', 'type', 'analysis', 'genome_database'),)
 
 
@@ -132,10 +108,6 @@ class GenomeRelease(models.Model):
     data_release = models.ForeignKey(DataRelease, on_delete=models.CASCADE,
                                      related_name='releases')
 
-    class Meta:
-        managed = True
-        db_table = 'genome_release'
-
 
 class GenomeVariation(models.Model):
     genome_variation_id = models.AutoField(primary_key=True)
@@ -148,8 +120,6 @@ class GenomeVariation(models.Model):
                                         related_name='variations')
 
     class Meta:
-        managed = True
-        db_table = 'genome_variation'
         unique_together = (('genome', 'type', 'name', 'genome_database'),)
 
 
@@ -166,8 +136,6 @@ class ComparaAnalysis(models.Model):
                                  related_name='analyses')
 
     class Meta:
-        managed = True
-        db_table = 'compara_analysis'
         unique_together = (('division', 'method', 'set_name', 'dbname'),)
 
 
@@ -180,10 +148,6 @@ class ComparaAnalysisEvent(models.Model):
     creation_time = models.DateTimeField()
     details = models.TextField(blank=True, null=True)
 
-    class Meta:
-        managed = True
-        db_table = 'compara_analysis_event'
-
 
 class GenomeComparaAnalysis(models.Model):
     genome_compara_analysis_id = models.AutoField(primary_key=True)
@@ -193,7 +157,4 @@ class GenomeComparaAnalysis(models.Model):
                                          related_name='analyses')
 
     class Meta:
-        managed = True
-        db_table = 'genome_compara_analysis'
         unique_together = (('genome', 'compara_analysis'),)
-

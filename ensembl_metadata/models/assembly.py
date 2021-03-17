@@ -10,10 +10,6 @@ class Assembly(models.Model):
     assembly_level = models.CharField(max_length=50)
     base_count = models.BigIntegerField()
 
-    class Meta:
-        managed = True
-        db_table = 'assembly'
-
 
 class AssemblySequence(models.Model):
     assembly_sequence_id = models.AutoField(primary_key=True)
@@ -25,6 +21,4 @@ class AssemblySequence(models.Model):
     chromosomal = models.BooleanField(default=False)  # default to be removed once we have fully migrated to new schema
 
     class Meta:
-        managed = True
-        db_table = 'assembly_sequence'
         unique_together = (('assembly', 'name'),)

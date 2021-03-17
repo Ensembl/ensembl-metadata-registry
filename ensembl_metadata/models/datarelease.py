@@ -7,7 +7,6 @@ class Site(models.Model):
     uri = models.CharField(max_length=64)
 
     class Meta:
-        managed = True
         db_table = 'ensembl_site'
 
 
@@ -22,6 +21,5 @@ class DataRelease(models.Model):
                              related_name='data_releases')
 
     class Meta:
-        managed = True
         db_table = 'ensembl_release'
         unique_together = (('version', 'site'),)
