@@ -17,13 +17,13 @@ class Genome(models.Model):
     assembly = models.ForeignKey(Assembly, models.CASCADE, related_name='genomes')
     organism = models.ForeignKey(Organism, models.CASCADE, related_name='genomes')
     genebuild = models.CharField(max_length=255)
-    has_pan_compara = models.IntegerField()
-    has_variation = models.IntegerField()
-    has_microarray = models.IntegerField()
-    has_peptide_compara = models.IntegerField()
-    has_genome_alignments = models.IntegerField()
-    has_synteny = models.IntegerField()
-    has_other_alignments = models.IntegerField()
+    has_pan_compara = models.BooleanField()
+    has_variation = models.BooleanField()
+    has_microarray = models.BooleanField()
+    has_peptide_compara = models.BooleanField()
+    has_genome_alignments = models.BooleanField()
+    has_synteny = models.BooleanField()
+    has_other_alignments = models.BooleanField()
     created = models.DateTimeField(auto_now_add=True)
 
 
@@ -80,7 +80,7 @@ class GenomeEvent(models.Model):
                                related_name='events')
     type = models.CharField(max_length=32)
     source = models.CharField(max_length=128, blank=True, null=True)
-    creation_time = models.DateTimeField()
+    creation_time = models.DateTimeField(auto_now_add=True)
     details = models.TextField(blank=True, null=True)
 
 
@@ -145,7 +145,7 @@ class ComparaAnalysisEvent(models.Model):
                                          related_name='events')
     type = models.CharField(max_length=32)
     source = models.CharField(max_length=128, blank=True, null=True)
-    creation_time = models.DateTimeField()
+    creation_time = models.DateTimeField(auto_now_add=True)
     details = models.TextField(blank=True, null=True)
 
 
