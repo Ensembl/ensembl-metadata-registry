@@ -8,6 +8,9 @@ class Assembly(models.Model):
     ucsc_name = models.CharField(max_length=16, blank=True, null=True)
     level = models.CharField(max_length=32)
 
+    class Meta:
+        db_table = 'assembly'
+
 
 class AssemblySequence(models.Model):
     assembly_sequence_id = models.AutoField(primary_key=True)
@@ -19,4 +22,5 @@ class AssemblySequence(models.Model):
     chromosomal = models.BooleanField(default=False)
 
     class Meta:
+        db_table = 'assembly_sequence'
         unique_together = (('assembly', 'name'),)
