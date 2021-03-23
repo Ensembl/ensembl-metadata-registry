@@ -1,0 +1,21 @@
+[
+{"model": "ncbi_taxonomy.taxonomynode", "pk": 1,"fields": {"parent_id": null, "rank": "no rank", "genbank_hidden_flag": 0 , "left_index":  1, "right_index":  4589592 , "root_id": 1 }},
+{"model": "ncbi_taxonomy.taxonomynode", "pk": 33208,"fields": {"parent_id": 1, "rank": "kingdom", "genbank_hidden_flag": 0 , "left_index":  2308141 , "right_index":  4465366 , "root_id": 1 }},
+{"model": "ncbi_taxonomy.taxonomynode", "pk": 10090,"fields": {"parent_id": 33208, "rank": "species", "genbank_hidden_flag": 1, "left_index": 4456588, "right_index":  4456621 , "root_id": 1 }},
+{"model": "ncbi_taxonomy.taxonomynode", "pk": 10091,"fields": {"parent_id": 10090, "rank": "subspecies", "genbank_hidden_flag": 1, "left_index": 4456589, "right_index":  4456590 , "root_id": 1 }},
+{"model": "ncbi_taxonomy.taxonomynode", "pk": 10092,"fields": {"parent_id": 10090, "rank": "subspecies", "genbank_hidden_flag": 1, "left_index": 4456591, "right_index":  4456592 , "root_id": 1 }},
+{"model": "ncbi_taxonomy.taxonomynode", "pk": 35531,"fields": {"parent_id": 10090, "rank": "subspecies", "genbank_hidden_flag": 1, "left_index": 4456593, "right_index":  4456594 , "root_id": 1 }},
+{"model": "ncbi_taxonomy.taxonomynode", "pk": 39442,"fields": {"parent_id": 10090, "rank": "subspecies", "genbank_hidden_flag": 1, "left_index": 4456595, "right_index":  4456596 , "root_id": 1 }},
+{"model": "ncbi_taxonomy.taxonomynode", "pk": 46456,"fields": {"parent_id": 10090, "rank": "subspecies", "genbank_hidden_flag": 1, "left_index": 4456597, "right_index":  4456598 , "root_id": 1 }},
+{"model": "ncbi_taxonomy.taxonomynode", "pk": 57486,"fields": {"parent_id": 10090, "rank": "subspecies", "genbank_hidden_flag": 1, "left_index": 4456599, "right_index":  4456600 , "root_id": 1 }},
+{"model": "ncbi_taxonomy.taxonomynode", "pk": 80274,"fields": {"parent_id": 10090, "rank": "subspecies", "genbank_hidden_flag": 1, "left_index": 4456601, "right_index":  4456602 , "root_id": 1 }},
+{"model": "ncbi_taxonomy.taxonomynode", "pk": 116058,"fields": {"parent_id": 10090, "rank": "subspecies", "genbank_hidden_flag": 1, "left_index": 4456603, "right_index":  4456604 , "root_id": 1 }},
+{"model": "ncbi_taxonomy.taxonomynode", "pk": 179238,"fields": {"parent_id": 10090, "rank": "subspecies", "genbank_hidden_flag": 1, "left_index": 4456605, "right_index":  4456606 , "root_id": 1 }},
+{"model": "ncbi_taxonomy.taxonomynode", "pk": 477815,"fields": {"parent_id": 10090, "rank": "no rank", "genbank_hidden_flag": 1, "left_index": 4456607, "right_index":  4456608 , "root_id": 1 }},
+{"model": "ncbi_taxonomy.taxonomynode", "pk": 477816,"fields": {"parent_id": 10090, "rank": "no rank", "genbank_hidden_flag": 1, "left_index": 4456609, "right_index":  4456610 , "root_id": 1 }},
+{"model": "ncbi_taxonomy.taxonomynode", "pk": 947985,"fields": {"parent_id": 10090, "rank": "subspecies", "genbank_hidden_flag": 1, "left_index": 4456611, "right_index":  4456612 , "root_id": 1 }},
+{"model": "ncbi_taxonomy.taxonomynode", "pk": 1266728,"fields": {"parent_id": 10090, "rank": "no rank", "genbank_hidden_flag": 1, "left_index": 4456613, "right_index":  4456614 , "root_id": 1 }},
+{"model": "ncbi_taxonomy.taxonomynode", "pk": 1385377,"fields": {"parent_id": 10090, "rank": "subspecies", "genbank_hidden_flag": 1, "left_index": 4456615, "right_index":  4456616 , "root_id": 1 }},
+{"model": "ncbi_taxonomy.taxonomynode", "pk": 1643390,"fields": {"parent_id": 10090, "rank": "subspecies", "genbank_hidden_flag": 1, "left_index": 4456617, "right_index":  4456618 , "root_id": 1 }},
+{"model": "ncbi_taxonomy.taxonomynode", "pk": 1879032,"fields": {"parent_id": 10090, "rank": "subspecies", "genbank_hidden_flag": 1, "left_index": 4456619, "right_index":  4456620 , "root_id": 1 }}
+]

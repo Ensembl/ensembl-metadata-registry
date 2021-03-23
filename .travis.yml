@@ -1,18 +1,15 @@
 language: python
 python: 
-  - "3.5"
+  - "3.6"
 
 services:
   - mysql
 
 env:
-  - DJANGO=1.11 DB=mysql DJANGO_ENVIRONMENT=travis
+  - DJANGO=3.1.6
 
 install:
   - pip install -r requirements.txt
 
-before_script:
-  - mysql -e 'create database ensembl_metadata;' -u root
-
 script:
-  - python manage.py test  --settings=ensembl_metadata.settings.test
+  - python manage.py test  --settings=metadata_registry.settings.test

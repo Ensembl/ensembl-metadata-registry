@@ -1,53 +1,39 @@
-"""
-.. See the NOTICE file distributed with this work for additional information
-   regarding copyright ownership.
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-       http://www.apache.org/licenses/LICENSE-2.0
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-"""
-
-
-
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
-from ncbi_taxonomy.models import NcbiTaxaName, NcbiTaxaNode
-from ncbi_taxonomy.api.serializers import NcbiTaxaNameSerializer, NcbiTaxaNodeSerializer
-from metadata_registry.utils.decorators import setup_eager_loading
+from ncbi_taxonomy.models import TaxonomyName, TaxonomyNode
+from ncbi_taxonomy.api.serializers import TaxonomyNameSerializer, TaxonomyNodeSerializer
 from ncbi_taxonomy.api.filters import TaxonomyFilterBackend
 
 
-class NcbiTaxaNameList(generics.ListAPIView):
-    queryset = NcbiTaxaName.objects.all()
-    serializer_class = NcbiTaxaNameSerializer
-    filter_backends = (TaxonomyFilterBackend,)
+class TaxonomyNodeList(generics.ListAPIView):
+    """
+    Return a list of taxon records.
+    """
+    name = 'Taxonomy List'
 
-    @setup_eager_loading(NcbiTaxaNameSerializer)
-    def get_queryset(self):
-        queryset = NcbiTaxaName.objects.order_by('pk')
-        return queryset
-
-
-class NcbiTaxaNameDetail(generics.RetrieveAPIView):
-    queryset = NcbiTaxaName.objects.all()
-    serializer_class = NcbiTaxaNameSerializer
+    queryset = TaxonomyNode.objects.all()
+    serializer_class = TaxonomyNodeSerializer
+    filter_backends = [TaxonomyFilterBackend]
 
 
-class NcbiTaxaNodeList(generics.ListAPIView):
-    queryset = NcbiTaxaNode.objects.all()
-    serializer_class = NcbiTaxaNodeSerializer
-    filter_backends = (TaxonomyFilterBackend,)
+class TaxonomyNodeDetail(generics.RetrieveAPIView):
+    """
+    Return a single taxon record.
+    """
+    name = 'Taxonomy Detail'
 
-    @setup_eager_loading(NcbiTaxaNodeSerializer)
-    def get_queryset(self):
-        queryset = NcbiTaxaNode.objects.order_by('pk')
-        return queryset
+    queryset = TaxonomyNode.objects.all()
+    serializer_class = TaxonomyNodeSerializer
+    lookup_field = 'taxon_id'
 
 
-class NcbiTaxaNodeDetail(generics.RetrieveAPIView):
-    queryset = NcbiTaxaNode.objects.all()
-    serializer_class = NcbiTaxaNodeSerializer
+class TaxonomyNameList(generics.ListAPIView):
+    """
+    Return a list of taxon names.
+    """
+    name = 'Taxonomy Names'
+
+    queryset = TaxonomyName.objects.all()
+    serializer_class = TaxonomyNameSerializer
+    filter_backends = [DjangoFilterBackend, TaxonomyFilterBackend]
+    filterset_fields = ['name_class']

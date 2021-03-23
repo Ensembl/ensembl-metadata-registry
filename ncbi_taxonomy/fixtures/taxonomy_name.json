@@ -1,0 +1,23 @@
+[
+{"model": "ncbi_taxonomy.taxonomyname", "pk": 1, "fields": {"taxon_id": 1, "name": "all", "name_class": "synonym"}},
+{"model": "ncbi_taxonomy.taxonomyname", "pk": 2, "fields": {"taxon_id": 1, "name": "root", "name_class": "scientific name"}},
+{"model": "ncbi_taxonomy.taxonomyname", "pk": 3, "fields": {"taxon_id": 1, "name": "2020-12-07 17:40:14", "name_class": "import date"}},
+{"model": "ncbi_taxonomy.taxonomyname", "pk": 4, "fields": {"taxon_id": 10090, "name": "house mouse", "name_class": "genbank common name"}},
+{"model": "ncbi_taxonomy.taxonomyname", "pk": 5, "fields": {"taxon_id": 10090, "name": "LK3 transgenic mice", "name_class": "includes"}},
+{"model": "ncbi_taxonomy.taxonomyname", "pk": 6, "fields": {"taxon_id": 10090, "name": "mouse", "name_class": "common name"}},
+{"model": "ncbi_taxonomy.taxonomyname", "pk": 7, "fields": {"taxon_id": 10090, "name": "Mus musculus Linnaeus, 1758", "name_class": "authority"}},
+{"model": "ncbi_taxonomy.taxonomyname", "pk": 8, "fields": {"taxon_id": 10090, "name": "Mus musculus", "name_class": "scientific name"}},
+{"model": "ncbi_taxonomy.taxonomyname", "pk": 9, "fields": {"taxon_id": 10090, "name": "Mus sp. 129SV", "name_class": "includes"}},
+{"model": "ncbi_taxonomy.taxonomyname", "pk": 10, "fields": {"taxon_id": 10090, "name": "nude mice", "name_class": "includes"}},
+{"model": "ncbi_taxonomy.taxonomyname", "pk": 11, "fields": {"taxon_id": 10090, "name": "transgenic mice", "name_class": "includes"}},
+{"model": "ncbi_taxonomy.taxonomyname", "pk": 12, "fields": {"taxon_id": 10090, "name": "85055", "name_class": "merged_taxon_id"}},
+{"model": "ncbi_taxonomy.taxonomyname", "pk": 13, "fields": {"taxon_id": 10091, "name": "Mus castaneus", "name_class": "synonym"}},
+{"model": "ncbi_taxonomy.taxonomyname", "pk": 14, "fields": {"taxon_id": 10091, "name": "Mus musculus castaneus", "name_class": "scientific name"}},
+{"model": "ncbi_taxonomy.taxonomyname", "pk": 15, "fields": {"taxon_id": 10091, "name": "Mus musculus castaneus Waterhouse, 1843", "name_class": "authority"}},
+{"model": "ncbi_taxonomy.taxonomyname", "pk": 16, "fields": {"taxon_id": 10091, "name": "southeastern Asian house mouse", "name_class": "genbank common name"}},
+{"model": "ncbi_taxonomy.taxonomyname", "pk": 17, "fields": {"taxon_id": 33208, "name": "Animalia", "name_class": "synonym"}},
+{"model": "ncbi_taxonomy.taxonomyname", "pk": 18, "fields": {"taxon_id": 33208, "name": "animals", "name_class": "blast name"}},
+{"model": "ncbi_taxonomy.taxonomyname", "pk": 19, "fields": {"taxon_id": 33208, "name": "metazoans", "name_class": "genbank common name"}},
+{"model": "ncbi_taxonomy.taxonomyname", "pk": 20, "fields": {"taxon_id": 33208, "name": "Metazoa", "name_class": "scientific name"}},
+{"model": "ncbi_taxonomy.taxonomyname", "pk": 21, "fields": {"taxon_id": 33208, "name": "multicellular animals", "name_class": "common name"}}
+]
