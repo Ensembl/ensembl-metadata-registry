@@ -98,8 +98,6 @@ class Dataset(models.Model):
 
     dataset_id = models.AutoField(primary_key=True)
     dataset_uuid = models.CharField(max_length=128, default=uuid.uuid1, unique=True)
-    genome = models.ForeignKey(Genome, on_delete=models.CASCADE,
-                               related_name='datasets')
     dataset_database = models.ForeignKey(DatasetDatabase, on_delete=models.CASCADE,
                                          related_name='datasets')
     type = models.CharField(max_length=32, choices=DatasetType.choices)
@@ -125,6 +123,14 @@ class DatasetStatistic(models.Model):
     class Meta:
         db_table = 'dataset_statistic'
         unique_together = (('dataset', 'type', 'name'),)
+
+
+class GenomeDataset(models.Model):
+    genome_dataset_id = models.AutoField(primary_key=True)
+    genome = models.ForeignKey(Genome, on_delete=models.CASCADE,
+                               related_name='datasets')
+    dataset = models.ForeignKey(Dataset, on_delete=models.CASCADE,
+                                related_name='genomes')
 
 
 class GenomeRelease(models.Model):

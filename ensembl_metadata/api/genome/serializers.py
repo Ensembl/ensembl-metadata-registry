@@ -1,8 +1,8 @@
 from rest_framework import serializers
 from ensembl_metadata.models.genome import \
     Organism, OrganismGroup, OrganismGroupMember, \
-    Genome, GenomeRelease, \
-    Dataset, DatasetDatabase, DatasetStatistic
+    Dataset, DatasetDatabase, DatasetStatistic, \
+    Genome, GenomeDataset, GenomeRelease
 from ensembl_metadata.api.assembly.serializers import AssemblySerializer
 from ensembl_metadata.api.release.serializers import ReleaseSerializer
 from ncbi_taxonomy.api.serializers import TaxonomyNodeSerializer
