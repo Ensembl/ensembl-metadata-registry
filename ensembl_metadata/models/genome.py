@@ -5,10 +5,8 @@ from ncbi_taxonomy.models import TaxonomyNode
 import uuid
 
 
-class Genome(models.Model):
-    genome_id = models.AutoField(primary_key=True)
-    genome_uuid = models.CharField(max_length=128, default=uuid.uuid1, unique=True)
-    assembly = models.ForeignKey(Assembly, models.CASCADE, related_name='genomes')
+class Organism(models.Model):
+    organism_id = models.AutoField(primary_key=True)
     taxonomy_id = models.IntegerField()
     species_taxonomy_id = models.IntegerField(null=True)
     ensembl_name = models.CharField(unique=True, max_length=128)
@@ -21,32 +19,43 @@ class Genome(models.Model):
         return TaxonomyNode.objects.get(taxon_id=self.taxonomy_id)
 
     class Meta:
-        db_table = 'genome'
+        db_table = 'organism'
 
 
-class Bundle(models.Model):
-    bundle_id = models.AutoField(primary_key=True, blank=True)
+class OrganismGroup(models.Model):
+    organism_group_id = models.AutoField(primary_key=True, blank=True)
     type = models.CharField(max_length=32, blank=True, null=True)
     name = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
-        db_table = 'bundle'
+        db_table = 'organism_group'
         unique_together = (('type', 'name'),)
 
 
-class GenomeBundle(models.Model):
-    genome_bundle_id = models.AutoField(primary_key=True)
-    genome = models.ForeignKey(Genome, on_delete=models.CASCADE,
-                               related_name='genome_bundles')
-    bundle = models.ForeignKey(Bundle, on_delete=models.CASCADE,
-                               related_name='genome_bundles')
+class OrganismGroupMember(models.Model):
+    organism_group_member_id = models.AutoField(primary_key=True)
+    organism = models.ForeignKey(Organism, on_delete=models.CASCADE,
+                                 related_name='members')
+    organism_group = models.ForeignKey(OrganismGroup, on_delete=models.CASCADE,
+                                       related_name='members')
     is_reference = models.BooleanField(default=False)
-    release_id = models.ForeignKey(Release, on_delete=models.CASCADE,
-                                   related_name='genome_bundles')
 
     class Meta:
-        db_table = 'genome_bundle'
-        unique_together = (('genome', 'bundle'),)
+        db_table = 'organism_group_member'
+        unique_together = (('organism', 'organism_group'),)
+
+
+class Genome(models.Model):
+    genome_id = models.AutoField(primary_key=True)
+    genome_uuid = models.CharField(max_length=128, default=uuid.uuid1, unique=True)
+    assembly = models.ForeignKey(Assembly, models.CASCADE, related_name='genomes')
+    organism = models.ForeignKey(Organism, models.CASCADE, related_name='genomes')
+
+    def releases(self):
+        return GenomeRelease.objects.filter(genome_id=self.genome_id)
+
+    class Meta:
+        db_table = 'genome'
 
 
 class DatasetDatabase(models.Model):
@@ -101,9 +110,6 @@ class Dataset(models.Model):
     def attributes(self):
         return DatasetStatistic.objects.filter(dataset_id=self.dataset_id)
 
-    def releases(self):
-        return DatasetRelease.objects.filter(dataset_id=self.dataset_id)
-
     class Meta:
         db_table = 'dataset'
 
@@ -121,12 +127,12 @@ class DatasetStatistic(models.Model):
         unique_together = (('dataset', 'type', 'name'),)
 
 
-class DatasetRelease(models.Model):
-    dataset_release_id = models.AutoField(primary_key=True)
-    dataset = models.ForeignKey(Dataset, on_delete=models.CASCADE,
-                                related_name='dataset_releases')
+class GenomeRelease(models.Model):
+    genome_release_id = models.AutoField(primary_key=True)
+    genome = models.ForeignKey(Genome, on_delete=models.CASCADE,
+                               related_name='releases')
     release = models.ForeignKey(Release, on_delete=models.CASCADE,
-                                related_name='dataset_releases')
+                                related_name='releases')
 
     class Meta:
-        db_table = 'dataset_release'
+        db_table = 'genome_release'

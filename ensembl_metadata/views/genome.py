@@ -13,9 +13,9 @@ class GenomeList(generics.ListAPIView):
     queryset = Genome.objects.all()
     serializer_class = GenomeSerializer
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
-    filterset_fields = ['ensembl_name', 'scientific_name', 'taxonomy_id']
-    ordering_fields = ['ensembl_name', 'scientific_name', 'taxonomy_id']
-    ordering = ['scientific_name']
+    filterset_fields = ['organism__ensembl_name', 'organism__scientific_name', 'organism__taxonomy_id']
+    ordering_fields = ['organism__ensembl_name', 'organism__scientific_name', 'organism__taxonomy_id']
+    ordering = ['organism__scientific_name']
 
 
 class GenomeDetail(generics.RetrieveAPIView):

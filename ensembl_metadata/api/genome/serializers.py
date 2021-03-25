@@ -1,10 +1,31 @@
 from rest_framework import serializers
 from ensembl_metadata.models.genome import \
-    Dataset, DatasetDatabase, DatasetStatistic, DatasetRelease, \
-    Genome, Bundle, GenomeBundle
+    Organism, OrganismGroup, OrganismGroupMember, \
+    Genome, GenomeRelease, \
+    Dataset, DatasetDatabase, DatasetStatistic
 from ensembl_metadata.api.assembly.serializers import AssemblySerializer
 from ensembl_metadata.api.release.serializers import ReleaseSerializer
 from ncbi_taxonomy.api.serializers import TaxonomyNodeSerializer
+
+
+class OrganismSerializer(serializers.ModelSerializer):
+    taxon = TaxonomyNodeSerializer(many=False, required=True)
+
+    class Meta:
+        model = Organism
+        exclude = ['organism_id']
+
+
+class OrganismGroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrganismGroup
+        exclude = ['organism_group_id']
+
+
+class OrganismGroupMemberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrganismGroupMember
+        exclude = ['organism_group_member_id']
 
 
 class DatasetDatabaseSerializer(serializers.ModelSerializer):
@@ -27,18 +48,9 @@ class DatasetSerializer(serializers.ModelSerializer):
         exclude = ['dataset_id', 'genome']
 
 
-class DatasetReleaseSerializer(serializers.ModelSerializer):
-    dataset = DatasetSerializer(many=True, required=True)
-    release = ReleaseSerializer(many=True, required=True)
-
-    class Meta:
-        model = DatasetRelease
-        exclude = ['dataset_release_id']
-
-
 class GenomeSerializer(serializers.ModelSerializer):
     assembly = AssemblySerializer(many=False, required=True)
-    taxon = TaxonomyNodeSerializer(many=False, required=True)
+    organism = OrganismSerializer(many=False, required=True)
     datasets = DatasetSerializer(many=True, required=False)
 
     class Meta:
@@ -46,13 +58,10 @@ class GenomeSerializer(serializers.ModelSerializer):
         exclude = ['genome_id']
 
 
-class BundleSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Bundle
-        exclude = ['bundle_id']
+class GenomeReleaseSerializer(serializers.ModelSerializer):
+    genome = GenomeSerializer(many=True, required=True)
+    release = ReleaseSerializer(many=True, required=True)
 
-
-class GenomeBundleSerializer(serializers.ModelSerializer):
     class Meta:
-        model = GenomeBundle
-        exclude = ['genome_bundle_id']
+        model = GenomeRelease
+        exclude = ['genome_release_id']
