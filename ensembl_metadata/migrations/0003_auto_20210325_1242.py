@@ -21,6 +21,7 @@ class Migration(migrations.Migration):
                 ('genome_dataset_id', models.AutoField(primary_key=True, serialize=False)),
                 ('dataset', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='genomes', to='ensembl_metadata.dataset')),
                 ('genome', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='datasets', to='ensembl_metadata.genome')),
+                ('is_current', models.BooleanField(default=False))
             ],
         ),
     ]

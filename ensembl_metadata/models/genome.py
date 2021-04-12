@@ -98,8 +98,6 @@ class Dataset(models.Model):
 
     dataset_id = models.AutoField(primary_key=True)
     dataset_uuid = models.CharField(max_length=128, default=uuid.uuid1, unique=True)
-    dataset_database = models.ForeignKey(DatasetDatabase, on_delete=models.CASCADE,
-                                         related_name='datasets')
     type = models.CharField(max_length=32, choices=DatasetType.choices)
     name = models.CharField(max_length=128, null=True)
     version = models.CharField(max_length=128, null=True)
@@ -131,6 +129,13 @@ class GenomeDataset(models.Model):
                                related_name='datasets')
     dataset = models.ForeignKey(Dataset, on_delete=models.CASCADE,
                                 related_name='genomes')
+    dataset_database = models.ForeignKey(DatasetDatabase, on_delete=models.CASCADE,
+                                         related_name='genome_datasets')
+    release = models.ForeignKey(Release, on_delete=models.CASCADE,
+                                related_name='genome_datasets')
+
+    class Meta:
+        db_table = 'genome_dataset'
 
 
 class GenomeRelease(models.Model):
