@@ -1,8 +1,8 @@
 from django.test import TestCase
 from rest_framework.test import APITestCase
 
-from ensembl_metadata.models.datarelease import DataRelease
-from ensembl_metadata.utils.datarelease import DataReleaseUtils
+from ensembl_metadata.models.release import Release
+from ensembl_metadata.utils.release import ReleaseUtils
 from ensembl_metadata.utils.schema_utils import SchemaUtils
 
 
