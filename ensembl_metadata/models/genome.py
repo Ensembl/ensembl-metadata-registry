@@ -58,22 +58,23 @@ class Genome(models.Model):
         db_table = 'genome'
 
 
-class DatasetDatabase(models.Model):
+class DatasetSource(models.Model):
     class DatabaseType(models.TextChoices):
         CORE = 'core'
         CDNA = 'cdna'
+        DATAFILE = 'datafile'
         OTHERFEATURES = 'otherfeatures'
         RNASEQ = 'rnaseq'
         COMPARA = 'compara'
         FUNCGEN = 'funcgen'
         VARIATION = 'variation'
 
-    dataset_database_id = models.AutoField(primary_key=True)
+    dataset_source_id = models.AutoField(primary_key=True)
     type = models.CharField(max_length=32, choices=DatabaseType.choices)
-    name = models.CharField(max_length=64, unique=True)
+    name = models.CharField(max_length=255, unique=True)
 
     class Meta:
-        db_table = 'dataset_database'
+        db_table = 'dataset_source'
 
 
 class Dataset(models.Model):
@@ -102,6 +103,8 @@ class Dataset(models.Model):
     name = models.CharField(max_length=128, null=True)
     version = models.CharField(max_length=128, null=True)
     created = models.DateTimeField(auto_now_add=True)
+    dataset_source = models.ForeignKey(DatasetSource, on_delete=models.CASCADE,
+                                       related_name='datasets')
 
     def attributes(self):
         return DatasetStatistic.objects.filter(dataset_id=self.dataset_id)
@@ -129,8 +132,6 @@ class GenomeDataset(models.Model):
                                related_name='datasets')
     dataset = models.ForeignKey(Dataset, on_delete=models.CASCADE,
                                 related_name='genomes')
-    dataset_database = models.ForeignKey(DatasetDatabase, on_delete=models.CASCADE,
-                                         related_name='genome_datasets')
     release = models.ForeignKey(Release, on_delete=models.CASCADE,
                                 related_name='genome_datasets')
 
