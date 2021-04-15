@@ -23,9 +23,16 @@ class Organism(models.Model):
 
 
 class OrganismGroup(models.Model):
-    organism_group_id = models.AutoField(primary_key=True, blank=True)
-    type = models.CharField(max_length=32, blank=True, null=True)
-    name = models.CharField(max_length=255, blank=True, null=True)
+    class GroupType(models.TextChoices):
+        BREEDS = 'breeds'
+        CULTIVARS = 'cultivars'
+        DIVISION = 'division'
+        POPULATIONS = 'populations'
+        STRAINS = 'strains'
+
+    organism_group_id = models.AutoField(primary_key=True)
+    type = models.CharField(max_length=32, choices=GroupType.choices)
+    name = models.CharField(max_length=255)
 
     class Meta:
         db_table = 'organism_group'
@@ -59,7 +66,7 @@ class Genome(models.Model):
 
 
 class DatasetSource(models.Model):
-    class DatabaseType(models.TextChoices):
+    class SourceType(models.TextChoices):
         CORE = 'core'
         CDNA = 'cdna'
         DATAFILE = 'datafile'
@@ -70,41 +77,44 @@ class DatasetSource(models.Model):
         VARIATION = 'variation'
 
     dataset_source_id = models.AutoField(primary_key=True)
-    type = models.CharField(max_length=32, choices=DatabaseType.choices)
+    type = models.CharField(max_length=32, choices=SourceType.choices)
     name = models.CharField(max_length=255, unique=True)
 
     class Meta:
         db_table = 'dataset_source'
 
 
-class Dataset(models.Model):
-    class DatasetType(models.TextChoices):
+class DatasetType(models.Model):
+    class DatasetTopic(models.TextChoices):
         ASSEMBLY = 'assembly'
-        CROSS_REFERENCES = 'xrefs'
-        DNA_ALIGNMENTS = 'dna_alignments'
         GENESET = 'geneset'
-        GENE_FAMILIES = 'gene_families'
-        GENE_TREES = 'gene_trees'
-        GENOME_ALIGNMENTS = 'genome_alignments'
-        GO_TERMS = 'go_terms'
-        HOMOLOGIES = 'homologies'
-        MICROARRAYS = 'microarrays'
-        PHENOTYPES = 'phenotypes'
-        PROTEIN_ALIGNMENTS = 'protein_alignments'
-        PROTEIN_FEATURES = 'protein_features'
-        REPEAT_FEATURES = 'repeat_features'
-        RNASEQ_ALIGNMENTS = 'rnaseq_alignments'
-        SYNTENIES = 'syntenies'
-        VARIANTS = 'variants'
+        ASSEMBLY_ANNOTATION = 'assembly_annotation'
+        GENESET_ANNOTATION = 'geneset_annotation'
+        COMPARATIVE = 'comparative'
+        REGULATION = 'regulation'
+        VARIATION = 'variation'
 
+    dataset_type_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=32)
+    label = models.CharField(max_length=32)
+    topic = models.CharField(max_length=32, choices=DatasetTopic.choices)
+    description = models.CharField(max_length=255)
+    details_uri = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        db_table = 'dataset_type'
+
+
+class Dataset(models.Model):
     dataset_id = models.AutoField(primary_key=True)
     dataset_uuid = models.CharField(max_length=128, default=uuid.uuid1, unique=True)
-    type = models.CharField(max_length=32, choices=DatasetType.choices)
-    name = models.CharField(max_length=128, null=True)
-    version = models.CharField(max_length=128, null=True)
-    created = models.DateTimeField(auto_now_add=True)
+    dataset_type = models.ForeignKey(DatasetType, on_delete=models.CASCADE,
+                                     related_name='datasets')
     dataset_source = models.ForeignKey(DatasetSource, on_delete=models.CASCADE,
                                        related_name='datasets')
+    name = models.CharField(max_length=128)
+    version = models.CharField(max_length=128, blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     def attributes(self):
         return DatasetStatistic.objects.filter(dataset_id=self.dataset_id)
