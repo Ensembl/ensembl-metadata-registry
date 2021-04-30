@@ -157,9 +157,7 @@ def genome_sequence_iterator(metadata_db, genome_uuid, chromosomal_only):
 
     # Could batch queries, if it's too slow to get all at once;
     # but it does not currently seem necessary.
-    seq_results = session.execute(seq_select).all()
-
-    for result in seq_results:
+    for result in session.execute(seq_select):
         yield create_genome_sequence(dict(result))
 
 
