@@ -17,9 +17,10 @@ def load_database(uri=None):
     if uri is None:
         uri = config.METADATA_URI
     engine = db.create_engine(uri)
-    connection = engine.connect()
-    if not connection:
-        raise ValueError(f'Could not connect to database {uri}.')
+    try:
+        connection = engine.connect()
+    except db.exc.OperationalError as err:
+        raise ValueError(f'Could not connect to database {uri}: {err}.') from err
 
     connection.close()
     return engine
