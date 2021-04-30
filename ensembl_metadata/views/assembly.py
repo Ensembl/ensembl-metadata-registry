@@ -13,9 +13,9 @@ class AssemblyList(generics.ListAPIView):
     queryset = Assembly.objects.all()
     serializer_class = AssemblySerializer
     filter_backends = [filters.OrderingFilter, filters.SearchFilter]
-    search_fields = ['^assembly_accession', '^assembly_name', '^assembly_ucsc']
-    ordering_fields = ['assembly_accession']
-    ordering = ['assembly_accession']
+    search_fields = ['^accession', '^name', '^ucsc_name']
+    ordering_fields = ['accession']
+    ordering = ['accession']
 
 
 class AssemblyDetail(generics.RetrieveAPIView):
@@ -26,8 +26,7 @@ class AssemblyDetail(generics.RetrieveAPIView):
 
     queryset = Assembly.objects.all()
     serializer_class = AssemblySerializer
-    lookup_field = 'assembly_accession'
-    lookup_url_kwarg = 'accession'
+    lookup_field = 'accession'
 
 
 class AssemblySequenceList(generics.ListAPIView):
@@ -40,9 +39,9 @@ class AssemblySequenceList(generics.ListAPIView):
     serializer_class = AssemblySequenceSerializer
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
     filterset_fields = ['chromosomal']
-    ordering_fields = ['acc', 'name']
-    ordering = ['acc']
+    ordering_fields = ['accession', 'name']
+    ordering = ['accession']
 
     def get_queryset(self):
         return AssemblySequence.objects.filter(
-            assembly__assembly_accession=self.kwargs['accession'])
+            assembly__accession=self.kwargs['accession'])

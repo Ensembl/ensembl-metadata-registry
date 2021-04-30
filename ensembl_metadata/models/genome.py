@@ -1,160 +1,160 @@
 from django.db import models
 from ensembl_metadata.models.assembly import Assembly
-from ensembl_metadata.models.datarelease import DataRelease
-from ensembl_metadata.models.organism import Organism
+from ensembl_metadata.models.release import Release
+from ncbi_taxonomy.models import TaxonomyNode
 import uuid
 
 
-class Division(models.Model):
-    division_id = models.AutoField(primary_key=True)
-    name = models.CharField(unique=True, max_length=32)
-    short_name = models.CharField(unique=True, max_length=8)
+class Organism(models.Model):
+    organism_id = models.AutoField(primary_key=True)
+    taxonomy_id = models.IntegerField()
+    species_taxonomy_id = models.IntegerField(null=True)
+    ensembl_name = models.CharField(unique=True, max_length=128)
+    url_name = models.CharField(max_length=128)
+    display_name = models.CharField(max_length=128)
+    scientific_name = models.CharField(max_length=128, blank=True, null=True)
+    strain = models.CharField(max_length=128, blank=True, null=True)
+
+    def taxon(self):
+        return TaxonomyNode.objects.get(taxon_id=self.taxonomy_id)
+
+    class Meta:
+        db_table = 'organism'
+
+
+class OrganismGroup(models.Model):
+    class GroupType(models.TextChoices):
+        BREEDS = 'breeds'
+        CULTIVARS = 'cultivars'
+        DIVISION = 'division'
+        POPULATIONS = 'populations'
+        STRAINS = 'strains'
+
+    organism_group_id = models.AutoField(primary_key=True)
+    type = models.CharField(max_length=32, choices=GroupType.choices)
+    name = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = 'organism_group'
+        unique_together = (('type', 'name'),)
+
+
+class OrganismGroupMember(models.Model):
+    organism_group_member_id = models.AutoField(primary_key=True)
+    organism = models.ForeignKey(Organism, on_delete=models.CASCADE,
+                                 related_name='members')
+    organism_group = models.ForeignKey(OrganismGroup, on_delete=models.CASCADE,
+                                       related_name='members')
+    is_reference = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = 'organism_group_member'
+        unique_together = (('organism', 'organism_group'),)
 
 
 class Genome(models.Model):
-    genome_id = models.IntegerField(primary_key=True)
+    genome_id = models.AutoField(primary_key=True)
     genome_uuid = models.CharField(max_length=128, default=uuid.uuid1, unique=True)
     assembly = models.ForeignKey(Assembly, models.CASCADE, related_name='genomes')
     organism = models.ForeignKey(Organism, models.CASCADE, related_name='genomes')
-    genebuild = models.CharField(max_length=255)
-    has_pan_compara = models.BooleanField()
-    has_variation = models.BooleanField()
-    has_microarray = models.BooleanField()
-    has_peptide_compara = models.BooleanField()
-    has_genome_alignments = models.BooleanField()
-    has_synteny = models.BooleanField()
-    has_other_alignments = models.BooleanField()
+
+    def releases(self):
+        return GenomeRelease.objects.filter(genome_id=self.genome_id)
+
+    class Meta:
+        db_table = 'genome'
+
+
+class DatasetSource(models.Model):
+    class SourceType(models.TextChoices):
+        CORE = 'core'
+        CDNA = 'cdna'
+        DATAFILE = 'datafile'
+        OTHERFEATURES = 'otherfeatures'
+        RNASEQ = 'rnaseq'
+        COMPARA = 'compara'
+        FUNCGEN = 'funcgen'
+        VARIATION = 'variation'
+
+    dataset_source_id = models.AutoField(primary_key=True)
+    type = models.CharField(max_length=32, choices=SourceType.choices)
+    name = models.CharField(max_length=255, unique=True)
+
+    class Meta:
+        db_table = 'dataset_source'
+
+
+class DatasetType(models.Model):
+    class DatasetTopic(models.TextChoices):
+        ASSEMBLY = 'assembly'
+        GENESET = 'geneset'
+        ASSEMBLY_ANNOTATION = 'assembly_annotation'
+        GENESET_ANNOTATION = 'geneset_annotation'
+        COMPARATIVE = 'comparative'
+        REGULATION = 'regulation'
+        VARIATION = 'variation'
+
+    dataset_type_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=32)
+    label = models.CharField(max_length=32)
+    topic = models.CharField(max_length=32, choices=DatasetTopic.choices)
+    description = models.CharField(max_length=255)
+    details_uri = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        db_table = 'dataset_type'
+
+
+class Dataset(models.Model):
+    dataset_id = models.AutoField(primary_key=True)
+    dataset_uuid = models.CharField(max_length=128, default=uuid.uuid1, unique=True)
+    dataset_type = models.ForeignKey(DatasetType, on_delete=models.CASCADE,
+                                     related_name='datasets')
+    dataset_source = models.ForeignKey(DatasetSource, on_delete=models.CASCADE,
+                                       related_name='datasets')
+    name = models.CharField(max_length=128)
+    version = models.CharField(max_length=128, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
 
-
-class GenomeDatabase(models.Model):
-    genome_database_id = models.AutoField(primary_key=True)
-    genome = models.ForeignKey(Genome, on_delete=models.CASCADE,
-                               related_name='databases')
-    dbname = models.CharField(max_length=64)
-    species_id = models.IntegerField()
-    type = models.CharField(max_length=13, blank=True, null=True)
+    def attributes(self):
+        return DatasetStatistic.objects.filter(dataset_id=self.dataset_id)
 
     class Meta:
-        unique_together = (('dbname', 'species_id', 'genome'),)
+        db_table = 'dataset'
 
 
-class GenomeAlignment(models.Model):
-    genome_alignment_id = models.AutoField(primary_key=True)
-    genome = models.ForeignKey(Genome, on_delete=models.CASCADE,
-                               related_name='alignments')
+class DatasetStatistic(models.Model):
+    dataset_statistic_id = models.AutoField(primary_key=True)
+    dataset = models.ForeignKey(Dataset, on_delete=models.CASCADE,
+                                related_name='statistics')
     type = models.CharField(max_length=32)
     name = models.CharField(max_length=128)
-    count = models.IntegerField()
-    genome_database = models.ForeignKey(GenomeDatabase, on_delete=models.CASCADE,
-                                        related_name='alignments')
-
-    class Meta:
-        unique_together = (('genome', 'type', 'name', 'genome_database'),)
-
-
-class GenomeAnnotation(models.Model):
-    genome_annotation_id = models.AutoField(primary_key=True)
-    genome = models.ForeignKey(Genome, on_delete=models.CASCADE,
-                               related_name='annotations')
-    type = models.CharField(max_length=32)
     value = models.CharField(max_length=128)
-    genome_database = models.ForeignKey(GenomeDatabase, on_delete=models.CASCADE,
-                                        related_name='annotations')
 
     class Meta:
-        unique_together = (('genome', 'type', 'genome_database'),)
+        db_table = 'dataset_statistic'
+        unique_together = (('dataset', 'type', 'name'),)
 
 
-class GenomeDivision(models.Model):
-    genome_division_id = models.AutoField(primary_key=True)
-    division = models.ForeignKey(Division, on_delete=models.CASCADE,
-                                 related_name='divisions')
+class GenomeDataset(models.Model):
+    genome_dataset_id = models.AutoField(primary_key=True)
     genome = models.ForeignKey(Genome, on_delete=models.CASCADE,
-                               related_name='divisions')
-
-
-class GenomeEvent(models.Model):
-    genome_event_id = models.AutoField(primary_key=True)
-    genome = models.ForeignKey(Genome, on_delete=models.CASCADE,
-                               related_name='events')
-    type = models.CharField(max_length=32)
-    source = models.CharField(max_length=128, blank=True, null=True)
-    creation_time = models.DateTimeField(auto_now_add=True)
-    details = models.TextField(blank=True, null=True)
-
-
-class GenomeFeature(models.Model):
-    genome_feature_id = models.AutoField(primary_key=True)
-    genome = models.ForeignKey(Genome, on_delete=models.CASCADE,
-                               related_name='features')
-    type = models.CharField(max_length=32)
-    analysis = models.CharField(max_length=128)
-    count = models.IntegerField()
-    genome_database = models.ForeignKey(GenomeDatabase, models.CASCADE,
-                                        related_name='features')
+                               related_name='datasets')
+    dataset = models.ForeignKey(Dataset, on_delete=models.CASCADE,
+                                related_name='genomes')
+    release = models.ForeignKey(Release, on_delete=models.CASCADE,
+                                related_name='genome_datasets')
 
     class Meta:
-        unique_together = (('genome', 'type', 'analysis', 'genome_database'),)
+        db_table = 'genome_dataset'
 
 
 class GenomeRelease(models.Model):
     genome_release_id = models.AutoField(primary_key=True)
-    genome_uuid = models.ForeignKey(Genome, on_delete=models.CASCADE,
-                                    related_name='releases',
-                                    to_field='genome_uuid')
-    division = models.ForeignKey(Division, on_delete=models.CASCADE,
-                                 related_name='releases')
-    data_release = models.ForeignKey(DataRelease, on_delete=models.CASCADE,
-                                     related_name='releases')
-
-
-class GenomeVariation(models.Model):
-    genome_variation_id = models.AutoField(primary_key=True)
     genome = models.ForeignKey(Genome, on_delete=models.CASCADE,
-                               related_name='variations')
-    type = models.CharField(max_length=32)
-    name = models.CharField(max_length=128)
-    count = models.IntegerField()
-    genome_database = models.ForeignKey(GenomeDatabase, on_delete=models.CASCADE,
-                                        related_name='variations')
+                               related_name='releases')
+    release = models.ForeignKey(Release, on_delete=models.CASCADE,
+                                related_name='releases')
 
     class Meta:
-        unique_together = (('genome', 'type', 'name', 'genome_database'),)
-
-
-class ComparaAnalysis(models.Model):
-    compara_analysis_id = models.AutoField(primary_key=True)
-    genome_compara_analysis = models.ManyToManyField('ensembl_metadata.Genome',
-                                                     through='GenomeComparaAnalysis')
-    method = models.CharField(max_length=50)
-    set_name = models.CharField(max_length=128, blank=True, null=True)
-    dbname = models.CharField(max_length=64)
-    data_release = models.ForeignKey(DataRelease, on_delete=models.CASCADE,
-                                     related_name='analyses')
-    division = models.ForeignKey(Division, on_delete=models.CASCADE,
-                                 related_name='analyses')
-
-    class Meta:
-        unique_together = (('division', 'method', 'set_name', 'dbname'),)
-
-
-class ComparaAnalysisEvent(models.Model):
-    compara_analysis_event_id = models.AutoField(primary_key=True)
-    compara_analysis = models.ForeignKey('ComparaAnalysis', on_delete=models.CASCADE,
-                                         related_name='events')
-    type = models.CharField(max_length=32)
-    source = models.CharField(max_length=128, blank=True, null=True)
-    creation_time = models.DateTimeField(auto_now_add=True)
-    details = models.TextField(blank=True, null=True)
-
-
-class GenomeComparaAnalysis(models.Model):
-    genome_compara_analysis_id = models.AutoField(primary_key=True)
-    genome = models.ForeignKey(Genome, on_delete=models.CASCADE,
-                               related_name='analyses')
-    compara_analysis = models.ForeignKey(ComparaAnalysis, on_delete=models.CASCADE,
-                                         related_name='analyses')
-
-    class Meta:
-        unique_together = (('genome', 'compara_analysis'),)
+        db_table = 'genome_release'

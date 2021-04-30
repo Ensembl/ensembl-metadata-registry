@@ -1,78 +1,67 @@
 from rest_framework import serializers
-from ensembl_metadata.api.assembly.serializers import AssemblySerializer
-from ensembl_metadata.api.organism.serializers import OrganismSerializer
 from ensembl_metadata.models.genome import \
-    Division, Genome, GenomeAlignment, GenomeAnnotation, GenomeComparaAnalysis, \
-    GenomeDatabase, GenomeEvent, GenomeFeature, GenomeVariation, \
-    ComparaAnalysis, ComparaAnalysisEvent
+    Organism, OrganismGroup, OrganismGroupMember, \
+    Dataset, DatasetSource, DatasetStatistic, \
+    Genome, GenomeDataset, GenomeRelease
+from ensembl_metadata.api.assembly.serializers import AssemblySerializer
+from ensembl_metadata.api.release.serializers import ReleaseSerializer
+from ncbi_taxonomy.api.serializers import TaxonomyNodeSerializer
 
 
-class DivisionSerializer(serializers.ModelSerializer):
+class OrganismSerializer(serializers.ModelSerializer):
+    taxon = TaxonomyNodeSerializer(many=False, required=True)
+
     class Meta:
-        model = Division
-        fields = '__all__'
+        model = Organism
+        exclude = ['organism_id']
 
 
-class GenomeDatabaseSerializer(serializers.ModelSerializer):
+class OrganismGroupSerializer(serializers.ModelSerializer):
     class Meta:
-        model = GenomeDatabase
-        exclude = ['genome_database_id', 'genome', 'species_id']
+        model = OrganismGroup
+        exclude = ['organism_group_id']
+
+
+class OrganismGroupMemberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrganismGroupMember
+        exclude = ['organism_group_member_id']
+
+
+class DatasetSourceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DatasetSource
+        exclude = ['dataset_source_id']
+
+
+class DatasetStatisticSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DatasetStatistic
+        fields = ('type', 'name', 'value')
+
+
+class DatasetSerializer(serializers.ModelSerializer):
+    dataset_source = DatasetSourceSerializer(many=False, required=True)
+
+    class Meta:
+        model = Dataset
+        exclude = ['dataset_id', 'genome']
 
 
 class GenomeSerializer(serializers.ModelSerializer):
-    assembly = AssemblySerializer(many=False, required=False)
-    organism = OrganismSerializer(many=False, required=False)
-    databases = GenomeDatabaseSerializer(many=True, required=False)
+    assembly = AssemblySerializer(many=False, required=True)
+    organism = OrganismSerializer(many=False, required=True)
+    datasets = DatasetSerializer(many=True, required=False)
 
     class Meta:
         model = Genome
-        exclude = ['genome_id', 'created']
+        exclude = ['genome_id']
 
 
-class GenomeAlignmentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = GenomeAlignment
-        fields = '__all__'
-
-
-class GenomeAnnotationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = GenomeAnnotation
-        fields = ['type', 'value']
-
-
-class GenomeComparaAnalysisSerializer(serializers.ModelSerializer):
+class GenomeReleaseSerializer(serializers.ModelSerializer):
+    genome = GenomeSerializer(many=True, required=True)
+    release = ReleaseSerializer(many=True, required=True)
 
     class Meta:
-        model = GenomeComparaAnalysis
-        fields = ('genome', 'compara_analysis')
-
-
-class GenomeEventSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = GenomeEvent
-        fields = '__all__'
-
-
-class GenomeFeatureSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = GenomeFeature
-        fields = '__all__'
-
-
-class GenomeVariationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = GenomeVariation
-        fields = ('type', 'name', 'count')
-
-
-class ComparaAnalysisSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ComparaAnalysis
-        fields = '__all__'
-
-
-class ComparaAnalysisEventSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ComparaAnalysisEvent
-        fields = '__all__'
+        model = GenomeRelease
+        exclude = ['genome_release_id']

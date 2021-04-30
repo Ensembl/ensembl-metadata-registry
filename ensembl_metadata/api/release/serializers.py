@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ensembl_metadata.models.datarelease import DataRelease, Site
+from ensembl_metadata.models.release import Release, Site
 
 
 class SiteSerializer(serializers.ModelSerializer):
@@ -8,9 +8,9 @@ class SiteSerializer(serializers.ModelSerializer):
         exclude = ['site_id']
 
 
-class DataReleaseSerializer(serializers.ModelSerializer):
+class ReleaseSerializer(serializers.ModelSerializer):
     site = SiteSerializer(many=False, required=True)
 
     class Meta:
-        model = DataRelease
-        exclude = ['data_release_id', 'label']
+        model = Release
+        exclude = ['release_id']

@@ -1,17 +1,17 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, generics
-from ensembl_metadata.models.datarelease import DataRelease
-from ensembl_metadata.api.datarelease.serializers import DataReleaseSerializer
+from ensembl_metadata.models.release import Release
+from ensembl_metadata.api.release.serializers import ReleaseSerializer
 
 
-class DataReleaseList(generics.ListAPIView):
+class ReleaseList(generics.ListAPIView):
     """
     Return a list of releases.
     """
     name = 'Releases'
 
-    queryset = DataRelease.objects.all()
-    serializer_class = DataReleaseSerializer
+    queryset = Release.objects.all()
+    serializer_class = ReleaseSerializer
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
     filterset_fields = ['is_current']
     ordering_fields = ['version', 'release_date']
@@ -20,23 +20,23 @@ class DataReleaseList(generics.ListAPIView):
     def get_queryset(self):
         version = self.kwargs.get('version', None)
         if version is not None:
-            queryset = DataRelease.objects.filter(version=version)
+            queryset = Release.objects.filter(version=version)
         else:
-            queryset = DataRelease.objects.all()
+            queryset = Release.objects.all()
         return queryset
 
 
-class DataReleaseDetail(generics.RetrieveAPIView):
+class ReleaseDetail(generics.RetrieveAPIView):
     """
     Return a single release.
     """
     name = 'Release'
 
-    queryset = DataRelease.objects.all()
-    serializer_class = DataReleaseSerializer
+    queryset = Release.objects.all()
+    serializer_class = ReleaseSerializer
 
     def get_object(self):
         version = self.kwargs['version']
-        site_label = self.kwargs['site']
-        obj = DataRelease.objects.get(version=version, site__label__startswith=site_label)
+        site_name = self.kwargs['site']
+        obj = Release.objects.get(version=version, site__name__startswith=site_name)
         return obj
