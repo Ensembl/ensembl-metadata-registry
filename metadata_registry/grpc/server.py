@@ -16,7 +16,12 @@ config = MetadataRegistryConfig()
 def load_database(uri=None):
     if uri is None:
         uri = config.METADATA_URI
-    engine = db.create_engine(uri)
+
+    try:
+        engine = db.create_engine(uri)
+    except AttributeError:
+        raise ValueError(f'Could not connect to database. Check METADATA_URI env variable.')
+
     try:
         connection = engine.connect()
     except db.exc.OperationalError as err:
@@ -155,8 +160,6 @@ def genome_sequence_iterator(metadata_db, genome_uuid, chromosomal_only):
     if chromosomal_only == 1:
         seq_select = seq_select.filter_by(chromosomal=True)
 
-    # Could batch queries, if it's too slow to get all at once;
-    # but it does not currently seem necessary.
     for result in session.execute(seq_select):
         yield create_genome_sequence(dict(result))
 
