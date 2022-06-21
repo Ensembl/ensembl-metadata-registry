@@ -18,8 +18,8 @@ elif ensembl_metadata_registry.settings.env.PROD_ENV:
     DATABASE_HOST = 'host'
     DATABASE_PORT = 'port'
 elif ensembl_metadata_registry.settings.env.DEV_ENV:
-    DATABASE_USER = 'prem'
-    DATABASE_PASSWORD = 'prem'
+    DATABASE_USER = 'root'
+    DATABASE_PASSWORD = 'ensembl'
     DATABASE_HOST = 'localhost'
     DATABASE_PORT = '3306'
 elif ensembl_metadata_registry.settings.env.STAGING_ENV:
